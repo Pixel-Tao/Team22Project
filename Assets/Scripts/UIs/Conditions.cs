@@ -11,4 +11,5 @@ public class Conditions : MonoBehaviour
     public ConditionSlot hunger;
     // 목마름
     public ConditionSlot thirsty;
+
 }

@@ -6,6 +6,7 @@ public class GameScene : SceneBase
     {
         Debug.Log("GameScene OnSceneLoad");
         UIManager.Instance.ShowSceneUI<GameSceneUI>();
+        ResourceManager.Instance.Instantiate("WorldMap");
     }
 
     protected override void OnSceneUnloaded()
