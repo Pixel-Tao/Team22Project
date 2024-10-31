@@ -1,3 +1,4 @@
+using Defines;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,5 +6,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemData", menuName = "Datas/ItemData")]
 public class ItemData : InteractableData
 {
-
+    public ItemType itemType;
 }

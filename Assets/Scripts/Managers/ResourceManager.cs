@@ -14,6 +14,7 @@ public class ResourceManager : Singleton<ResourceManager>
         GameObject[] prefabs = Resources.LoadAll<GameObject>(_prefabDir);
         for (int i = 0; i < prefabs.Length; i++)
         {
+            // Class 이름 = Prefab 이름 완전 동일해야함
             prefabDict.Add(prefabs[i].name, prefabs[i]);
         }
     }

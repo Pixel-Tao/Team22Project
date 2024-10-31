@@ -72,4 +72,9 @@ public class InputController : MonoBehaviour
             RotateEvent?.Invoke(Vector3.zero);
         }
     }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+
+    }
 }
