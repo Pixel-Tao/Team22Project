@@ -8,4 +8,13 @@ namespace Defines
         Consumable,
         Resource
     }
+
+    public enum ConsumeableType
+    {
+        None,
+        Health,
+        Mana,
+        Stamina,
+        Hunger,
+    }
 }
