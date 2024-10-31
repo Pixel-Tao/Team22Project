@@ -17,4 +17,25 @@ namespace Defines
         Stamina,
         Hunger,
     }
+
+    public enum BuildingType
+    {
+        None,
+        House,
+        Farm,
+        Mine,
+        Tower,
+        Wall,
+        Gate,
+        Castle,
+    }
+
+    public enum TileType
+    {
+        None,
+        Ground,
+        Water,
+        Road,
+        Resource
+    }
 }

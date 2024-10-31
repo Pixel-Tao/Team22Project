@@ -7,6 +7,5 @@ using UnityEngine;
 public class ItemSO : InteractableSO
 {
     public ItemType itemType;
-
     public List<ConsumableData> consumables;
 }
