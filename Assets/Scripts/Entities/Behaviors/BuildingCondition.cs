@@ -40,12 +40,17 @@ public class BuildingCondition : MonoBehaviour, IDamageable
     public void Heal(int heal)
     {
         CurHealth += heal;
-        if(CurHealth > MaxHealth) CurHealth = MaxHealth;
+        if (CurHealth > MaxHealth) CurHealth = MaxHealth;
     }
 
     public void TakeDamage(int damage)
     {
         CurHealth -= damage;
         if (CurHealth < 0) CurHealth = 0;
+    }
+
+    public void KnockBack(Transform dest)
+    {
+
     }
 }

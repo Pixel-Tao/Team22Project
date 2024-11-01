@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3688914038908016836}
   - component: {fileID: 2150057969344742601}
+  - component: {fileID: -3946872157722832055}
   m_Layer: 0
   m_Name: Consumable_Bread
   m_TagString: Untagged
@@ -47,6 +48,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 382ddc96d3352554cab4df847053dbb4, type: 2}
   itemSO: {fileID: 11400000, guid: 382ddc96d3352554cab4df847053dbb4, type: 2}
+--- !u!54 &-3946872157722832055
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428717543096977886}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6627891490443994610
 GameObject:
   m_ObjectHideFlags: 0
