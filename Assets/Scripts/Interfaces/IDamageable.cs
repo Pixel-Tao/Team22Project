@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 /// <summary>
 /// 생명력 회복, 피해를 입는 등 생명력 관련 인터페이스
 /// </summary>
@@ -14,4 +16,5 @@ public interface IDamageable
     /// </summary>
     /// <param name="heal"></param>
     public void Heal(int heal);
+    public void KnockBack(Transform dest);
 }
