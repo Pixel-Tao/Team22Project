@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class BuildingCondition : MonoBehaviour, IDamageable
 {
-    //핸들러역할 병합
-
     BuildSO buildedSO;
 
-    public float curHealth { get; private set; }
-    public float maxHealth { get; private set; }
+    public float CurHealth { get; private set; }
+    public float MaxHealth { get; private set; }
 
-    public float curAttackPower { get; private set; }
+    public float CurAttackPower { get; private set; }
+    public float CurAttackRange { get; private set; }
+    public float CurAttackDelay { get; private set; }
 
+    public float CurProductiontDelay { get; private set; }
 
     private void Awake()
     {
-        buildedSO = GetComponent<BuildSO>();
+        buildedSO = GetComponent<BuildingObject>().buildedSO;
     }
 
     private void Start()
@@ -26,19 +27,25 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     private void Init()
     {
-        maxHealth = buildedSO.health;
-        curHealth = maxHealth;
+        MaxHealth = buildedSO.health;
+        CurHealth = MaxHealth;
 
-        if (buildedSO.attackPower > 0) curAttackPower = buildedSO.attackPower;
+        CurAttackPower = buildedSO.attackPower;
+        CurAttackRange = buildedSO.attackRange;
+        CurAttackDelay = buildedSO.attackDelay;
+
+        CurProductiontDelay = buildedSO.ProductiontDelay;
     }
 
     public void Heal(int heal)
     {
-        curHealth += heal;
+        CurHealth += heal;
+        if(CurHealth > MaxHealth) CurHealth = MaxHealth;
     }
 
     public void TakeDamage(int damage)
     {
-        curHealth -= damage;
+        CurHealth -= damage;
+        if (CurHealth < 0) CurHealth = 0;
     }
 }

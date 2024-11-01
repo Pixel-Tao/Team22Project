@@ -11,17 +11,24 @@ public class BuildSO : InteractableSO
     [Header("해당 건물의 분류")]
     public Defines.BuildingType buildingType;
 
-    [Header("건설에 필요한 자원량(int) 목재,석재,인구 순")]
-    public int[] requiredResources = new int[3];
+    [Header("건설에 필요한 자원량(int)")]
+    public ResourceData[] NeedResources;
 
-    [Header("건물 스텟")]
+    [Header("건물 체력")]
     public float health;
-    public float attackPower;
-    public int consumingPopulation;
+
+    [Header("인구 증감")]
     public int providedPopulation;
-    
-    [Header("해당 건물로부터 드랍되는 목록")]
-    public GameObject[] dropPrefabs;
+    public int consumingPopulation;
+
+    [Header("공격 건물 스탯")]
+    public float attackPower;
+    public float attackRange;
+    public float attackDelay;
+
+    [Header("생산 건물 스탯")]
+    public GameObject[] ProductPrefabs;
+    public float ProductiontDelay;
 
     [Header("건물 모델")]
     public GameObject modelPrefab;

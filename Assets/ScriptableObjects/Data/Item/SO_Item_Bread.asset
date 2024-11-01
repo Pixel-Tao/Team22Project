@@ -17,5 +17,6 @@ MonoBehaviour:
   itemPower: 20
   itemIcon: {fileID: 0}
   itemType: 0
+  consumables: []
   equipPrefab: {fileID: 0}
   dropItemPrefab: {fileID: 8149135309178360890, guid: 49ed514d2faacd842a42aab6fe89169b, type: 3}
