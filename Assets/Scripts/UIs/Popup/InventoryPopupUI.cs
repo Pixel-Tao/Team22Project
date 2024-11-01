@@ -22,10 +22,14 @@ public class InventoryPopupUI : UIPopup
 
     private ItemSlot selectedItemSlot;
 
-    private void Start()
+    private void Awake()
     {
         CharacterManager.Instance.Player.SetInventory(this);
         InitSlots();
+    }
+
+    private void Start()
+    {
     }
 
     private void InitSlots()

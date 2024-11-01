@@ -115,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4985427139610976100}
   - component: {fileID: 893594361356469935}
+  - component: {fileID: 1100976308966498059}
   m_Layer: 7
   m_Name: Resource_Rock
   m_TagString: Untagged
@@ -152,3 +153,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: ba1dae90fd0a52a44a2560c80a1e5eb8, type: 2}
   followSpeed: 10
+--- !u!65 &1100976308966498059
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8036013169813756631}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7328054, y: 0.77756083, z: 0.8189256}
+  m_Center: {x: -0.025816664, y: 0.07773614, z: -0.033876702}

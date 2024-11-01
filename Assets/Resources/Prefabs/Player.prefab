@@ -170,6 +170,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9e0b08f2-f93b-47b8-a1ed-98a776d86109
     m_ActionName: Player/Escape[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 816201128733226030}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnBuildMode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fa5c3915-eac7-4ab8-a27d-156de99df4e4
+    m_ActionName: Player/BuildMode[/Keyboard/b]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -281,7 +297,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  normalInteractionRadius: 1
+  normalInteractionRadius: 2
   peakupLayer:
     serializedVersion: 2
     m_Bits: 4224

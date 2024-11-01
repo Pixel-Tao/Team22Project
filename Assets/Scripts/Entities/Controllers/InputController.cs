@@ -94,4 +94,12 @@ public class InputController : MonoBehaviour
                 UIManager.Instance.ClosePopupUI(popup);
         }
     }
+
+    public void OnBuildMode(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            GameManager.Instance.ToggleBuildMode();
+        }
+    }
 }

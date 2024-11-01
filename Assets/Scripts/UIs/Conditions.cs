@@ -12,7 +12,7 @@ public class Conditions : MonoBehaviour
     // 목마름
     public ConditionSlot thirsty;
 
-    private void Start()
+    private void Awake()
     {
         if (CharacterManager.Instance.Player.TryGetComponent(out Condition condition))
         {
@@ -20,6 +20,8 @@ public class Conditions : MonoBehaviour
             condition.StaminaChangedEvent += stamina.ValueChanged;
             condition.HungerChangedEvent += hunger.ValueChanged;
             condition.ThirstChangedEvent += thirsty.ValueChanged;
+
+            condition.FullRecovery();
         }
     }
 }

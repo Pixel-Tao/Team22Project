@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uB098\uBB34"
   description: "\uCC44\uCDE8\uAC00\uB2A5\uD55C \uB098\uBB34\uC785\uB2C8\uB2E4"
-  tileType: 0
+  tileType: 4
   dropPrefabs: []

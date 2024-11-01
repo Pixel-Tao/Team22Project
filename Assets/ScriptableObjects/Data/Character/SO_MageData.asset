@@ -21,7 +21,7 @@ MonoBehaviour:
     health: 0
     stamina: 0
     maxStamina: 200
-    passiveStamina: 0
+    passiveStamina: 10
     hunger: 0
     maxHunger: 200
     passiveHunger: 5

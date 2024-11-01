@@ -7,6 +7,14 @@ public class ItemObject : InteractableObject, IInteractable
     [SerializeField] public float followSpeed = 10f;
 
     private Transform target;
+    private Rigidbody rigidbody;
+    private Collider collider;
+
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
+    }
 
     private void Update()
     {
@@ -17,8 +25,11 @@ public class ItemObject : InteractableObject, IInteractable
     {
         if (target == null) return;
 
-        transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * followSpeed);
-        if (Vector3.Distance(transform.position, target.position) < 0.1f)
+        Vector3 position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * followSpeed);
+        Vector3 direction = (position - transform.position).normalized * followSpeed * Time.deltaTime;
+        float distance = Vector3.Distance(position, target.position);
+        transform.position += direction;
+        if (distance < 0.1f)
         {
             CharacterManager.Instance.AddItem(data as ItemSO);
             // TODO : 풀링 필요
@@ -39,5 +50,7 @@ public class ItemObject : InteractableObject, IInteractable
     public void OnInteract(Transform target)
     {
         this.target = target;
+        rigidbody.isKinematic = true;
+        collider.enabled = false;
     }
 }
