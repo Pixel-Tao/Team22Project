@@ -37,6 +37,8 @@ namespace Defines
         Ground,
         Water,
         Road,
-        Resource
+        Tree,
+        Mine,
+        Farm
     }
 }

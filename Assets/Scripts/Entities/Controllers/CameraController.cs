@@ -37,6 +37,7 @@ public class CameraController : MonoBehaviour
         if (cameraRoot == null)
         {
             GameObject go = new GameObject("CameraRoot");
+            go.transform.SetParent(transform);
             cameraRoot = go.transform;
         }
         cam = Camera.main;

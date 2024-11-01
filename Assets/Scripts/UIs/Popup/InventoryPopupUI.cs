@@ -24,6 +24,7 @@ public class InventoryPopupUI : UIPopup
 
     private void Start()
     {
+        CharacterManager.Instance.Player.SetInventory(this);
         InitSlots();
     }
 
@@ -39,6 +40,11 @@ public class InventoryPopupUI : UIPopup
                 slots.Add(slot);
             }
         }
+    }
+
+    public void AddItem(ItemSO itemSO)
+    {
+
     }
 
     public void SelectItem(ItemSlot slot)

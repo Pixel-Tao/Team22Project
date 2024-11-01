@@ -7,6 +7,8 @@ public class InputController : MonoBehaviour
     public event Action<Vector3> MoveEvent;
     public event Action<Vector3> LookEvent;
     public event Action<Vector2> RotateEvent;
+    public event Action<Vector2> MouseInteractionEvent;
+    public event Action InteractEvent;
 
     private Vector2 screenCenter;
     private Vector3 direction;
@@ -40,6 +42,7 @@ public class InputController : MonoBehaviour
             Vector2 directionFromCenter = position - screenCenter;
             direction = new Vector3(directionFromCenter.x, 0f, directionFromCenter.y).normalized;
             LookEvent?.Invoke(direction);
+            MouseInteractionEvent?.Invoke(position);
         }
     }
 
@@ -55,7 +58,8 @@ public class InputController : MonoBehaviour
 
     public void OnMouseLeftClick(InputAction.CallbackContext context)
     {
-
+        if (context.phase == InputActionPhase.Started)
+            InteractEvent?.Invoke();
     }
 
     public void OnMouseRightClick(InputAction.CallbackContext context)
@@ -75,7 +79,8 @@ public class InputController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-
+        if (context.phase == InputActionPhase.Started)
+            InteractEvent?.Invoke();
     }
 
     public void OnInventory(InputAction.CallbackContext context)

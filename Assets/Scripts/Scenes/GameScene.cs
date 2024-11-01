@@ -6,6 +6,8 @@ public class GameScene : SceneBase
     {
         Debug.Log("GameScene OnSceneLoad");
         UIManager.Instance.ShowSceneUI<GameSceneUI>();
+        UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
+        UIManager.Instance.CloseAllPopupUI();
         ResourceManager.Instance.Instantiate("WorldMap");
     }
 
