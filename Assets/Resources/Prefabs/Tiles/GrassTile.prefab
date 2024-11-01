@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3134189139564212285}
   - component: {fileID: 1552982221501157979}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrassTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 059c6b1082ba0154c9d2658032f3cd54, type: 2}
   buildedSO: {fileID: 0}
+  flashInterval: 0.2
+  flashColor: {r: 1, g: 0.4669811, b: 0.4669811, a: 1}
 --- !u!1001 &1309755263762371996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99,6 +101,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0391ee4c4ce19d34f8eee8afa163aa70, type: 3}
       propertyPath: m_Name
       value: hex_grass_bottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0391ee4c4ce19d34f8eee8afa163aa70, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 0391ee4c4ce19d34f8eee8afa163aa70, type: 3}
@@ -192,6 +198,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fe26c606e1bccb54fa157c4a7640b9cb, type: 3}
       propertyPath: m_Name
       value: hex_grass
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe26c606e1bccb54fa157c4a7640b9cb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

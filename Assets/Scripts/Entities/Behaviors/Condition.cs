@@ -55,6 +55,11 @@ public class Condition : MonoBehaviour, IDamageable
         HealthChangedEvent?.Invoke(currentStat.health, currentStat.maxHealth);
     }
 
+    public void KnockBack(Transform dest)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void TakeDamage(int damage)
     {
         currentStat.health -= Mathf.Clamp(damage, 0, currentStat.maxHealth);
@@ -122,5 +127,10 @@ public class Condition : MonoBehaviour, IDamageable
     {
         // TODO : 사망처리
         Debug.Log("Die");
+    }
+
+    public void KnockBack()
+    {
+        // 미구현
     }
 }
