@@ -16,6 +16,7 @@ namespace Defines
         Mana,
         Stamina,
         Hunger,
+        water
     }
 
     public enum BuildingType

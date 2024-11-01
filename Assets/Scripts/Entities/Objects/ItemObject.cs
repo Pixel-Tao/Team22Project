@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ItemObject : InteractableObject
 {
-
+    public ItemSO itemSO;
 }
