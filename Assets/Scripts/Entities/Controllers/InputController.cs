@@ -77,4 +77,16 @@ public class InputController : MonoBehaviour
     {
 
     }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            InventoryPopupUI popup = UIManager.Instance.PeekPopupUI<InventoryPopupUI>();
+            if (popup == null)
+                UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
+            else
+                UIManager.Instance.ClosePopupUI(popup);
+        }
+    }
 }
