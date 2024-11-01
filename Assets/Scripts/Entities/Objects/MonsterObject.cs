@@ -11,10 +11,11 @@ public enum MOBSTATE
 
 public class MonsterObject : MonoBehaviour, IDamageable
 {
-    int standAnimId;
     int attackAnimId;
     int damagedAnimId;
     int deadAnimId;
+
+    float xFixable = 0f;
 
     public MonsterSO data;
     NavMeshAgent agent;
@@ -54,11 +55,9 @@ public class MonsterObject : MonoBehaviour, IDamageable
         switch(state)
         {
             case MOBSTATE.MOVE:
-                animator.SetBool(standAnimId, false);
                 UpdateMove();
                 break;
             case MOBSTATE.ATTACK:
-                animator.SetBool(standAnimId, true);
                 UpdateAttack();
                 break;
         }
@@ -71,7 +70,6 @@ public class MonsterObject : MonoBehaviour, IDamageable
         attackTimer = data.attackDelay;
         agent.speed = data.speed;
 
-        standAnimId = Animator.StringToHash("isStand");
         attackAnimId = Animator.StringToHash("isAttack");
         damagedAnimId = Animator.StringToHash("isDamaged");
         deadAnimId = Animator.StringToHash("isDead");
@@ -85,14 +83,26 @@ public class MonsterObject : MonoBehaviour, IDamageable
         if (detectObject == null) SetTarget(playerLength < data.detectiveLength ? testPlayer.transform : goalObject.transform);
         else SetTarget(detectObject.transform);
 
-        float xFixable = targetObject.TryGetComponent<BoxCollider>(out BoxCollider temp) ? temp.size.x / 2 : 0;
-        if (GetDestLength() < data.attackRange + xFixable) SetState(MOBSTATE.ATTACK);
+        xFixable = targetObject.TryGetComponent<BoxCollider>(out BoxCollider temp) ? temp.size.x / 2 : 0;
+        if (GetDestLength() < data.attackRange + xFixable)
+        {
+            SetState(MOBSTATE.ATTACK);
+            attackTimer = data.attackDelay;
+        } 
     }
     private void UpdateAttack()
     {
-        float xFixable = targetObject.TryGetComponent<BoxCollider>(out BoxCollider temp) ? temp.size.x / 2 : 0;
-        if (GetDestLength() > data.attackRange + xFixable) SetState(MOBSTATE.MOVE);
+        if(targetObject == null)
+        {
+            SetState(MOBSTATE.MOVE);
+            return;
+        }
         
+        if(targetObject != null)
+        {
+            if (GetDestLength() > data.attackRange + xFixable) SetState(MOBSTATE.MOVE);
+        }
+
         attackTimer += Time.deltaTime;
         if(attackTimer > data.attackDelay)
         {
@@ -132,6 +142,7 @@ public class MonsterObject : MonoBehaviour, IDamageable
     }
     private void AttackToTarget()
     {
+        if (targetObject == null) return;
         Debug.Log("몬스터가" + targetObject.name + "에게 공격을함!!");
         //TODO : ATTACK FRAME
     }
