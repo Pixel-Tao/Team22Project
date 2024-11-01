@@ -9,6 +9,11 @@ public class Condition : MonoBehaviour, IDamageable
         
     }
 
+    public void KnockBack(Transform dest)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void TakeDamage(int damage)
     {
         

@@ -3,23 +3,29 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     private Vector3 moveDirection;
-    private Rigidbody rigidbody;
+    [SerializeField] float axisY;
+    private Rigidbody rb;
 
     [Header("임시 이동속도")]
     public float speed = 5;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void FixedUpdate()
     {
-        rigidbody.velocity = moveDirection * speed;
+        rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
     }
 
     public void Move(Vector3 move)
     {
-        moveDirection = move.normalized;
+        moveDirection = move * speed;
     }
 }
