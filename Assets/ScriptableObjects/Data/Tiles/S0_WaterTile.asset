@@ -15,3 +15,4 @@ MonoBehaviour:
   displayName: "\uBB3C"
   description: "\uAC74\uC124 \uBD88\uAC00 \uC9C0\uC5ED\uC785\uB2C8\uB2E4"
   tileType: 2
+  dropPrefabs: []

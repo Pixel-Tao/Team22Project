@@ -7,9 +7,10 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-    int _order = -20;
+    int order = -20;
 
-    Stack<UIPopup> _popupStack = new Stack<UIPopup>();
+    Stack<UIPopup> popupStack = new Stack<UIPopup>();
+    Dictionary<string, UIPopup> popupDict = new Dictionary<string, UIPopup>();
 
     public UIScene SceneUI { get; private set; }
 
@@ -33,8 +34,8 @@ public class UIManager : Singleton<UIManager>
 
         if (sort)
         {
-            canvas.sortingOrder = _order;
-            _order++;
+            canvas.sortingOrder = order;
+            order++;
         }
         else
         {
@@ -78,44 +79,49 @@ public class UIManager : Singleton<UIManager>
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject prefab = ResourceManager.Instance.Load<GameObject>($"Prefabs/UI/Popup/{name}");
+        if (!popupDict.TryGetValue(name, out UIPopup popup))
+        {
+            GameObject prefab = ResourceManager.Instance.Load<GameObject>($"Prefabs/UI/Popup/{name}");
 
-        GameObject go = ResourceManager.Instance.Instantiate($"UI/Popup/{name}");
-        T popup = Utils.GetOrAddComponent<T>(go);
-        _popupStack.Push(popup);
+            GameObject go = ResourceManager.Instance.Instantiate($"UI/Popup/{name}");
+            popup = Utils.GetOrAddComponent<T>(go);
+            popupDict.Add(name, popup);
 
-        if (parent != null)
-            go.transform.SetParent(parent);
-        else if (SceneUI != null)
-            go.transform.SetParent(SceneUI.transform);
-        else
-            go.transform.SetParent(Root.transform);
+            if (parent != null)
+                go.transform.SetParent(parent);
+            else if (SceneUI != null)
+                go.transform.SetParent(SceneUI.transform);
+            else
+                go.transform.SetParent(Root.transform);
 
-        go.transform.localScale = Vector3.one;
-        go.transform.localPosition = prefab.transform.position;
+            go.transform.localScale = Vector3.one;
+            go.transform.localPosition = prefab.transform.position;
+        }
+        popup.gameObject.SetActive(true);
+        popupStack.Push(popup);
 
-        return popup;
+        return popup as T;
     }
 
     public T FindPopup<T>() where T : UIPopup
     {
-        return _popupStack.Where(x => x.GetType() == typeof(T)).FirstOrDefault() as T;
+        return popupStack.Where(x => x.GetType() == typeof(T)).FirstOrDefault() as T;
     }
 
     public T PeekPopupUI<T>() where T : UIPopup
     {
-        if (_popupStack.Count == 0)
+        if (popupStack.Count == 0)
             return null;
 
-        return _popupStack.Peek() as T;
+        return popupStack.Peek() as T;
     }
 
     public void ClosePopupUI(UIPopup popup)
     {
-        if (_popupStack.Count == 0)
+        if (popupStack.Count == 0)
             return;
 
-        if (_popupStack.Peek() != popup)
+        if (popupStack.Peek() != popup)
         {
             Debug.Log("Close Popup Failed!");
             return;
@@ -126,18 +132,18 @@ public class UIManager : Singleton<UIManager>
 
     public void ClosePopupUI()
     {
-        if (_popupStack.Count == 0)
+        if (popupStack.Count == 0)
             return;
 
-        UIPopup popup = _popupStack.Pop();
-        ResourceManager.Destroy(popup.gameObject);
+        UIPopup popup = popupStack.Pop();
+        popup.gameObject.SetActive(false);
         popup = null;
-        _order--;
+        order--;
     }
 
     public void CloseAllPopupUI()
     {
-        while (_popupStack.Count > 0)
+        while (popupStack.Count > 0)
             ClosePopupUI();
     }
 

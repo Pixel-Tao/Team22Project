@@ -1,7 +1,8 @@
 using Defines;
 using UnityEngine;
 
-public class ConsumableData : ScriptableObject
+[System.Serializable]
+public class ConsumableData
 {
     public ConsumeableType consumeableType;
     public float amount;

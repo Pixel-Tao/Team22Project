@@ -46,7 +46,7 @@ public class Equipment : MonoBehaviour
     ItemSO SetitemSO(string equip)
     {
         equipprefap = Resources.Load<GameObject>(equip);
-        itemSO = equipprefap.GetComponent<ItemObject>().itemSO;
+        itemSO = equipprefap.GetComponent<ItemObject>()?.data as ItemSO;
         return itemSO;
     }
 }

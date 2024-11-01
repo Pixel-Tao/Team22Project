@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3036676204677722478}
   - component: {fileID: 4008065813999189352}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Resource_Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 8c193d83cbbf7344292007fe8a5d1477, type: 2}
-  itemSO: {fileID: 11400000, guid: 8c193d83cbbf7344292007fe8a5d1477, type: 2}
+  followSpeed: 10
 --- !u!1 &5684807520569483233
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 445234518632919324}
   - component: {fileID: 5349800333487835798}
   - component: {fileID: 8672178416887077332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6043595438187916705}
   - component: {fileID: 7829926576673183712}
   - component: {fileID: 3592563577264065461}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1310032418288451863}
   - component: {fileID: 9106450340458194495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Consumable_Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,4 +153,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: db1426bbbf5ba004787a6f3dbca8f087, type: 2}
-  itemSO: {fileID: 11400000, guid: db1426bbbf5ba004787a6f3dbca8f087, type: 2}
+  followSpeed: 10

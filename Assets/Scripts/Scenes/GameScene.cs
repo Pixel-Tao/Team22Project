@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class GameScene : SceneBase
 {
+    public int poolDefaultCapacity = 20;
+    public int poolMaxSize = 100;
+
     protected override void OnSceneLoad()
     {
         Debug.Log("GameScene OnSceneLoad");
-        UIManager.Instance.ShowSceneUI<GameSceneUI>();
+        CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
         ResourceManager.Instance.Instantiate("WorldMap");
+        PoolManager.Instance.Init(poolDefaultCapacity, poolMaxSize);
+        UIManager.Instance.ShowSceneUI<GameSceneUI>();
+        UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
+        UIManager.Instance.CloseAllPopupUI();
     }
 
     protected override void OnSceneUnloaded()

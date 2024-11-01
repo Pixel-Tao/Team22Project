@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 /// <summary>
 /// 오브젝트 상호작용에 필요한 인터페이스
 /// 상호작용이 필요한 경우에는 필수로 상속받아야 함.
@@ -13,5 +15,9 @@ public interface IInteractable
     /// <summary>
     /// 상호작용 가능한 오브젝트를 클릭했을때 실행되는 함수
     /// </summary>
-    public void OnInteract();
+    public void OnInteract(Transform target);
+    /// <summary>
+    /// 상호작용 가능한 경우 깜박이게 하기위한 함수
+    /// </summary>
+    public void Flash();
 }
