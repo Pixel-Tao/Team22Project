@@ -36,7 +36,7 @@ namespace Defines
         None,
         Ground,
         Water,
-        Sand,
         Road,
+        Resource
     }
 }
