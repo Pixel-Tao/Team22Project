@@ -5,6 +5,9 @@ public class CameraController : MonoBehaviour
     public Vector3 offsetPosition;
     public float offsetAngle = 45;
 
+    public Vector3 buildModePosition;
+    public float buildModeAngle;
+
     private Transform cameraRoot;
     private Camera cam;
 
@@ -18,9 +21,18 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        cam.transform.localPosition = offsetPosition;
-        cam.transform.localEulerAngles = new Vector3(offsetAngle, 0, 0);
-        cameraRoot.transform.rotation = initialRotation;
+        if (GameManager.Instance.IsBuildMode)
+        {
+            cam.transform.localPosition = buildModePosition;
+            cam.transform.localEulerAngles = new Vector3(buildModeAngle, 0, 0);
+            cameraRoot.transform.rotation = initialRotation;
+        }
+        else
+        {
+            cam.transform.localPosition = offsetPosition;
+            cam.transform.localEulerAngles = new Vector3(offsetAngle, 0, 0);
+            cameraRoot.transform.rotation = initialRotation;
+        }
     }
 
     public void SetCameraTarget()

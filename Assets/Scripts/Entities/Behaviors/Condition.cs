@@ -20,8 +20,11 @@ public class Condition : MonoBehaviour, IDamageable
     {
         this.baseStat = stat;
         currentStat.maxStamina = stat.maxStamina;
+        currentStat.passiveStamina = stat.passiveStamina;
         currentStat.maxHunger = stat.maxHunger;
+        currentStat.passiveHunger = stat.passiveHunger;
         currentStat.maxThirst = stat.maxThirst;
+        currentStat.passiveThirst = stat.passiveThirst;
         currentStat.maxHealth = stat.maxHealth;
         currentStat.damage = stat.damage;
         currentStat.moveSpeed = stat.moveSpeed;

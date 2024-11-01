@@ -8,12 +8,12 @@ public class GameScene : SceneBase
     protected override void OnSceneLoad()
     {
         Debug.Log("GameScene OnSceneLoad");
+        CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
+        ResourceManager.Instance.Instantiate("WorldMap");
         PoolManager.Instance.Init(poolDefaultCapacity, poolMaxSize);
         UIManager.Instance.ShowSceneUI<GameSceneUI>();
         UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
         UIManager.Instance.CloseAllPopupUI();
-        ResourceManager.Instance.Instantiate("WorldMap");
-        CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
     }
 
     protected override void OnSceneUnloaded()
