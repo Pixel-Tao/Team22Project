@@ -1,3 +1,5 @@
+using Defines;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,6 +12,12 @@ public class Player : MonoBehaviour
     private Interaction interaction;
 
     private InventoryPopupUI inventory;
+    private Condition condition;
+
+    [SerializeField] private List<JobSO> characters;
+    private GameObject characterModelGameObject;
+
+    public JobSO JobData { get; private set; }
 
     private void Awake()
     {
@@ -32,6 +40,36 @@ public class Player : MonoBehaviour
         input.LookEvent += look.Look;
         input.MouseInteractionEvent += interaction.MouseInteraction;
         input.InteractEvent += interaction.Interact;
+    }
+    public void SetJob(JobType jobType)
+    {
+        if (characters == null) return;
+        if (JobData?.jobType == jobType) return;
+
+        if (characterModelGameObject != null)
+        {
+            Destroy(characterModelGameObject);
+        }
+
+        foreach (JobSO character in characters)
+        {
+            if (character.jobType == jobType)
+            {
+                JobData = character;
+                characterModelGameObject = Instantiate(character.characterModelPrefab, transform);
+                characterModelGameObject.name = character.characterModelPrefab.name;
+                if (transform.TryGetComponent(out AnimController anim))
+                {
+                    anim.SetAnimator(characterModelGameObject.GetComponent<Animator>());
+                }
+                if (transform.TryGetComponent(out Condition condition))
+                {
+                    this.condition = condition;
+                    condition.SetData(character.stat, true);
+                }
+                break;
+            }
+        }
     }
 
     public void SetInventory(InventoryPopupUI inventory)

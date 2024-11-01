@@ -13,6 +13,7 @@ public class GameScene : SceneBase
         UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
         UIManager.Instance.CloseAllPopupUI();
         ResourceManager.Instance.Instantiate("WorldMap");
+        CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
     }
 
     protected override void OnSceneUnloaded()

@@ -41,4 +41,13 @@ namespace Defines
         Mine,
         Farm
     }
+
+    public enum JobType
+    {
+        None,
+        Bararian,
+        Knight,
+        Mage,
+        Rogue
+    }
 }

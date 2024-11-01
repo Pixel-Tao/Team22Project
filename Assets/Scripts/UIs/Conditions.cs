@@ -12,4 +12,14 @@ public class Conditions : MonoBehaviour
     // 목마름
     public ConditionSlot thirsty;
 
+    private void Start()
+    {
+        if (CharacterManager.Instance.Player.TryGetComponent(out Condition condition))
+        {
+            condition.HealthChangedEvent += health.ValueChanged;
+            condition.StaminaChangedEvent += stamina.ValueChanged;
+            condition.HungerChangedEvent += hunger.ValueChanged;
+            condition.ThirstChangedEvent += thirsty.ValueChanged;
+        }
+    }
 }
