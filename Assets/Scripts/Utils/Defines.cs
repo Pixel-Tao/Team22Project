@@ -23,8 +23,6 @@ namespace Defines
     {
         None,
         House,
-        Farm,
-        Mine,
         Tower,
         Wall,
         Gate,
@@ -34,6 +32,9 @@ namespace Defines
     public enum TileType
     {
         None,
+        GrainField,
+        MineField,
+        LoggingField,
         Ground,
         Water,
         Road,
