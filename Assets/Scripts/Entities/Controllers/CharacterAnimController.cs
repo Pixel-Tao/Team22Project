@@ -9,7 +9,6 @@ public class CharacterAnimController : MonoBehaviour
     private readonly int AttackHash = Animator.StringToHash("Attack");
     private readonly int HitHash = Animator.StringToHash("Hit");
     private readonly int DeadHash = Animator.StringToHash("IsDead");
-    private readonly int IsMoveHash = Animator.StringToHash("IsMove");
 
     private Animator animator;
 
@@ -100,17 +99,6 @@ public class CharacterAnimController : MonoBehaviour
         if (animator.GetBool(DeadHash) == false) return;
         animator.SetBool(DeadHash, false);
     }
-    public void MoveAnim()
-    {
-        if (animator == null)
-        {
-            Debug.LogWarning("Animator is null");
-            return;
-        }
-
-        if (animator.GetBool(IsMoveHash)) return;
-        animator.SetBool(IsMoveHash, true);
-    }
     public void MoveAnim(CharacterMoveStepType type)
     {
         if (animator == null)
@@ -120,9 +108,6 @@ public class CharacterAnimController : MonoBehaviour
         }
 
         animator.SetInteger("Step", (int)type);
-
-        if (animator.GetBool(IsMoveHash)) return;
-        animator.SetBool(IsMoveHash, true);
     }
     public void IdleAnim()
     {
@@ -132,7 +117,5 @@ public class CharacterAnimController : MonoBehaviour
             return;
         }
         animator.SetInteger("Step", (int)CharacterMoveStepType.Idle);
-        if (animator.GetBool(IsMoveHash) == false) return;
-        animator.SetBool(IsMoveHash, false);
     }
 }

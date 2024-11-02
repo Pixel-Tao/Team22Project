@@ -9,8 +9,6 @@ public class CharacterManager : Singleton<CharacterManager>
     private Player player;
     public Player Player { get { return player; } }
 
-    public List<ItemSO> items;
-
     public void SetPlayer(Player player)
     {
         this.player = player;
@@ -34,12 +32,13 @@ public class CharacterManager : Singleton<CharacterManager>
         GameObject playerObj = ResourceManager.Instance.Instantiate(playerPrefabName);
         playerObj.name = "Player";
         Player player = Utils.GetOrAddComponent<Player>(playerObj);
-        player.SetJob(jobType);
+        JobChange(JobType.Babarian);
     }
 
     public void JobChange(JobType jobType)
     {
-        Player.SetJob(jobType);
+        JobSO jobSO = ResourceManager.Instance.GetSOJobData<JobSO>(JobType.Babarian);
+        Player.SetJob(jobSO);
     }
 }
 

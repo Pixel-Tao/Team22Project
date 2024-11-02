@@ -63,7 +63,7 @@ namespace Defines
     public enum JobType
     {
         None,
-        Bararian,
+        Babarian,
         Knight,
         Mage,
         Rogue
@@ -82,7 +82,8 @@ namespace Defines
     public enum CharacterAnimCombatLayerType
     {
         Base_Layer, // Base Layer
-        Melee_1H_Layer,
+        // Hit Layer
+        Melee_1H_Layer = 2,
         Melee_2H_Layer,
         Ranged_1H_Layer,
         Ranged_2H_Layer,
@@ -96,5 +97,24 @@ namespace Defines
         Backward,
         Left,
         Right,
+    }
+
+    public enum SODataType
+    {
+        None,
+        Building,
+        Job,
+        Item,
+        MobData,
+        Tile
+    }
+
+    public enum SOItemDataType
+    {
+        None,
+        Consumable,
+        Helmet,
+        Resource,
+        Weapon,
     }
 }

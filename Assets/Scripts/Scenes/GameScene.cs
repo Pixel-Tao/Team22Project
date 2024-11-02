@@ -7,8 +7,6 @@ public class GameScene : SceneBase
     public int poolDefaultCapacity = 20;
     public int poolMaxSize = 100;
 
-    public List<ItemSO> items;
-
     protected override void OnSceneLoad()
     {
         Debug.Log("GameScene OnSceneLoad");
@@ -18,7 +16,6 @@ public class GameScene : SceneBase
         UIManager.Instance.ShowSceneUI<GameSceneUI>();
         UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
         UIManager.Instance.CloseAllPopupUI();
-        CharacterManager.Instance.items = items;
     }
 
     protected override void OnSceneUnloaded()

@@ -1,7 +1,9 @@
 using Defines;
 using System;
 using System.Collections.Generic;
+using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
@@ -17,7 +19,6 @@ public class Player : MonoBehaviour
     private InventoryPopupUI inventory;
     private Condition condition;
 
-    [SerializeField] private List<JobSO> characters;
     private GameObject characterModelGameObject;
 
     public JobSO JobData { get; private set; }
@@ -46,34 +47,26 @@ public class Player : MonoBehaviour
         input.InteractEvent += interaction.Interact;
         input.AttackingEvent += combat.Attacking;
     }
-    public void SetJob(JobType jobType)
+    public void SetJob(JobSO jobSO)
     {
-        if (characters == null) return;
-        if (JobData?.jobType == jobType) return;
-
+        if (JobData == jobSO) return;
         if (characterModelGameObject != null)
         {
             Destroy(characterModelGameObject);
         }
 
-        foreach (JobSO character in characters)
+        JobData = jobSO;
+
+        characterModelGameObject = Instantiate(jobSO.characterModelPrefab, transform);
+        characterModelGameObject.name = jobSO.characterModelPrefab.name;
+        if (transform.TryGetComponent(out CharacterAnimController anim))
         {
-            if (character.jobType == jobType)
-            {
-                JobData = character;
-                characterModelGameObject = Instantiate(character.characterModelPrefab, transform);
-                characterModelGameObject.name = character.characterModelPrefab.name;
-                if (transform.TryGetComponent(out CharacterAnimController anim))
-                {
-                    anim.SetAnimator(characterModelGameObject.GetComponent<Animator>());
-                }
-                if (transform.TryGetComponent(out Condition condition))
-                {
-                    this.condition = condition;
-                    condition.SetData(character.stat, true);
-                }
-                break;
-            }
+            anim.SetAnimator(characterModelGameObject.GetComponent<Animator>());
+        }
+        if (transform.TryGetComponent(out Condition condition))
+        {
+            this.condition = condition;
+            condition.SetData(jobSO.stat, true);
         }
     }
 
