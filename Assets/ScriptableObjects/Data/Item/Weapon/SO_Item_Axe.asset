@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uD55C\uC190\uB3C4\uB07C"
   description: "\uD55C\uC190\uC73C\uB85C \uB4E4\uC218 \uC788\uB294 \uB3C4\uB07C\uC785\uB2C8\uB2E4."
-  itemPower: 20
+  itemValue: 0
   itemIcon: {fileID: 0}
   itemType: 0
+  consumables: []
   equipPrefab: {fileID: 8099736589258849947, guid: 8c82fb70ae9ab114c85d17634fe3a8ac, type: 3}
   dropItemPrefab: {fileID: 0}
   childPath: Axe
+  combatMotionType: 1

@@ -15,9 +15,11 @@ MonoBehaviour:
   displayName: "\uC11D\uAD81"
   description: "\uD55C\uC190\uC73C\uB85C \uBC1C\uC0AC \uD560 \uC218 \uC788\uB294
     \uC11D\uAD81\uC785\uB2C8\uB2E4."
-  itemPower: 35
+  itemValue: 0
   itemIcon: {fileID: 0}
   itemType: 0
+  consumables: []
   equipPrefab: {fileID: 6301642543837957201, guid: 5f8e9c83238c2dc4b8567bca4252a959, type: 3}
   dropItemPrefab: {fileID: 0}
   childPath: Crossbow
+  combatMotionType: 3

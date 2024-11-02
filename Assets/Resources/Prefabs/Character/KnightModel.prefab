@@ -2277,6 +2277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4613149439539305715}
   - component: {fileID: 3453065434896692912}
+  - component: {fileID: -6542249773906425285}
   m_Layer: 0
   m_Name: KnightModel
   m_TagString: Untagged
@@ -2316,7 +2317,7 @@ Animator:
   m_GameObject: {fileID: 9111572775551384694}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0b3da1f3c3be7b14bbbc3e7c0295b0b4, type: 2}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f13929439e1c5b4aa0abbd2ecbf0508, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2327,3 +2328,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6542249773906425285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9111572775551384694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19cab6b7dd0f25f49a2158e796ffe5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHandSlot: {fileID: 4344997035574710739}
+  headSlot: {fileID: 6115136591504466797}
+  leftHandSlot: {fileID: 8300074904331898933}

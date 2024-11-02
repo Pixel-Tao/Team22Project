@@ -76,4 +76,25 @@ namespace Defines
         People,
         Food
     }
+
+    // 장비에 따라 공격모션 달리하기 위한 애니메이터 레이어 Enum
+    // Animator Layer 순서와 동일함
+    public enum CharacterAnimCombatLayerType
+    {
+        Base_Layer, // Base Layer
+        Melee_1H_Layer,
+        Melee_2H_Layer,
+        Ranged_1H_Layer,
+        Ranged_2H_Layer,
+        Spellcasting_Layer
+    }
+
+    public enum CharacterMoveStepType
+    {
+        Idle,
+        Forward,
+        Backward,
+        Left,
+        Right,
+    }
 }

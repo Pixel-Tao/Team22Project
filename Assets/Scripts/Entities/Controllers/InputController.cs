@@ -9,6 +9,7 @@ public class InputController : MonoBehaviour
     public event Action<Vector2> RotateEvent;
     public event Action<Vector2> MouseInteractionEvent;
     public event Action InteractEvent;
+    public event Action<bool> AttackingEvent;
 
     private Vector2 screenCenter;
     private Vector3 direction;
@@ -59,7 +60,14 @@ public class InputController : MonoBehaviour
     public void OnMouseLeftClick(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
+        {
             InteractEvent?.Invoke();
+            AttackingEvent?.Invoke(true);
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            AttackingEvent?.Invoke(false);
+        }
     }
 
     public void OnMouseRightClick(InputAction.CallbackContext context)

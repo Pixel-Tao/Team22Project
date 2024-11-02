@@ -22,6 +22,27 @@ public class PlayerJobChangeBox : Editor
                     CharacterManager.Instance.JobChange(jobType);
                 }
             }
+            
+            if (GUILayout.Button("Axe Equip Weapon"))
+            {
+                CharacterManager.Instance.Player.EquipWeapon(CharacterManager.Instance.items[0]);
+            }
+            if (GUILayout.Button("Crossbow Equip Weapon"))
+            {
+                CharacterManager.Instance.Player.EquipWeapon(CharacterManager.Instance.items[1]);
+            }
+            if (GUILayout.Button("Dagger Equip Weapon"))
+            {
+                CharacterManager.Instance.Player.EquipWeapon(CharacterManager.Instance.items[2]);
+            }
+            if (GUILayout.Button("Staff Equip Weapon"))
+            {
+                CharacterManager.Instance.Player.EquipWeapon(CharacterManager.Instance.items[3]);
+            }
+            if (GUILayout.Button("Sword Equip Weapon"))
+            {
+                CharacterManager.Instance.Player.EquipWeapon(CharacterManager.Instance.items[4]);
+            }
         }
     }
 }

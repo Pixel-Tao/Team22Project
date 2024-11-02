@@ -1,5 +1,6 @@
 
 using Defines;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : Singleton<CharacterManager>
@@ -7,6 +8,8 @@ public class CharacterManager : Singleton<CharacterManager>
     private const string playerPrefabName = "Player";
     private Player player;
     public Player Player { get { return player; } }
+
+    public List<ItemSO> items;
 
     public void SetPlayer(Player player)
     {
