@@ -246,6 +246,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolDefaultCapacity: 20
   poolMaxSize: 100
+  items:
+  - {fileID: 11400000, guid: 1023b8f3bb2ad154484e8404b928dc0d, type: 2}
+  - {fileID: 11400000, guid: 226fca6bb032fa3469ffd9c9432f1e12, type: 2}
+  - {fileID: 11400000, guid: 2ba8bac315fd4e94f98b2a44877e2d7c, type: 2}
+  - {fileID: 11400000, guid: ddedf7bdfd2b4984fb7340ac4127b9e4, type: 2}
+  - {fileID: 11400000, guid: 98348e4fe3378fc42b29fee6281f3b91, type: 2}
 --- !u!4 &1615873806
 Transform:
   m_ObjectHideFlags: 0

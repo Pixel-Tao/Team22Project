@@ -13,4 +13,5 @@ public class ItemSO : InteractableSO
     public GameObject equipPrefab;
     public GameObject dropItemPrefab;
     public string childPath;
+    public CharacterAnimCombatLayerType combatMotionType;
 }

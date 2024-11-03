@@ -1,5 +1,6 @@
 
 using Defines;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : Singleton<CharacterManager>
@@ -31,12 +32,13 @@ public class CharacterManager : Singleton<CharacterManager>
         GameObject playerObj = ResourceManager.Instance.Instantiate(playerPrefabName);
         playerObj.name = "Player";
         Player player = Utils.GetOrAddComponent<Player>(playerObj);
-        player.SetJob(jobType);
+        JobChange(JobType.Babarian);
     }
 
     public void JobChange(JobType jobType)
     {
-        Player.SetJob(jobType);
+        JobSO jobSO = ResourceManager.Instance.GetSOJobData<JobSO>(JobType.Babarian);
+        Player.SetJob(jobSO);
     }
 }
 

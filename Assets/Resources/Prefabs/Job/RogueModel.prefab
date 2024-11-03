@@ -126,7 +126,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7997770023168085935}
-  - {fileID: 4731872872492059683}
   - {fileID: 635855908137134919}
   - {fileID: 8926083092054504102}
   m_Father: {fileID: 8874989582191911550}
@@ -252,12 +251,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337602531036772962}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855692, y: 7.1054274e-15, z: -1.5529402e-22, w: 1}
-  m_LocalPosition: {x: 1.29003e-30, y: 0.24324483, z: 9.077779e-17}
-  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_LocalRotation: {x: 0.000000021855696, y: 0.00000011920928, z: -2.6054022e-15, w: 1}
+  m_LocalPosition: {x: 0, y: -0.025551707, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6092179845656316215}
+  m_Father: {fileID: 7997770023168085935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &379274204457764353
 MeshFilter:
@@ -605,6 +604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6887642774264601119}
   - component: {fileID: 6467275425467818113}
+  - component: {fileID: -5473379748659331989}
   m_Layer: 0
   m_Name: RogueModel
   m_TagString: Untagged
@@ -644,7 +644,7 @@ Animator:
   m_GameObject: {fileID: 2779731704027181808}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0b3da1f3c3be7b14bbbc3e7c0295b0b4, type: 2}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f13929439e1c5b4aa0abbd2ecbf0508, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -655,6 +655,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5473379748659331989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779731704027181808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19cab6b7dd0f25f49a2158e796ffe5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHandSlot: {fileID: 1363331087712628256}
+  headSlot: {fileID: 7997770023168085935}
+  leftHandSlot: {fileID: 6614052697912440938}
 --- !u!1 &2820416793715552867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,7 +1525,8 @@ Transform:
   m_LocalPosition: {x: 1.17175564e-29, y: 0.26879656, z: -5.51e-43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4731872872492059683}
   m_Father: {fileID: 6092179845656316215}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6989331719598418643

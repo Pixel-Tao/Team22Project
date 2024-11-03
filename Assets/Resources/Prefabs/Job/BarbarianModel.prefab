@@ -2025,6 +2025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2659576867189912478}
   - component: {fileID: 6012065007618437681}
+  - component: {fileID: 1508249767910235659}
   m_Layer: 0
   m_Name: BarbarianModel
   m_TagString: Untagged
@@ -2064,7 +2065,7 @@ Animator:
   m_GameObject: {fileID: 7831002171038060390}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0b3da1f3c3be7b14bbbc3e7c0295b0b4, type: 2}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f13929439e1c5b4aa0abbd2ecbf0508, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2075,6 +2076,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1508249767910235659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7831002171038060390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19cab6b7dd0f25f49a2158e796ffe5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHandSlot: {fileID: 8636444737915739682}
+  headSlot: {fileID: 5170498592553465967}
+  leftHandSlot: {fileID: 3433787126161762536}
 --- !u!1 &8366477218115426175
 GameObject:
   m_ObjectHideFlags: 0

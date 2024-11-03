@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c904bc1177c46a24a949b7ca14a338a0, type: 3}
-  m_Name: SO_Item_Staff
+  m_Name: SO_Item_Crossbow
   m_EditorClassIdentifier: 
-  displayName: "\uC2A4\uD0DC\uD504"
-  description: "\uB9C8\uBC95\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-  itemPower: 35
+  displayName: "\uC11D\uAD81"
+  description: "\uD55C\uC190\uC73C\uB85C \uBC1C\uC0AC \uD560 \uC218 \uC788\uB294
+    \uC11D\uAD81\uC785\uB2C8\uB2E4."
+  itemValue: 0
   itemIcon: {fileID: 0}
   itemType: 0
-  equipPrefab: {fileID: 3286777139663197625, guid: 0a334167956960c4b8fe30a24a2dc48b, type: 3}
+  consumables: []
+  equipPrefab: {fileID: 6301642543837957201, guid: 5f8e9c83238c2dc4b8567bca4252a959, type: 3}
   dropItemPrefab: {fileID: 0}
-  childPath: Staff
+  childPath: Crossbow
+  combatMotionType: 3
