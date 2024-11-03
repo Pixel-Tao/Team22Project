@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5222870519105852585}
   - component: {fileID: 6160389952742105114}
   m_Layer: 6
-  m_Name: TreeTile_B
+  m_Name: LoggingArea_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
