@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     [Header("아이템 데이터")]
-    public ItemSO itemSO;
+    public ItemSlotData itemSlotData;
 
     [Header("아이템 슬롯 UI")]
     public Image icon;
@@ -27,15 +28,24 @@ public class ItemSlot : MonoBehaviour
         this.inventory = inventory;
     }
 
-    public void SetItem(ItemSO itemSO)
+    public void SetData(ItemSlotData itemSlotData)
     {
-
+        this.itemSlotData = itemSlotData;
     }
 
     public void OnItemClick()
     {
         inventory.SelectItem(this);
-        selectedOutline.gameObject.SetActive(true);
+        Debug.Log(itemSlotData.slotIndex);
+    }
+
+    public void Select()
+    {
+        selectedOutline.enabled = true;
+    }
+    public void Deselect()
+    {
+        selectedOutline.enabled = false;
     }
 
     public void Clear()
