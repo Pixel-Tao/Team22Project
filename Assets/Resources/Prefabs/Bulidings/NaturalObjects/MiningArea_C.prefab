@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 454060690386330364}
   - component: {fileID: 7884489291003841425}
   m_Layer: 6
-  m_Name: RockTile_C
+  m_Name: MiningArea_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

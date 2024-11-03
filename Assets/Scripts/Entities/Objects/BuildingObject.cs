@@ -11,6 +11,10 @@ public class BuildingObject : MonoBehaviour
 
     private string str;
 
+    private Ray ray;
+    private Vector3 rayOrigin;
+    [SerializeField] private LayerMask layerMask;
+
     private void Awake()
     {
         condition = GetComponent<BuildingCondition>();
@@ -18,9 +22,16 @@ public class BuildingObject : MonoBehaviour
 
     private void Start()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         str = string.Empty;
-        Invoke("GetInfo", 1f);
-        
+        layerMask = LayerMask.GetMask("Tile");
+        rayOrigin = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.2f, transform.localPosition.z);
+        ray = new Ray(rayOrigin, Vector3.down);
+        Physics.Raycast(ray, 0.5f, layerMask);
     }
 
     public string GetInfo()//외부에서 호출할 함수
