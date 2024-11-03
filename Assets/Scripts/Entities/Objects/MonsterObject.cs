@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -7,52 +9,49 @@ public enum MOBSTATE
 {
     MOVE,
     ATTACK,
+    DEAD,
 }
 
-public class MonsterObject : MonoBehaviour, IDamageable
+public class MonsterObject : MonoBehaviour, IDamageable, IRangable
 {
-    int attackAnimId;
-    int damagedAnimId;
-    int deadAnimId;
+    private int attackAnimId;
+    private int damagedAnimId;
+    private int deadAnimId;
+    private int health;
+    private float attackTimer = 0;
+    private float xFixable = 0f;
 
-    float xFixable = 0f;
-
-    public MonsterSO data;
-    NavMeshAgent agent;
-    Animator animator;
-    CircleCollider2D circleCollider;
-    MOBSTATE state = MOBSTATE.MOVE;
+    [SerializeField] MonsterSO data;
+    private NavMeshAgent agent;
+    private Animator animator;
+    private CircleCollider2D circleCollider;
+    private Rigidbody rb;
+    private MOBSTATE state = MOBSTATE.MOVE;
 
     private GameObject targetObject;//현재 주시되는
-    private GameObject detectObject;//현재 감지된 
-    
+    private GameObject detectObject;//현재 감지된
+    private GameObject playerObject;
+    public GameObject destObject;//최종 목적지 //반드시 NULL이 아니어야함!
+
     //PP
-    public GameObject DetectObject
+    public MonsterSO Data
     {
-        set 
-        {
-            if(detectObject == null)
-                detectObject = value; 
-        }
+        get { return data; }
     }
-    
-    private float attackTimer = 0;
-   
-    //FOR TEST
-    public GameObject testPlayer;
-    public GameObject goalObject;//최종 목적지 //반드시 NULL이 아니어야함!
 
     // Start is called before the first frame update
+    #region UNITY EVENTS
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+        rb = GetComponentInChildren<Rigidbody>();
         MobInit();
     }
 
     private void Update()
     {
-        switch(state)
+        switch (state)
         {
             case MOBSTATE.MOVE:
                 UpdateMove();
@@ -60,13 +59,17 @@ public class MonsterObject : MonoBehaviour, IDamageable
             case MOBSTATE.ATTACK:
                 UpdateAttack();
                 break;
+            case MOBSTATE.DEAD:
+                break;
         }
     }
+    #endregion
 
     #region MOB BEHAVIOR SEQUENCE
     private void MobInit()
     {
-        SetTarget(goalObject.transform);
+        GameObject[] objects = FindObjectsOfType<GameObject>();
+        SetTarget(objects.ToList().Find(obj => obj.name == "Goal").transform);
         attackTimer = data.attackDelay;
         agent.speed = data.speed;
 
@@ -75,19 +78,23 @@ public class MonsterObject : MonoBehaviour, IDamageable
         deadAnimId = Animator.StringToHash("isDead");
 
         //TODO : goal, player
+        playerObject = CharacterManager.Instance.Player.gameObject;
+        destObject = objects.ToList().Find(obj => obj.name == "Goal");
+
+        health = data.health;
     }
     private void UpdateMove()
     {
-        float playerLength = (testPlayer.transform.position - transform.position).magnitude;
+        float playerLength = (playerObject.transform.position - transform.position).magnitude;
 
-        if (detectObject == null) SetTarget(playerLength < data.detectiveLength ? testPlayer.transform : goalObject.transform);
+        if (detectObject == null) SetTarget(playerLength < data.detectiveLength ? playerObject.transform : destObject.transform);
         else SetTarget(detectObject.transform);
 
         xFixable = targetObject.TryGetComponent<BoxCollider>(out BoxCollider temp) ? temp.size.x / 2 : 0;
         if (GetDestLength() < data.attackRange + xFixable)
         {
-            SetState(MOBSTATE.ATTACK);
             attackTimer = data.attackDelay;
+            SetState(MOBSTATE.ATTACK);
         } 
     }
     private void UpdateAttack()
@@ -96,11 +103,11 @@ public class MonsterObject : MonoBehaviour, IDamageable
         {
             SetState(MOBSTATE.MOVE);
             return;
-        }
-        
-        if(targetObject != null)
+        }      
+        else if(targetObject != null)
         {
             if (GetDestLength() > data.attackRange + xFixable) SetState(MOBSTATE.MOVE);
+            rb.transform.LookAt(targetObject.transform);
         }
 
         attackTimer += Time.deltaTime;
@@ -143,13 +150,38 @@ public class MonsterObject : MonoBehaviour, IDamageable
     private void AttackToTarget()
     {
         if (targetObject == null) return;
-        Debug.Log("몬스터가" + targetObject.name + "에게 공격을함!!");
-        //TODO : ATTACK FRAME
+        if(!data.isRangedWeapon)
+        {
+            //targetObject.GetComponent<IDamageable>().TakeDamage(data.attack);
+        }
+        else
+        {
+            GameObject temp = Instantiate(data.projectile, transform.position + (Vector3.up * 0.2f), Quaternion.identity);
+            temp.transform.eulerAngles = new Vector3(0, 90 + transform.eulerAngles.y, -90);
+            temp.GetComponent<Rigidbody>().velocity = ((targetObject.transform.position + (Vector3.up * 0.2f) - transform.position).normalized * 2f);
+        }
+    }
+    private IEnumerator DespawnObject()
+    {
+        SetState(MOBSTATE.DEAD);
+        animator.SetTrigger(deadAnimId);
+        yield return new WaitForSeconds(2f);
+        //POOLING
+        Destroy(gameObject);
     }
 
     public void TakeDamage(int damage)
     {
-        data.health = Math.Max(0, data.health - damage);
+        if(health > 0)
+        {
+            health = Math.Max(0, health - damage);
+            animator.SetTrigger(damagedAnimId);
+
+            if (health == 0)
+            {
+                StartCoroutine(DespawnObject());
+            }
+        }     
     }
 
     public void Heal(int heal)
@@ -159,6 +191,17 @@ public class MonsterObject : MonoBehaviour, IDamageable
 
     public void KnockBack(Transform dest)
     {
-        throw new NotImplementedException();
+        
+    }
+
+    public void InitDetactObject(GameObject obj)
+    {
+        if(detectObject == null) 
+            detectObject = obj;
+    }
+
+    public float GetDetactLength()
+    {
+        return data.detectiveLength;
     }
 }

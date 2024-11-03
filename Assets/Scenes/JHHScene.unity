@@ -2746,6 +2746,7 @@ GameObject:
   - component: {fileID: 2016446731}
   - component: {fileID: 2016446730}
   - component: {fileID: 2016446729}
+  - component: {fileID: 2016446739}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -2779,6 +2780,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetPosition: {x: 0, y: 7, z: -5}
   offsetAngle: 60
+  buildModePosition: {x: 0, y: 0, z: 0}
+  buildModeAngle: 0
 --- !u!114 &2016446731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2791,6 +2794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7580d1ed8c0c774aaa4b05afa8bf61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characters: []
 --- !u!114 &2016446732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,6 +2807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e6ad3cbe6a24c409934d9d3bfb569a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  axisY: 0
   speed: 5
 --- !u!114 &2016446733
 MonoBehaviour:
@@ -2995,6 +3000,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9e0b08f2-f93b-47b8-a1ed-98a776d86109
     m_ActionName: Player/Escape[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fa5c3915-eac7-4ab8-a27d-156de99df4e4
+    m_ActionName: Player/BuildMode[/Keyboard/b]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3017,6 +3026,30 @@ Transform:
   - {fileID: 2033054208}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2016446739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016446728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66979c2b7a9873041901b55dc29d486e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildInteractionDistance: 3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  normalInteractionRadius: 1
+  peakupLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isBuildMode: 0
+  checkInterval: 0.2
+  screenAxis: {x: 0, y: 0}
+  currentTile: {fileID: 0}
 --- !u!1 &2033054207
 GameObject:
   m_ObjectHideFlags: 0
