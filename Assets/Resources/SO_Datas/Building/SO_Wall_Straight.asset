@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uC131\uBCBD"
   description: "\uB4E0\uB4E0\uD569\uB2C8\uB2E4"
-  buildingType: 4
+  buildingType: 0
   NeedResources:
   - needResourceType: 0
     amount: 25
   - needResourceType: 1
     amount: 25
   health: 100
-  consumingPopulation: 0
   providedPopulation: 0
+  consumingPopulation: 0
   attackPower: 0
   attackRange: 0
   attackDelay: 0

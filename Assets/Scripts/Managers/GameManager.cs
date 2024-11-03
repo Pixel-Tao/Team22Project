@@ -16,6 +16,8 @@ public class GameManager : Singleton<GameManager>
     public int PeopleCount { get; private set; }
     public int MaxPeopleCount { get; private set; }
 
+    public ItemListSO ItemList { get; private set; }
+
     public void ToggleBuildMode()
     {
         IsBuildMode = !IsBuildMode;
@@ -38,6 +40,8 @@ public class GameManager : Singleton<GameManager>
         AddOre(100);
         AddFood(100);
         IsBuildMode = false;
+
+        ItemList = ResourceManager.Instance.GetSOData<ItemListSO>("Item/SO_ItemList");
     }
 
     public void AddWood(int amount)
