@@ -9,6 +9,13 @@ namespace Defines
         Resource
     }
 
+    public enum EquipType
+    {
+        None,
+        Helmet,
+        Weapon
+    }
+
     public enum ConsumeableType
     {
         None,
@@ -16,7 +23,7 @@ namespace Defines
         Mana,
         Stamina,
         Hunger,
-        water
+        Water
     }
 
     public enum BuildingType

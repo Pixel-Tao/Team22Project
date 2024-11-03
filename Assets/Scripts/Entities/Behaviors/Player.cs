@@ -13,10 +13,9 @@ public class Player : MonoBehaviour
     private InputController input;
     private CameraController cameraController;
     private CombatController combat;
+    private Equipment equipment;
 
     private Interaction interaction;
-
-    private InventoryPopupUI inventory;
     private Condition condition;
 
     private GameObject characterModelGameObject;
@@ -32,6 +31,7 @@ public class Player : MonoBehaviour
         cameraController = GetComponent<CameraController>();
         interaction = GetComponent<Interaction>();
         combat = GetComponent<CombatController>();
+        equipment = GetComponent<Equipment>();
     }
 
     void Start()
@@ -70,16 +70,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetInventory(InventoryPopupUI inventory)
-    {
-        this.inventory = inventory;
-    }
-
-    public void AddItem(ItemSO itemSO)
-    {
-        inventory.AddItem(itemSO);
-    }
-
     public void BuildMode()
     {
         Debug.Log("건설모드로 변경");
@@ -113,7 +103,6 @@ public class Player : MonoBehaviour
         characterModel.InsertRightHandSlot(weapon.transform);
         characterAnimController.UseCombatLayer(item.combatMotionType);
     }
-
     public void UnEquipWeapon()
     {
         if (characterModel == null)
@@ -124,6 +113,32 @@ public class Player : MonoBehaviour
 
         characterModel.ClearRightHandSlot();
         characterAnimController.ResetLayerWeight();
+    }
+
+    public void Equip(ItemSO item)
+    {
+        if (item.itemType != ItemType.Equipable) return;
+        switch (item.equipType)
+        {
+            case EquipType.Weapon:
+                equipment.EquipWeapon(item);
+                break;
+            case EquipType.Helmet:
+                equipment.EquipHelmet(item);
+                break;
+        }
+    }
+    public void UnEquip(EquipType equipType)
+    {
+        switch(equipType)
+        {
+            case EquipType.Weapon:
+                equipment.UnEquipWeapon();
+                break;
+            case EquipType.Helmet:
+                equipment.UnEquipHelmet();
+                break;
+        }
     }
     #endregion
 }

@@ -47,6 +47,7 @@ public class MovementController : MonoBehaviour
             ApplyMove(moveDirection);
         }
     }
+
     private void ApplyMove(Vector3 dir)
     {
         CharacterMoveStepType type = CharacterMoveStepType.Forward;
