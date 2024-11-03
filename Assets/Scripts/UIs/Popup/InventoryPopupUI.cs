@@ -25,9 +25,32 @@ public class InventoryPopupUI : UIPopup
 
     private ItemSlot selectedItemSlot;
 
+    private void Awake()
+    {
+        CharacterManager.Instance.OnItemSlotDataChanged -= ItemSlotDataChanged;
+        CharacterManager.Instance.OnItemSlotDataChanged += ItemSlotDataChanged;
+    }
+
     private void Start()
     {
         InitSlots();
+    }
+
+    private void ItemSlotDataChanged(ItemSlotData data)
+    {
+        ItemSlot slot = GetItemSlot(data);
+        if (slot == null) return;
+
+        if (data.itemSO == null)
+        {
+            slot.Clear();
+            ButtonClear();
+        }
+        else
+        {
+            slot.UpdateUI();
+            UpdateButton(slot.itemSlotData);
+        }
     }
 
     private void OnEnable()
@@ -52,7 +75,6 @@ public class InventoryPopupUI : UIPopup
             ItemSlotData itemSlotData = CharacterManager.Instance.GetItemSlotData(i);
             slot.SetInventory(this);
             slot.SetData(itemSlotData);
-            slot.Clear();
             slots.Add(slot);
         }
 
@@ -64,6 +86,7 @@ public class InventoryPopupUI : UIPopup
             selectedItemSlot.Deselect();
         selectedItemSlot = null;
         ButtonClear();
+        DescriptionClear();
     }
     private void ButtonClear()
     {
@@ -73,6 +96,65 @@ public class InventoryPopupUI : UIPopup
         qsEquipButton.gameObject.SetActive(false);
         qsUnEquipButton.gameObject.SetActive(false);
         dropButton.gameObject.SetActive(false);
+    }
+
+    private void UpdateButton(ItemSlotData slotData)
+    {
+        if (slotData?.itemSO == null) return;
+
+        if (slotData.itemSO.itemType == Defines.ItemType.Consumable)
+        {
+            useButton.gameObject.SetActive(true);
+            qsEquipButton.gameObject.SetActive(slotData.quickSlotKey < 0);
+            qsUnEquipButton.gameObject.SetActive(slotData.quickSlotKey > -1);
+            eqEquipButton.gameObject.SetActive(false);
+            eqUnEquipButton.gameObject.SetActive(false);
+        }
+        else if (slotData.itemSO.itemType == Defines.ItemType.Equipable)
+        {
+            useButton.gameObject.SetActive(false);
+            eqEquipButton.gameObject.SetActive(slotData.isEquipped == false);
+            eqUnEquipButton.gameObject.SetActive(slotData.isEquipped);
+            qsEquipButton.gameObject.SetActive(slotData.quickSlotKey < 0);
+            qsUnEquipButton.gameObject.SetActive(slotData.quickSlotKey > -1);
+        }
+        else
+        {
+            useButton.gameObject.SetActive(false);
+            eqEquipButton.gameObject.SetActive(false);
+            eqUnEquipButton.gameObject.SetActive(false);
+            qsEquipButton.gameObject.SetActive(false);
+            qsUnEquipButton.gameObject.SetActive(false);
+        }
+
+        dropButton.gameObject.SetActive(true);
+    }
+    private void DescriptionClear()
+    {
+        itemTitleText.text = string.Empty;
+        itemDescriptionText.text = string.Empty;
+        itemEffectNameText.text = string.Empty;
+        itemEffectValueText.text = string.Empty;
+    }
+    private void UpdateDescription(ItemSlotData slotData)
+    {
+        if (slotData.itemSO == null)
+        {
+            DescriptionClear();
+            return;
+        }
+
+        itemTitleText.text = slotData.itemSO.displayName;
+        itemDescriptionText.text = slotData.itemSO.description;
+        string names = string.Empty;
+        string values = string.Empty;
+        foreach (var consumable in slotData.itemSO.consumables)
+        {
+            names += $"{consumable.consumeableType}\n";
+            values += $"{consumable.amount}\n";
+        }
+        itemEffectNameText.text = names;
+        itemEffectValueText.text = values;
     }
 
     public void SelectItem(ItemSlot slot)
@@ -87,12 +169,8 @@ public class InventoryPopupUI : UIPopup
 
         if (slot.itemSlotData.itemSO == null) return;
 
-        useButton.gameObject.SetActive(slotData.itemSO.itemType == Defines.ItemType.Consumable);
-        eqEquipButton.gameObject.SetActive(slotData.itemSO.itemType == Defines.ItemType.Equipable && slotData.isEquipped == false);
-        eqUnEquipButton.gameObject.SetActive(slotData.itemSO.itemType == Defines.ItemType.Equipable && slotData.isEquipped);
-        qsEquipButton.gameObject.SetActive(slotData.itemSO.itemType == Defines.ItemType.Consumable && slotData.quickSlotIndex < 0);
-        qsUnEquipButton.gameObject.SetActive(slotData.itemSO.itemType == Defines.ItemType.Consumable && slotData.quickSlotIndex > -1);
-        dropButton.gameObject.SetActive(true);
+        UpdateButton(slotData);
+        UpdateDescription(slotData);
 
         selectedItemSlot.Select();
     }
@@ -122,14 +200,18 @@ public class InventoryPopupUI : UIPopup
     {
         if (selectedItemSlot == null) return;
 
-        //CharacterManager.Instance.EquipQuickSlotItem(selectedItemSlot.itemSlotData.slotIndex);
+        QuickSlotSelectPopupUI popup = UIManager.Instance.ShowPopupUI<QuickSlotSelectPopupUI>();
+        RectTransform popupRect = popup.GetWindowTransform();
+        RectTransform buttonRect = qsEquipButton.GetComponent<RectTransform>();
+        popupRect.position = buttonRect.position;
+        popup.SelectedItemIndex(selectedItemSlot.itemSlotData.slotIndex);
     }
 
     public void OnQuickSlotUnEquipBotton()
     {
         if (selectedItemSlot == null) return;
 
-        CharacterManager.Instance.UnEquipQuickSlotItem(selectedItemSlot.itemSlotData.slotIndex);
+        CharacterManager.Instance.UnEquipItem(selectedItemSlot.itemSlotData.slotIndex);
     }
 
     public void OnDropButton()
@@ -139,4 +221,14 @@ public class InventoryPopupUI : UIPopup
         CharacterManager.Instance.RemoveItemSlotData(selectedItemSlot.itemSlotData.slotIndex);
     }
 
+    private ItemSlot GetItemSlot(ItemSlotData itemSlotData)
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.itemSlotData == itemSlotData)
+                return slot;
+        }
+
+        return null;
+    }
 }

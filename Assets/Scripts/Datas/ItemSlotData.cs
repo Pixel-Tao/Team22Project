@@ -9,5 +9,5 @@ public class ItemSlotData
     public int itemCount;
     public int slotIndex;
     public bool isEquipped;
-    public int quickSlotIndex;
+    public int quickSlotKey;
 }

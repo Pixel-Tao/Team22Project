@@ -24,5 +24,6 @@ public class ItemSO : InteractableSO
     public GameObject dropItemPrefab;
     public string childPath;
 
-    
+    [Header("리소스")]
+    public ResourceType resourceType;
 }

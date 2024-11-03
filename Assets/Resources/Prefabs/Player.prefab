@@ -188,6 +188,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fa5c3915-eac7-4ab8-a27d-156de99df4e4
     m_ActionName: Player/BuildMode[/Keyboard/b]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 816201128733226030}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnQuickSlot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d81237ed-7f13-4406-b515-9aa5f381e2a4
+    m_ActionName: Player/QuickSlot[/Keyboard/1,/Keyboard/2]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -320,8 +336,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axisY: 0
-  moveSpeed: 2
+  defaultMoveSpeed: 3
   acceleration: 0.3
+  forwardDotRange: 0.5
+  rightDotRange: 0.5
+  backwardSpeedRatio: 0.5
+  sideSpeedRatio: 0.75
 --- !u!114 &6963018956725721211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,11 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7580d1ed8c0c774aaa4b05afa8bf61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters:
-  - {fileID: 11400000, guid: f866a6e25a2fba1468e415a10c38164c, type: 2}
-  - {fileID: 11400000, guid: a3926b9d419507d4087c00f4e29b7e98, type: 2}
-  - {fileID: 11400000, guid: 90f237f5e0f28644fa8863fbe04778e4, type: 2}
-  - {fileID: 11400000, guid: a2be02f855d255243bbbffad67340591, type: 2}
   itemSO: {fileID: 0}
 --- !u!114 &-3365028907553367538
 MonoBehaviour:

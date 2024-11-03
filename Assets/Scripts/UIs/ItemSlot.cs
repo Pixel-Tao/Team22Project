@@ -20,7 +20,7 @@ public class ItemSlot : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     public void SetInventory(InventoryPopupUI inventory)
@@ -31,6 +31,14 @@ public class ItemSlot : MonoBehaviour
     public void SetData(ItemSlotData itemSlotData)
     {
         this.itemSlotData = itemSlotData;
+
+        if (itemSlotData.itemSO == null)
+        {
+            Clear();
+            return;
+        }
+        UpdateUI();
+        Deselect();
     }
 
     public void OnItemClick()
@@ -48,6 +56,18 @@ public class ItemSlot : MonoBehaviour
         selectedOutline.enabled = false;
     }
 
+    public void UpdateUI()
+    {
+        if (itemSlotData.itemSO == null) return;
+
+        icon.sprite = itemSlotData.itemSO.itemIcon;
+        icon.gameObject.SetActive(true);
+        if (itemSlotData.itemSO.isStackable)
+            countText.text = itemSlotData.itemCount.ToString();
+        else
+            countText.text = string.Empty;
+        equippedMark.gameObject.SetActive(itemSlotData.isEquipped);
+    }
     public void Clear()
     {
         icon.sprite = null;
