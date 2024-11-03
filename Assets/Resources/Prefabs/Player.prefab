@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 4267396946937573618}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,9 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39eea68b2154f75458e01c1daec650f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetPosition: {x: 0, y: 3, z: -1.7}
+  offsetPosition: {x: 0, y: 5, z: -2.5}
   offsetAngle: 60
-  buildModePosition: {x: 0, y: 5, z: 0}
+  buildModePosition: {x: 0, y: 8, z: 0}
   buildModeAngle: 90
 --- !u!136 &7898275275015964915
 CapsuleCollider:
@@ -318,7 +318,7 @@ MonoBehaviour:
   normalInteractionRadius: 2
   peakupLayer:
     serializedVersion: 2
-    m_Bits: 4224
+    m_Bits: 128
   isBuildMode: 1
   checkInterval: 0.2
   screenAxis: {x: 0, y: 0}

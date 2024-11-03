@@ -20,10 +20,10 @@ namespace Assets.Scripts.Utils
     internal class SpawnMachine : MonoBehaviour
     {
         private SPAWNSTATE state = SPAWNSTATE.WORKING;
-        public List<GameObject> monsters;
-        public int maxSpawnArea;
+        public List<string> monsters;
+        public float maxSpawnArea;
         public float minSpawnScale;
-        public float spawnScale;
+        public float currentSpawnScale;
         private float localTimer;
 
         private void Update()
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Utils
                     break;
                 case SPAWNSTATE.WORKING:
                     localTimer += Time.deltaTime;
-                    if (localTimer > spawnScale)
+                    if (localTimer > currentSpawnScale)
                     {
                         localTimer = 0f;
                         RandomSpawnMobs();
@@ -43,17 +43,13 @@ namespace Assets.Scripts.Utils
             }        
         }
 
-        public void Init()
-        {
-        }
-
         void RandomSpawnMobs()
         {
             int index = Random.Range(0, monsters.Count);
-            int spawnAreaX = Random.Range(-maxSpawnArea, maxSpawnArea);
-            int spawnAreaZ = Random.Range(-maxSpawnArea, maxSpawnArea);
-            //GameObject obj = PoolManager.Instance.SpawnMonster(monsters[index]);
-            GameObject obj = Instantiate(monsters[index], this.transform);
+            float spawnAreaX = Random.Range(-maxSpawnArea, maxSpawnArea);
+            float spawnAreaZ = Random.Range(-maxSpawnArea, maxSpawnArea);
+            
+            GameObject obj = PoolManager.Instance.SpawnMonster(monsters[index]);
             obj.transform.position = this.transform.position + new Vector3(spawnAreaX, Vector3.up.y * 1f, spawnAreaZ);
         }
     }

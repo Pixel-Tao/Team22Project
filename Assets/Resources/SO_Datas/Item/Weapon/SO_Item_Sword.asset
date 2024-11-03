@@ -21,4 +21,4 @@ MonoBehaviour:
   equipPrefab: {fileID: 8173667544913577673, guid: af30fd0b55ed57d4eb4ab52c9c30ec24, type: 3}
   dropItemPrefab: {fileID: 0}
   childPath: Sword
-  combatMotionType: 1
+  combatMotionType: 3

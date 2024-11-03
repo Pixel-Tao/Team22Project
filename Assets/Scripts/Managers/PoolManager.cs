@@ -19,8 +19,8 @@ public class PoolManager : Singleton<PoolManager>
     private ObjectPool CreatePool(string path, Transform parent)
     {
         GameObject go = Resources.Load<GameObject>(path);
-        ObjectPool pool = new ObjectPool(name, go, parent, defaultCapacity, maxSize);
-        poolDict.Add(name, pool);
+        ObjectPool pool = new ObjectPool(path, go, parent, defaultCapacity, maxSize);
+        poolDict.Add(path, pool);
         return pool;
     }
 
@@ -39,7 +39,11 @@ public class PoolManager : Singleton<PoolManager>
     }
     public GameObject SpawnItem(string name, Transform parent = null)
     {
-        return Spawn($"Prefabs/Items/{name}", parent);
+        return Spawn($"Prefabs/Item/{name}", parent);
+    }
+    public GameObject SpawnProjectile(string name, Transform parent = null)
+    {
+        return Spawn($"Prefabs/Projectile/{name}", parent);
     }
 
     public void Despawn(GameObject go)

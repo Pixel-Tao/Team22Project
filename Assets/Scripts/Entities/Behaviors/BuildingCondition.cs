@@ -43,7 +43,7 @@ public class BuildingCondition : MonoBehaviour, IDamageable
         if (CurHealth > MaxHealth) CurHealth = MaxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         CurHealth -= damage;
         if (CurHealth < 0) CurHealth = 0;

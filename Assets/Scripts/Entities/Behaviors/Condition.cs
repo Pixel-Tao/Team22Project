@@ -55,7 +55,7 @@ public class Condition : MonoBehaviour, IDamageable
         HealthChangedEvent?.Invoke(currentStat.health, currentStat.maxHealth);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentStat.health -= Mathf.Clamp(damage, 0, currentStat.maxHealth);
         HealthChangedEvent?.Invoke(currentStat.health, currentStat.maxHealth);
