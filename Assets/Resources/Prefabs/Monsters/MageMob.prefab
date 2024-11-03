@@ -1192,7 +1192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfe32f1f4b072c43b85b4bc4f8afa33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagName: Structure
+  tagNames:
+  - Structure
+  - Player
 --- !u!135 &4621569012604783932
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1260,7 +1262,7 @@ GameObject:
   - component: {fileID: 9131371187048513373}
   - component: {fileID: 261893443832853191}
   m_Layer: 0
-  m_Name: Skeleton_Mage_Object
+  m_Name: MageMob
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1365,8 +1367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e662bb80ff4b649aa7795725b32182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: f42f91cf99bafca488bee0f213421bfd, type: 2}
-  destObject: {fileID: 0}
+  data: {fileID: 11400000, guid: a97d2551f4e876d4881ee0b81bfc0d40, type: 2}
 --- !u!1 &4763548314392104971
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 4267396946937573618}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,9 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39eea68b2154f75458e01c1daec650f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetPosition: {x: 0, y: 3, z: -1.7}
+  offsetPosition: {x: 0, y: 5, z: -2.5}
   offsetAngle: 60
-  buildModePosition: {x: 0, y: 5, z: 0}
+  buildModePosition: {x: 0, y: 8, z: 0}
   buildModeAngle: 90
 --- !u!136 &7898275275015964915
 CapsuleCollider:
@@ -302,7 +302,7 @@ MonoBehaviour:
   normalInteractionRadius: 2
   peakupLayer:
     serializedVersion: 2
-    m_Bits: 4224
+    m_Bits: 128
   isBuildMode: 1
   checkInterval: 0.2
   screenAxis: {x: 0, y: 0}
@@ -320,8 +320,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axisY: 0
-  moveSpeed: 2
+  defaultMoveSpeed: 3
   acceleration: 0.3
+  forwardDotRange: 0.5
+  rightDotRange: 0.5
+  backwardSpeedRatio: 0.5
+  sideSpeedRatio: 0.75
 --- !u!114 &6963018956725721211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,11 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7580d1ed8c0c774aaa4b05afa8bf61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters:
-  - {fileID: 11400000, guid: f866a6e25a2fba1468e415a10c38164c, type: 2}
-  - {fileID: 11400000, guid: a3926b9d419507d4087c00f4e29b7e98, type: 2}
-  - {fileID: 11400000, guid: 90f237f5e0f28644fa8863fbe04778e4, type: 2}
-  - {fileID: 11400000, guid: a2be02f855d255243bbbffad67340591, type: 2}
   itemSO: {fileID: 0}
 --- !u!114 &-3365028907553367538
 MonoBehaviour:

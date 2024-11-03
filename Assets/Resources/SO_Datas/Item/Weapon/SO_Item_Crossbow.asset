@@ -22,4 +22,4 @@ MonoBehaviour:
   equipPrefab: {fileID: 6301642543837957201, guid: 5f8e9c83238c2dc4b8567bca4252a959, type: 3}
   dropItemPrefab: {fileID: 0}
   childPath: Crossbow
-  combatMotionType: 3
+  combatMotionType: 4

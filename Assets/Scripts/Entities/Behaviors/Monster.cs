@@ -1,3 +1,5 @@
+using Assets.Scripts.Entities.Objects;
+using Assets.Scripts.Utils;
 using System;
 using System.Collections;
 using System.Linq;
@@ -12,12 +14,12 @@ public enum MOBSTATE
     DEAD,
 }
 
-public class MonsterObject : MonoBehaviour, IDamageable, IRangable
+public class Monster : MonoBehaviour, IDamageable, IRangable
 {
     private int attackAnimId;
     private int damagedAnimId;
     private int deadAnimId;
-    private int health;
+    private float health;
     private float attackTimer = 0;
     private float xFixable = 0f;
 
@@ -31,7 +33,7 @@ public class MonsterObject : MonoBehaviour, IDamageable, IRangable
     private GameObject targetObject;//현재 주시되는
     private GameObject detectObject;//현재 감지된
     private GameObject playerObject;
-    public GameObject destObject;//최종 목적지 //반드시 NULL이 아니어야함!
+    private GameObject destObject;//최종 목적지 //반드시 NULL이 아니어야함!
 
     //PP
     public MonsterSO Data
@@ -80,7 +82,6 @@ public class MonsterObject : MonoBehaviour, IDamageable, IRangable
         //TODO : goal, player
         playerObject = CharacterManager.Instance.Player.gameObject;
         destObject = objects.ToList().Find(obj => obj.name == "Goal");
-
         health = data.health;
     }
     private void UpdateMove()
@@ -91,7 +92,7 @@ public class MonsterObject : MonoBehaviour, IDamageable, IRangable
         else SetTarget(detectObject.transform);
 
         xFixable = targetObject.TryGetComponent<BoxCollider>(out BoxCollider temp) ? temp.size.x / 2 : 0;
-        if (GetDestLength() < data.attackRange + xFixable)
+        if (GetDestLength() <= data.attackRange + xFixable)
         {
             attackTimer = data.attackDelay;
             SetState(MOBSTATE.ATTACK);
@@ -150,15 +151,17 @@ public class MonsterObject : MonoBehaviour, IDamageable, IRangable
     private void AttackToTarget()
     {
         if (targetObject == null) return;
+        
         if(!data.isRangedWeapon)
         {
-            //targetObject.GetComponent<IDamageable>().TakeDamage(data.attack);
+            targetObject.GetComponent<IDamageable>().TakeDamage(data.attackDamage);
         }
         else
         {
-            GameObject temp = Instantiate(data.projectile, transform.position + (Vector3.up * 0.2f), Quaternion.identity);
-            temp.transform.eulerAngles = new Vector3(0, 90 + transform.eulerAngles.y, -90);
-            temp.GetComponent<Rigidbody>().velocity = ((targetObject.transform.position + (Vector3.up * 0.2f) - transform.position).normalized * 2f);
+            GameObject temp = PoolManager.Instance.SpawnProjectile(data.projectileName);
+            temp.transform.position = this.gameObject.transform.position;
+            string[] tags = GetComponentInChildren<Detector>().TagNames;
+            temp.GetComponent<ProjectileController>().Init(targetObject, GetComponentInChildren<Detector>().TagNames, data.attackDamage);
         }
     }
     private IEnumerator DespawnObject()
@@ -167,10 +170,13 @@ public class MonsterObject : MonoBehaviour, IDamageable, IRangable
         animator.SetTrigger(deadAnimId);
         yield return new WaitForSeconds(2f);
         //POOLING
-        Destroy(gameObject);
+        SetState(MOBSTATE.MOVE);
+        health = data.health;
+        detectObject = null;
+        PoolManager.Instance.Despawn(this.gameObject);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if(health > 0)
         {
@@ -183,23 +189,19 @@ public class MonsterObject : MonoBehaviour, IDamageable, IRangable
             }
         }     
     }
-
     public void Heal(int heal)
     {
         throw new System.NotImplementedException();
     }
-
     public void KnockBack(Transform dest)
     {
-        
     }
 
     public void InitDetactObject(GameObject obj)
     {
-        if(detectObject == null) 
+        if(detectObject == null && !obj.TryGetComponent<Player>(out Player temp)) 
             detectObject = obj;
     }
-
     public float GetDetactLength()
     {
         return data.detectiveLength;
