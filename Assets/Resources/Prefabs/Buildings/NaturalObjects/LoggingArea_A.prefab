@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 9045219766210597390}
   - component: {fileID: 8673681799266886185}
   - component: {fileID: 2581797923483284151}
+  - component: {fileID: -7445293878076375071}
+  - component: {fileID: -3798637576668188089}
   m_Layer: 6
   m_Name: LoggingArea_A
   m_TagString: Untagged
@@ -52,9 +54,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildedSO: {fileID: 11400000, guid: 5fc391dd5ff82e04bb77498d2981d745, type: 2}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &2581797923483284151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +66,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a091cb0b3920486428320e966865c507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &-7445293878076375071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809803802909594772}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!54 &-3798637576668188089
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809803802909594772}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &1598222806832874323
 PrefabInstance:
   m_ObjectHideFlags: 0

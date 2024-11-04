@@ -14276,6 +14276,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5134241841482012684, guid: 32817be45c40eb145ab762f5bc387ccf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.53
+      objectReference: {fileID: 0}
     - target: {fileID: 6854220428009513168, guid: 32817be45c40eb145ab762f5bc387ccf, type: 3}
       propertyPath: m_Name
       value: GrassTile
@@ -14283,8 +14287,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5479664051980845750, guid: 32817be45c40eb145ab762f5bc387ccf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7999866668142482903}
   m_SourcePrefab: {fileID: 100100000, guid: 32817be45c40eb145ab762f5bc387ccf, type: 3}
+--- !u!1 &1392036238225084842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5479664051980845750, guid: 32817be45c40eb145ab762f5bc387ccf, type: 3}
+  m_PrefabInstance: {fileID: 6870853631330702108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7999866668142482903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392036238225084842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f750bf6e28da1ed469115b30b631d283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsters:
+  - MageMob
+  - RougueMob
+  - WarriorMob
+  maxSpawnArea: 1
+  minSpawnScale: 1
+  currentSpawnScale: 5
 --- !u!4 &8369038943013298977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3134189139564212285, guid: 32817be45c40eb145ab762f5bc387ccf, type: 3}

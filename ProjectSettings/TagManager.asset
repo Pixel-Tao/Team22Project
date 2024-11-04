@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Structure
   - Monster
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX

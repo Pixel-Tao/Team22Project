@@ -151,10 +151,12 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         
         if(!data.isRangedWeapon)
         {
+            SoundManager.Instance.PlayOneShot("AttackRougue");
             targetObject.GetComponent<IDamageable>().TakeDamage(data.attackDamage);
         }
         else
         {
+            SoundManager.Instance.PlayOneShot("AttackMage");
             GameObject temp = PoolManager.Instance.SpawnProjectile(data.projectileName);
             temp.transform.position = this.gameObject.transform.position;
             string[] tags = GetComponentInChildren<Detector>().TagNames;
@@ -178,6 +180,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         {
             health = Math.Max(0, health - damage);
             animator.SetTrigger(damagedAnimId);
+            SoundManager.Instance.PlayOneShot("Damaged");
 
             if (health == 0)
             {

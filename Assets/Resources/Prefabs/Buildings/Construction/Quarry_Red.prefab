@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8208685999032545530}
   - component: {fileID: 6562342174063816527}
   - component: {fileID: 7638688994087921649}
+  - component: {fileID: 851838282125297612}
   m_Layer: 0
   m_Name: Quarry_Red
   m_TagString: Untagged
@@ -58,6 +59,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8cf3edc4edf1b74d88852b40f1ed0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &851838282125297612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12890538327521823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a091cb0b3920486428320e966865c507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &765703736339480219
