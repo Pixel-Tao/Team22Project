@@ -1,10 +1,11 @@
+using Defines;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingCondition : MonoBehaviour, IDamageable
 {
-    BuildSO buildedSO;
+    BuildingObject buildingObject;
 
     public float CurHealth { get; private set; }
     public float MaxHealth { get; private set; }
@@ -17,7 +18,7 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-
+        buildingObject = GetComponent<BuildingObject>();
     }
 
     private void Start()
@@ -27,16 +28,16 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     private void Init()
     {
-        if (buildedSO == null)
-            buildedSO = GetComponent<BuildingObject>().buildedSO;
-        MaxHealth = buildedSO.health;
+        if (buildingObject.buildedSO == null) return;
+
+        MaxHealth = buildingObject.buildedSO.health;
         CurHealth = MaxHealth;
 
-        CurAttackPower = buildedSO.attackPower;
-        CurAttackRange = buildedSO.attackRange;
-        CurAttackDelay = buildedSO.attackDelay;
+        CurAttackPower = buildingObject.buildedSO.attackPower;
+        CurAttackRange = buildingObject.buildedSO.attackRange;
+        CurAttackDelay = buildingObject.buildedSO.attackDelay;
 
-        CurProductiontDelay = buildedSO.ProductiontDelay;
+        CurProductiontDelay = buildingObject.buildedSO.ProductiontDelay;
     }
 
     public void Heal(int heal)
@@ -54,5 +55,25 @@ public class BuildingCondition : MonoBehaviour, IDamageable
     public void KnockBack(Transform dest)
     {
 
+    }
+
+    public void BuildingDestroy()
+    {
+        if (buildingObject.TileObj != null)
+        {
+            if (buildingObject.buildedSO.buildingType == BuildingType.House)
+            {
+                // 만약에 최대 인구수 증가시키는 기능이 있다면 최대 인구수와 가용 인구수 차감 필요함
+                GameManager.Instance.SubtractMaxPeople(buildingObject.buildedSO.providedPopulation);
+            }
+            else if (Utils.IsResourceBuilding(buildingObject.buildedSO.buildingType))
+            {
+                BuildingType originResourceType = Utils.BuidingTypeToOriginResourceType(buildingObject.buildedSO.buildingType);
+                BuildSO buildSO = ResourceManager.Instance.Load<BuildSO>(Utils.BuildingEnumToSODataPath(originResourceType));
+                buildingObject.TileObj.Build(buildSO);
+            }
+        }
+
+        PoolManager.Instance.Despawn(gameObject);
     }
 }

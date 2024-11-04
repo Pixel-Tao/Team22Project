@@ -1682,7 +1682,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_73
+      name: building_destroy
       rect:
         serializedVersion: 2
         x: 128
@@ -1839,6 +1839,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      building_destroy: 633012495
       resource_food: -461825778
       resource_ore: -1767539795
       resource_people: -1924482630
@@ -1910,7 +1911,6 @@ TextureImporter:
       spritesheet_7: 722302651
       spritesheet_71: -1478271169
       spritesheet_72: 113750505
-      spritesheet_73: 633012495
       spritesheet_74: -701373114
       spritesheet_75: -1675771161
       spritesheet_76: 543769929

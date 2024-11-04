@@ -17,6 +17,9 @@ public class BuildingSlot : MonoBehaviour
     [SerializeField] private NeedResourceSlot foodSlot;
     [SerializeField] private NeedResourceSlot peopleSlot;
 
+    [SerializeField] private bool isDestroyable;
+    public bool IsDestroyable => isDestroyable;
+
     public void SetData(BuildSO buildSO)
     {
         this.buildSO = buildSO;
@@ -31,6 +34,7 @@ public class BuildingSlot : MonoBehaviour
         titleText.text = buildSO.displayName;
         descriptionText.text = buildSO.description;
         icon.sprite = buildSO.icon;
+        isDestroyable = false;
     }
 
     private void ResourceSlotClear()
@@ -41,7 +45,7 @@ public class BuildingSlot : MonoBehaviour
         peopleSlot.gameObject.SetActive(false);
     }
 
-    private void ShowResourceSlot(BuildSO buildSO)
+    public void ShowResourceSlot(BuildSO buildSO, bool isHalfAmount = false)
     {
         if (buildSO.NeedResources == null)
             return;
@@ -52,19 +56,19 @@ public class BuildingSlot : MonoBehaviour
             {
                 case Defines.ResourceType.Wood:
                     woodSlot.gameObject.SetActive(true);
-                    woodSlot.SetData(resource);
+                    woodSlot.SetData(resource, isHalfAmount);
                     continue;
                 case Defines.ResourceType.Ore:
                     oreSlot.gameObject.SetActive(true);
-                    oreSlot.SetData(resource);
+                    oreSlot.SetData(resource, isHalfAmount);
                     continue;
                 case Defines.ResourceType.Food:
                     foodSlot.gameObject.SetActive(true);
-                    foodSlot.SetData(resource);
+                    foodSlot.SetData(resource, isHalfAmount);
                     continue;
                 case Defines.ResourceType.People:
                     peopleSlot.gameObject.SetActive(true);
-                    peopleSlot.SetData(resource);
+                    peopleSlot.SetData(resource, false); // 인구수는 온전히 돌려받아야 함
                     continue;
             }
         }
@@ -83,6 +87,24 @@ public class BuildingSlot : MonoBehaviour
     public void OnButtonClick()
     {
         BuildPopupUI popup = UIManager.Instance.PeekPopupUI<BuildPopupUI>();
-        popup.Build(buildSO);
+        if (IsDestroyable)
+        {
+            // 철거
+            popup.BuildingDestroy();
+        }
+        else
+        {
+            // 건설
+            popup.Build(buildSO);
+        }
+    }
+    public void SetDestorySlot()
+    {
+        // 철거
+        ResourceSlotClear();
+        titleText.text = "건물 철거";
+        descriptionText.text = string.Empty;
+        icon.sprite = ResourceManager.Instance.Load<Sprite>("Textures/Icons/ResourceIconSheet/building_destroy");
+        isDestroyable = true;
     }
 }

@@ -8,12 +8,19 @@ public class BuildingObject : MonoBehaviour
 {
     [SerializeField] public BuildSO buildedSO;
     private BuildingCondition condition;
+    public TileObject TileObj { get; private set; }
 
     private string str;
 
     private void Awake()
     {
         condition = GetComponent<BuildingCondition>();
+    }
+
+    public void SetTile(TileObject tile)
+    {
+        TileObj = tile;
+        tile.building = this;
     }
 
     public string GetInfo()//외부에서 호출할 함수
@@ -43,8 +50,8 @@ public class BuildingObject : MonoBehaviour
                 break;
 
         }
-        Debug.Log("Debug : 타입별 정보\n"+str);
-        
+        Debug.Log("Debug : 타입별 정보\n" + str);
+
         return str;
     }
 
@@ -56,7 +63,7 @@ public class BuildingObject : MonoBehaviour
             if (buildedSO.NeedResources[i].amount < 0) continue;
             str += $"필요 {buildedSO.NeedResources[i].needResourceType.ToString()} : {buildedSO.NeedResources[i].amount}\n";
         }
-        Debug.Log("Debug : 건설 요구사항\n"+str);
+        Debug.Log("Debug : 건설 요구사항\n" + str);
         return str;
     }
 
@@ -92,14 +99,19 @@ public class BuildingObject : MonoBehaviour
             return;
         }
 
-        InteractableSO productItemSO; 
+        InteractableSO productItemSO;
 
-        for (int i = 0;  i < buildedSO.ProductPrefabs.Length; i++)
+        for (int i = 0; i < buildedSO.ProductPrefabs.Length; i++)
         {
             productItemSO = buildedSO.ProductPrefabs[i].GetComponent<ItemObject>().data;
             str += $"생산품 : {productItemSO.displayName} 생산주기 : {buildedSO.ProductiontDelay}\n";
         }
 
+    }
+
+    public void Destroy()
+    {
+        condition.BuildingDestroy();
     }
 
 }

@@ -1,3 +1,4 @@
+using Defines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,8 +23,15 @@ public class BuildPopupUI : UIPopup
         Defines.BuildingType[] buildingTypes = (Defines.BuildingType[])System.Enum.GetValues(typeof(Defines.BuildingType));
         foreach (Defines.BuildingType buildingType in buildingTypes)
         {
-            if (!Utils.IsGroundBuildabe(buildingType)) continue;
-            if (Utils.IsNaturalResource(buildingType)) continue;
+            if (buildingType == Defines.BuildingType.None)
+            {
+                // 철거를 넣음
+                BuildingSlot slot = GenerateBuildingSlot(null);
+                slot.SetDestorySlot();
+                slots.Add(slot);
+                continue;
+            }
+            if (Utils.IsBuildable(buildingType) == false) continue;
             BuildSO buildSO = ResourceManager.Instance.GetSOBuildingData<BuildSO>(buildingType);
             if (buildSO == null)
             {
@@ -31,11 +39,18 @@ public class BuildPopupUI : UIPopup
                 continue;
             }
 
-            GameObject go = ResourceManager.Instance.Instantiate("UI/Slot/BuildingSlot", buidingSlots);
-            BuildingSlot slot = go.GetComponent<BuildingSlot>();
-            slot.SetData(buildSO);
-            slots.Add(slot);
+            slots.Add(GenerateBuildingSlot(buildSO));
         }
+
+
+    }
+
+    private BuildingSlot GenerateBuildingSlot(BuildSO buildSO)
+    {
+        GameObject go = ResourceManager.Instance.Instantiate("UI/Slot/BuildingSlot", buidingSlots);
+        BuildingSlot slot = go.GetComponent<BuildingSlot>();
+        slot.SetData(buildSO);
+        return slot;
     }
 
     public void SelectedTile(TileObject tileObject)
@@ -49,49 +64,52 @@ public class BuildPopupUI : UIPopup
 
         foreach (BuildingSlot slot in slots)
         {
-            if (tileSO.tileType == Defines.TileType.Ground
-                && tileObject.building == null
-                && Utils.IsGroundBuildabe(slot.buildSO.buildingType))
+            if (slot.buildSO == null)
             {
-                // 빈땅
-                slot.gameObject.SetActive(true);
+                if (slot.IsDestroyable && tileObject.IsDestroyable())
+                {
+                    // 건물이 올라가있는 곳임
+                    slot.ShowSlot();
+                    slot.ShowResourceSlot(tileObject.building.buildedSO, true);
+                    continue;
+                }
+            }
+            else if (tileObject.IsBuildableByBuilding(slot.buildSO.buildingType))
+            {
+                // 빈 땅임
+                slot.ShowSlot();
                 continue;
             }
-            else if (tileSO.tileType == Defines.TileType.Ground
-                && tileObject.building != null
-                && Utils.IsResourceBuildable(slot.buildSO.buildingType, tileObject.building.buildedSO.buildingType))
+            else if (tileObject.IsNaturalResourceBuildable(slot.buildSO.buildingType))
             {
-                // 무언가 있음
-                slot.gameObject.SetActive(true);
+                // 자연물 위에 건설 가능한 땅임
+                slot.ShowSlot();
                 continue;
             }
 
-            slot.gameObject.SetActive(false);
+            slot.HideSlot();
         }
     }
 
     public void Build(BuildSO buildSO)
     {
-        
-
-        GameObject prefab = ResourceManager.Instance.Load<GameObject>(Utils.BuildingEnumToPrefabPath(buildSO.buildingType));
-        if (prefab == null)
+        if (GameManager.Instance.UseResources(buildSO.NeedResources) == false)
         {
-            Debug.Log("Prefab is null");
+            // 자원 부족
+            Debug.Log("Not enough resources");
             return;
         }
-        GameObject go = Instantiate(prefab, tileObject.transform.position, Quaternion.identity);
-        BuildingObject buildingObj = go.GetComponent<BuildingObject>();
-        buildingObj.buildedSO = buildSO;
 
-        if (tileObject.building != null)
-        {
-            PoolManager.Instance.Despawn(tileObject.building.gameObject);
-            tileObject.building = null;
-        }
-
-        tileObject.building = buildingObj;
-        
+        tileObject.Build(buildSO);
+        tileObject = null;
+        OnCloseButton();
+    }
+    public void BuildingDestroy()
+    {
+        if (tileObject?.building == null) return;
+        tileObject.building.Destroy();
+        GameManager.Instance.ReturnResources(tileObject.building.buildedSO.NeedResources, true);
+        tileObject.building = null;
         OnCloseButton();
     }
 

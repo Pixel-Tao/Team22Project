@@ -135,7 +135,7 @@ public class Utils
 
         return false;
     }
-    public static bool IsGroundBuildabe(Defines.BuildingType targetType)
+    public static bool IsGroundBuildable(Defines.BuildingType targetType)
     {
         switch (targetType)
         {
@@ -172,7 +172,24 @@ public class Utils
 
         return false;
     }
+    public static bool IsResourceBuilding(Defines.BuildingType targetType)
+    {
+        switch (targetType)
+        {
+            case Defines.BuildingType.Windmill:
+            case Defines.BuildingType.Lumbermill:
+            case Defines.BuildingType.Quarry:
+            case Defines.BuildingType.Watermill:
+                return true;
+        }
 
+        return false;
+    }
+    public static bool IsBuildable(Defines.BuildingType targetType)
+    {
+        return IsGroundBuildable(targetType) || IsResourceBuilding(targetType);
+    }
+   
     public static Defines.BuildingType OriginResourceTypeToBuildingType(Defines.BuildingType targetType)
     {
         switch (targetType)
@@ -192,21 +209,26 @@ public class Utils
 
         return Defines.BuildingType.None;
     }
-
     public static Defines.BuildingType BuidingTypeToOriginResourceType(Defines.BuildingType buildingType)
     {
+        BuildingType[] types;
         switch (buildingType)
         {
-            case Defines.BuildingType.Windmill:
-                return Defines.BuildingType.GrainLand;
-            case Defines.BuildingType.Lumbermill:
-                return Defines.BuildingType.LoggingArea_A;
-            case Defines.BuildingType.Quarry:
-                return Defines.BuildingType.MiningArea_A;
-            case Defines.BuildingType.Watermill:
-                return Defines.BuildingType.Well;
+            case BuildingType.Windmill:
+                types = new BuildingType[] { BuildingType.Windmill };
+                break;
+            case BuildingType.Lumbermill:
+                types = new BuildingType[] { BuildingType.LoggingArea_A, BuildingType.LoggingArea_B };
+                break;
+            case BuildingType.Quarry:
+                types = new BuildingType[] { BuildingType.MiningArea_A, BuildingType.MiningArea_B, BuildingType.MiningArea_C };
+                break;
+            case BuildingType.Watermill:
+                types = new BuildingType[] { BuildingType.Well };
+                break;
+            default:
+                return Defines.BuildingType.None;
         }
-
-        return Defines.BuildingType.None;
+        return types[UnityEngine.Random.Range(0, types.Length)];
     }
 }

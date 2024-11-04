@@ -8,9 +8,9 @@ public class NeedResourceSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI amountText;
     private float amount;
 
-    public void SetData(ResourceData resourceData)
+    public void SetData(ResourceData resourceData, bool isHalfAmount)
     {
-        amount = resourceData.amount;
+        amount = isHalfAmount ? resourceData.amount / 2 : resourceData.amount;
         amountText.text = amount.ToString("F0");
     }
 }
