@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a297f13eb321f4ca5dd9999b734787, type: 3}
+  m_Name: SO_Wall_Corner_A_Inside
+  m_EditorClassIdentifier: 
+  displayName: "\uC131\uBCBD"
+  description: "\uB4E0\uB4E0\uD569\uB2C8\uB2E4"
+  buildingType: 4
+  NeedResources:
+  - needResourceType: 0
+    amount: 25
+  - needResourceType: 1
+    amount: 25
+  health: 100
+  providedPopulation: 0
+  consumingPopulation: 0
+  attackPower: 0
+  attackRange: 0
+  attackDelay: 0
+  ProductPrefabs: []
+  ProductiontDelay: 0
+  modelPrefab: {fileID: 1224795179010857, guid: a8f6d109adaf197418a320a0380d10aa, type: 3}

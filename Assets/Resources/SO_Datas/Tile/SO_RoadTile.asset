@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SO_RoadTile
   m_EditorClassIdentifier: 
   displayName: "\uB3C4\uB85C"
-  description: "\uAC74\uC124 \uBD88\uAC00 \uC9C0\uC5ED\uC785\uB2C8\uB2E4"
+  description: "\uAC74\uC124 \uBD88\uAC00 \uC9C0\uC5ED\uC785\uB2C8\uB2E4."
   tileType: 3
   dropPrefabs: []

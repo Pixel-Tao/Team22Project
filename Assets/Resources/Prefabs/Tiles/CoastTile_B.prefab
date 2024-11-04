@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: c0946510d1f2ad34a923a2d35c5d0504, type: 2}
-  buildedSO: {fileID: 0}
+  building: {fileID: 0}
   flashInterval: 0.2
   flashColor: {r: 1, g: 0.4669811, b: 0.4669811, a: 1}
 --- !u!1001 &3764405155032114640

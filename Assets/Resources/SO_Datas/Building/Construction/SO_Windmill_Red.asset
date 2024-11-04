@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a297f13eb321f4ca5dd9999b734787, type: 3}
+  m_Name: SO_Windmill_Red
+  m_EditorClassIdentifier: 
+  displayName: "\uD48D\uCC28"
+  description: "\uBE75\uC744 \uC790\uB3D9 \uD68D\uB4DD\uD569\uB2C8\uB2E4"
+  buildingType: 21
+  NeedResources:
+  - needResourceType: 0
+    amount: 50
+  health: 20
+  providedPopulation: 0
+  consumingPopulation: 2
+  attackPower: 0
+  attackRange: 0
+  attackDelay: 0
+  ProductPrefabs:
+  - {fileID: 1428717543096977886, guid: 49ed514d2faacd842a42aab6fe89169b, type: 3}
+  ProductiontDelay: 5
+  modelPrefab: {fileID: 729260730806626204, guid: d1d8356819726194997275a0426bb86c, type: 3}
