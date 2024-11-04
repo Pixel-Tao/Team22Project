@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     public event Action<int> OnFoodCountChanged;
 
     public bool IsBuildMode { get; private set; } = false;
+    public bool IsBuilding { get; private set; } = false;
 
     public int WoodCount { get; private set; }
     public int OreCount { get; private set; }
@@ -31,6 +32,10 @@ public class GameManager : Singleton<GameManager>
             // 건설모드가 아닐때 카메라 시점 변경
             CharacterManager.Instance.Player.NormalMode();
         }
+    }
+    public void ToggleBuilding()
+    {
+        IsBuilding = !IsBuilding;
     }
     public override void Init()
     {
@@ -123,6 +128,11 @@ public class GameManager : Singleton<GameManager>
         if (PeopleCount < 0)
             PeopleCount = 0;
         OnPeopleCountChanged?.Invoke(PeopleCount, MaxPeopleCount);
+    }
+
+    public bool UseResource(ResourceData[] resources)
+    {
+        return true;
     }
 
 }

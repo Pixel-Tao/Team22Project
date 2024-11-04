@@ -17,7 +17,7 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        buildedSO = GetComponent<BuildingObject>().buildedSO;
+
     }
 
     private void Start()
@@ -27,6 +27,8 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     private void Init()
     {
+        if (buildedSO == null)
+            buildedSO = GetComponent<BuildingObject>().buildedSO;
         MaxHealth = buildedSO.health;
         CurHealth = MaxHealth;
 

@@ -63,6 +63,11 @@ public class TileObject : InteractableObject, IInteractable
     public void OnInteract(Transform target = null)
     {
         // TODO : 건물 건설 UI 띄우기
+        if (GameManager.Instance.IsBuilding) return;
+
         Debug.Log(GetInteractPrompt());
+        BuildPopupUI popup = UIManager.Instance.ShowPopupUI<BuildPopupUI>();
+        popup.SelectedTile(this);
+        GameManager.Instance.ToggleBuilding();
     }
 }
