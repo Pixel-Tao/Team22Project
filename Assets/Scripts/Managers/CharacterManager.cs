@@ -8,22 +8,19 @@ public class CharacterManager : Singleton<CharacterManager>
 {
     private const string playerPrefabName = "Player";
     public const int maxItemSlotCount = 30;
-    public const int maxQuickSlotCount = 2;
+    public const int maxQuickSlotCount = 4;
 
-    public event Action<ItemSlotData> OnAddItemSlotData;
-    public event Action<ItemSlotData> OnRemoveItemSlotData;
-    public event Action<ItemSlotData> OnEquipItem;
-    public event Action<ItemSlotData> OnUnEquipItem;
-    public event Action<ItemSlotData> OnEquipQuickSlotItem;
-    public event Action<ItemSlotData> OnUnEquipQuickSlotItem;
+    public event Action<ItemSlotData> OnItemSlotDataChanged;
+    public event Action<ItemSlotData> OnQuickSlotEquipped;
+    public event Action<ItemSlotData> OnQuickSlotUnEquipped;
 
     private Player player;
     public Player Player { get { return player; } }
 
     private ItemSlotData[] itemSlotDatas;
     public int ItemSlotCount => itemSlotDatas?.Length ?? 0;
-    private ItemSlotData[] quickSlotDatas;
-    public int QuickSlotCount => quickSlotDatas?.Length ?? 0;
+    private Dictionary<int, ItemSlotData> itemQuickSlots;
+    public int QuickSlotCount => itemQuickSlots?.Count ?? 0;
 
     public void SetPlayer(Player player)
     {
@@ -35,6 +32,18 @@ public class CharacterManager : Singleton<CharacterManager>
         if (itemSO.itemType == Defines.ItemType.Resource)
         {
             // 자원 증가
+            switch (itemSO.resourceType)
+            {
+                case ResourceType.Wood:
+                    GameManager.Instance.AddWood(10);
+                    break;
+                case ResourceType.Ore:
+                    GameManager.Instance.AddOre(10);
+                    break;
+                case ResourceType.Food:
+                    GameManager.Instance.AddFood(10);
+                    break;
+            }
         }
         else
         {
@@ -58,7 +67,14 @@ public class CharacterManager : Singleton<CharacterManager>
         Player.SetJob(jobSO);
     }
 
-    public void InitItemSlotDatas()
+    public override void Init()
+    {
+        base.Init();
+        InitItemSlotDatas();
+        InitQuickSlotDatas();
+    }
+
+    private void InitItemSlotDatas()
     {
         itemSlotDatas = new ItemSlotData[maxItemSlotCount];
         for (int i = 0; i < maxItemSlotCount; i++)
@@ -67,8 +83,16 @@ public class CharacterManager : Singleton<CharacterManager>
             itemSlotDatas[i].itemSO = null;
             itemSlotDatas[i].itemCount = 0;
             itemSlotDatas[i].slotIndex = i;
-            itemSlotDatas[i].quickSlotIndex = -1;
+            itemSlotDatas[i].quickSlotKey = -1;
             itemSlotDatas[i].isEquipped = false;
+        }
+    }
+    private void InitQuickSlotDatas()
+    {
+        itemQuickSlots = new Dictionary<int, ItemSlotData>();
+        for (int i = 0; i < maxQuickSlotCount; i++)
+        {
+            itemQuickSlots.Add(i + 1, null);
         }
     }
 
@@ -86,7 +110,7 @@ public class CharacterManager : Singleton<CharacterManager>
         }
         itemSlotData.itemSO = item;
         itemSlotData.itemCount += 1;
-        OnAddItemSlotData?.Invoke(itemSlotData);
+        OnItemSlotDataChanged?.Invoke(itemSlotData);
     }
     public ItemSlotData GetItemSlotData(int index)
     {
@@ -102,11 +126,12 @@ public class CharacterManager : Singleton<CharacterManager>
         {
             itemSlotDatas[index].itemSO = null;
             itemSlotDatas[index].itemCount = 0;
-            itemSlotDatas[index].quickSlotIndex = -1;
+            itemSlotDatas[index].quickSlotKey = -1;
             itemSlotDatas[index].isEquipped = false;
+            OnQuickSlotUnEquipped?.Invoke(itemSlotDatas[index]);
         }
 
-        OnRemoveItemSlotData?.Invoke(itemSlotDatas[index]);
+        OnItemSlotDataChanged?.Invoke(itemSlotDatas[index]);
     }
 
     public void UseItem(int index)
@@ -136,6 +161,8 @@ public class CharacterManager : Singleton<CharacterManager>
                     break;
             }
         }
+
+        RemoveItemSlotData(index);
     }
     public void EquipItem(int index)
     {
@@ -150,7 +177,7 @@ public class CharacterManager : Singleton<CharacterManager>
         {
             Player.Equip(itemSlotData.itemSO);
             itemSlotData.isEquipped = true;
-            OnEquipItem?.Invoke(itemSlotData);
+            OnItemSlotDataChanged?.Invoke(itemSlotData);
         }
     }
     public void UnEquipItem(int index)
@@ -161,51 +188,75 @@ public class CharacterManager : Singleton<CharacterManager>
         {
             Player.UnEquip(itemSlotData.itemSO.equipType);
             itemSlotData.isEquipped = false;
-            OnUnEquipItem?.Invoke(itemSlotData);
+            OnItemSlotDataChanged?.Invoke(itemSlotData);
         }
     }
-    public void EquipQuickSlotItem(int itemIndex, int quickSlotIndex)
+    public void EquipQuickSlotItem(int itemIndex, int quickSlotKey)
     {
         ItemSlotData itemSlotData = GetItemSlotData(itemIndex);
         if (itemSlotData == null) return;
 
-        ItemSlotData quickSlotData = GetQuickSlotData(quickSlotIndex);
+        ItemSlotData quickSlotData = GetQuickSlotData(quickSlotKey);
         if (quickSlotData != null)
         {
-            UnEquipQuickSlotItem(quickSlotIndex);
+            UnEquipQuickSlotItem(quickSlotKey);
         }
 
-        itemSlotData.quickSlotIndex = quickSlotIndex;
-        OnEquipQuickSlotItem?.Invoke(itemSlotData);
+        itemSlotData.quickSlotKey = quickSlotKey;
+        itemQuickSlots[quickSlotKey] = itemSlotData;
+        OnQuickSlotEquipped?.Invoke(itemSlotData);
+        OnItemSlotDataChanged?.Invoke(itemSlotData);
     }
-    public void UnEquipQuickSlotItem(int quickSlotIndex)
+    public void UnEquipQuickSlotItem(int quickSlotKey)
     {
-        ItemSlotData quickSlotData = GetQuickSlotData(quickSlotIndex);
+        ItemSlotData quickSlotData = GetQuickSlotData(quickSlotKey);
         if (quickSlotData == null) return;
 
-        quickSlotData.quickSlotIndex = -1;
-        OnUnEquipQuickSlotItem?.Invoke(quickSlotData);
+        quickSlotData.quickSlotKey = -1;
+        itemQuickSlots[quickSlotKey] = null;
+        OnQuickSlotUnEquipped?.Invoke(quickSlotData);
+        OnItemSlotDataChanged?.Invoke(quickSlotData);
     }
 
-    private bool IsEmptySlot(int index)
+    public void InputQuickSlotKey(int quickSlotKey)
+    {
+        ItemSlotData itemSlotData = GetQuickSlotData(quickSlotKey);
+        if (itemSlotData == null) return;
+
+        if (itemSlotData.itemSO.itemType == ItemType.Consumable)
+        {
+            UseItem(itemSlotData.slotIndex);
+        }
+        else if (itemSlotData.itemSO.itemType == ItemType.Equipable)
+        {
+            if (itemSlotData.isEquipped)
+            {
+                UnEquipItem(itemSlotData.slotIndex);
+            }
+            else
+            {
+                EquipItem(itemSlotData.slotIndex);
+            }
+        }
+    }
+
+    public bool IsEmptySlot(int index)
     {
         if (index < 0 || index >= itemSlotDatas.Length)
             return false;
 
         return itemSlotDatas[index].itemSO == null;
     }
-    private ItemSlotData GetQuickSlotData(int quickSlotIndex)
+    public ItemSlotData GetQuickSlotData(int quickSlotKey)
     {
-        for (int i = 0; i < itemSlotDatas.Length; i++)
+        if (itemQuickSlots.TryGetValue(quickSlotKey, out ItemSlotData itemSlotData))
         {
-            if (itemSlotDatas[i].quickSlotIndex == quickSlotIndex)
-            {
-                return itemSlotDatas[i];
-            }
+            return itemSlotData;
         }
+
         return null;
     }
-    private ItemSlotData GetEquippedItemData(EquipType type)
+    public ItemSlotData GetEquippedItemData(EquipType type)
     {
         foreach (ItemSlotData itemSlotData in itemSlotDatas)
         {
@@ -219,7 +270,7 @@ public class CharacterManager : Singleton<CharacterManager>
 
         return null;
     }
-    private ItemSlotData GetStackableSlotData(ItemSO item)
+    public ItemSlotData GetStackableSlotData(ItemSO item)
     {
         for (int i = 0; i < itemSlotDatas.Length; i++)
         {
@@ -231,7 +282,7 @@ public class CharacterManager : Singleton<CharacterManager>
         }
         return null;
     }
-    private ItemSlotData GetEmptySlotData()
+    public ItemSlotData GetEmptySlotData()
     {
         for (int i = 0; i < itemSlotDatas.Length; i++)
         {

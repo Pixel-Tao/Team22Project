@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uD0C0\uC6CC"
   description: "\uC601\uD1A0\uB97C \uBCF4\uD638\uD558\uB294 \uD0C0\uC6CC\uC785\uB2C8\uB2E4"
-  buildingType: 3
+  buildingType: 0
   NeedResources:
   - needResourceType: 0
     amount: 100

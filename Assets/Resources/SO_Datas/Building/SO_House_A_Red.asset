@@ -14,15 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uC9D1"
   description: "\uC2DC\uBBFC\uC774 \uAC70\uC8FC\uD558\uB294 \uC9D1\uC785\uB2C8\uB2E4"
-  buildingType: 2
+  buildingType: 0
   NeedResources:
   - needResourceType: 0
     amount: 50
   - needResourceType: 3
     amount: 100
   health: 10
-  attackPower: 0
-  consumingPopulation: 0
   providedPopulation: 10
-  dropPrefabs: []
+  consumingPopulation: 0
+  attackPower: 0
+  attackRange: 0
+  attackDelay: 0
+  ProductPrefabs: []
+  ProductiontDelay: 0
   modelPrefab: {fileID: 1123363669514723648, guid: 920490d72ba734a4b91b084796151655, type: 3}

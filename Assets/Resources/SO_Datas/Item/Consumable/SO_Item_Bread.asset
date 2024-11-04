@@ -14,10 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uC2DD\uBE75"
   description: "\uBC30\uACE0\uD514\uC744 \uC870\uAE08 \uCC44\uC6CC\uC90D\uB2C8\uB2E4."
-  itemPower: 20
-  itemIcon: {fileID: 0}
-  itemType: 0
-  consumables: []
+  itemValue: 0
+  itemIcon: {fileID: 543769929, guid: a03e9228371be9449a97a937850924ca, type: 3}
+  itemType: 2
+  isStackable: 1
+  stackSize: 10
+  equipType: 0
   equipPrefab: {fileID: 0}
+  combatMotionType: 0
+  consumables:
+  - consumeableType: 4
+    amount: 50
+  - consumeableType: 5
+    amount: 30
   dropItemPrefab: {fileID: 1428717543096977886, guid: 49ed514d2faacd842a42aab6fe89169b, type: 3}
   childPath: 
+  resourceType: 0
