@@ -10,7 +10,7 @@ public interface IDamageable
     /// 데미지 받았을때 
     /// </summary>
     /// <param name="damage"></param>
-    public void TakeDamage(int damage);
+    public void TakeDamage(float damage);
     /// <summary>
     /// 체력을 회복할때
     /// </summary>

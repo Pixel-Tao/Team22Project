@@ -5,8 +5,8 @@ namespace Assets.Scripts.Utils
 {
     internal class Detector : MonoBehaviour
     {
-        [SerializeField] string tagName;
-        public string TagName { get { return tagName; } }
+        [SerializeField]string[] tagNames;
+        public string[] TagNames { get { return tagNames; } }
 
         private void Start()
         {
@@ -15,10 +15,17 @@ namespace Assets.Scripts.Utils
 
         private void OnTriggerStay(Collider other)
         {
-            if(other.CompareTag(tagName))
+            foreach(string tag in tagNames)
             {
-                transform.parent.GetComponent<IRangable>().InitDetactObject(other.gameObject);
+                if (other.CompareTag(tag))
+                {
+                    if (other.gameObject.activeSelf)
+                    {
+                        transform.parent.GetComponent<IRangable>().InitDetactObject(other.gameObject);
+                    }
+                }
             }
+           
         }
     }
 }

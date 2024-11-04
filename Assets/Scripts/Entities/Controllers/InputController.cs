@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class InputController : MonoBehaviour
 {
@@ -108,6 +109,17 @@ public class InputController : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             GameManager.Instance.ToggleBuildMode();
+        }
+    }
+
+    public void OnQuickSlot(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            if (int.TryParse(context.control.name, out int value))
+            {
+                CharacterManager.Instance.InputQuickSlotKey(value);
+            }
         }
     }
 }
