@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7599789592326785291}
   - component: {fileID: 3125055596245528965}
   - component: {fileID: 4264004475647020549}
+  - component: {fileID: -2491104385567491581}
   m_Layer: 0
   m_Name: Lumbermill_Red
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8041326841005724939}
-  - {fileID: 5936953802822428987}
+  - {fileID: 5819784165368580065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3125055596245528965
@@ -60,7 +61,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cf3edc4edf1b74d88852b40f1ed0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &6192156443083263696
+--- !u!114 &-2491104385567491581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413421181645280817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a091cb0b3920486428320e966865c507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &6291176424883724298
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -112,31 +125,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collider
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7511558181221131132, guid: 6ff4e927f623b784380b64d37612408d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ff4e927f623b784380b64d37612408d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 101722950312326125}
+      addedObject: {fileID: 7519972473511394426}
+    - targetCorrespondingSourceObject: {fileID: 7579136327535600649, guid: 6ff4e927f623b784380b64d37612408d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7872434548237595335}
   m_SourcePrefab: {fileID: 100100000, guid: 6ff4e927f623b784380b64d37612408d, type: 3}
---- !u!4 &5936953802822428987 stripped
+--- !u!1 &4494662750211212291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7579136327535600649, guid: 6ff4e927f623b784380b64d37612408d, type: 3}
+  m_PrefabInstance: {fileID: 6291176424883724298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7872434548237595335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4494662750211212291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a00ad67d9a8e740814c06ad8b30f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinVelocity: 0.5
+  spinDirectionYAxis: 1
+--- !u!4 &5819784165368580065 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ff4e927f623b784380b64d37612408d, type: 3}
-  m_PrefabInstance: {fileID: 6192156443083263696}
+  m_PrefabInstance: {fileID: 6291176424883724298}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6426527455218168705 stripped
+--- !u!1 &6597727763104046427 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ff4e927f623b784380b64d37612408d, type: 3}
-  m_PrefabInstance: {fileID: 6192156443083263696}
+  m_PrefabInstance: {fileID: 6291176424883724298}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &101722950312326125
+--- !u!64 &7519972473511394426
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6426527455218168705}
+  m_GameObject: {fileID: 6597727763104046427}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -205,7 +241,8 @@ PrefabInstance:
       value: building_lumbermill_red
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7579136327535600649, guid: 6ff4e927f623b784380b64d37612408d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ff4e927f623b784380b64d37612408d, type: 3}
