@@ -13,6 +13,7 @@ public class GameScene : SceneBase
         CharacterManager.Instance.Init();
         GameManager.Instance.Init();
         PoolManager.Instance.Init(poolDefaultCapacity, poolMaxSize);
+        SoundManager.Instance.Init();
 
         CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
         ResourceManager.Instance.Instantiate("WorldMap");

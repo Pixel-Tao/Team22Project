@@ -57,6 +57,7 @@ public class Condition : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        SoundManager.Instance.PlayOneShot("Damaged");
         currentStat.health -= Mathf.Clamp(damage, 0, currentStat.maxHealth);
         HealthChangedEvent?.Invoke(currentStat.health, currentStat.maxHealth);
         if (currentStat.health <= 0)

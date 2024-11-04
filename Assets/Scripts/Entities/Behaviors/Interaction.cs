@@ -64,10 +64,7 @@ public class Interaction : MonoBehaviour
                 switch (tileSO?.tileType)
                 {
                     case Defines.TileType.Ground:
-                    case Defines.TileType.Road:
-                    case Defines.TileType.Farm:
-                    case Defines.TileType.Tree:
-                    case Defines.TileType.Mine:
+
                         SetTile(tileObj);
                         currentTile.Flash();
                         break;

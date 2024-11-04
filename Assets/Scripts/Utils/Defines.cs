@@ -41,7 +41,7 @@ namespace Defines
         Wall_Corner_A_Gate,
         
         Bridge,
-        Market,
+        Watermill,
         Blacksmith,
 
         //자연 자원지대(가서 주워야함)
@@ -57,7 +57,7 @@ namespace Defines
         Windmill,
         Lumbermill,
         Quarry,
-        Watermill,
+        Market,
 
         //타일 위에 배치되는 자연물 기능x
         Dirt,
@@ -77,11 +77,7 @@ namespace Defines
     {
         None,
         Ground,
-        Water,
-        Road,
-        Tree,
-        Mine,
-        Farm
+        CantBuild
     }
 
     public enum JobType
