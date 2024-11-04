@@ -34,6 +34,11 @@ public class Equipment : MonoBehaviour
         //weaponInstance.transform.localRotation = Quaternion.identity;
     }
 
+    public void UnEquipWeapon()
+    {
+        // 무기 장비 해제
+    }
+
     public void EquipHelmet(ItemSO itemSO)
     {
         Transform Helmet = itemSO.equipPrefab.transform.Find(itemSO.childPath);
@@ -41,6 +46,11 @@ public class Equipment : MonoBehaviour
         helmetInstance.transform.SetParent(head);
         //helmetInstance.transform.localPosition = Vector3.zero;
         //helmetInstance.transform.localRotation = Quaternion.identity;
+    }
+
+    public void UnEquipHelmet()
+    {
+        // 헬멧 장비 해제
     }
 
     //Test

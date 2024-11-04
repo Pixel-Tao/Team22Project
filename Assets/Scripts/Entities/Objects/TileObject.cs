@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileObject : InteractableObject, IInteractable
 {
-    public BuildSO buildedSO;
+    public BuildingObject building;
 
     [SerializeField] private float flashInterval = 0.5f;
     [SerializeField] private Color flashColor;
@@ -50,9 +50,9 @@ public class TileObject : InteractableObject, IInteractable
 
     public string GetInteractPrompt()
     {
-        if (buildedSO != null)
+        if (building != null)
         {
-            return $"{buildedSO.displayName}\n{buildedSO.description}";
+            return $"{building.buildedSO.displayName}\n{building.buildedSO.description}";
         }
         else
         {

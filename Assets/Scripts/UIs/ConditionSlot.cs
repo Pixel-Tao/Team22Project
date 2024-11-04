@@ -9,8 +9,8 @@ public class ConditionSlot : MonoBehaviour
     
     public void ValueChanged(float value, float maxValue)
     {
-        currentValue = value;
-        maxValue = value;
+        this.currentValue = value;
+        this.maxValue = maxValue;
         bar.fillAmount = value / maxValue;
     }
 }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c904bc1177c46a24a949b7ca14a338a0, type: 3}
+  m_Name: SO_Item_Rock
+  m_EditorClassIdentifier: 
+  displayName: "\uB3CC"
+  description: "\uD68D\uB4DD \uC2DC \uB3CC\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  itemValue: 0
+  itemIcon: {fileID: 0}
+  itemType: 3
+  isStackable: 0
+  stackSize: 0
+  equipType: 0
+  equipPrefab: {fileID: 0}
+  combatMotionType: 0
+  consumables: []
+  dropItemPrefab: {fileID: 9220331825408845403, guid: c46e6bc519a65ef429ffa129f827a57d, type: 3}
+  childPath: Rock
+  resourceType: 1

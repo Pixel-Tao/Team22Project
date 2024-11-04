@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class InputController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class InputController : MonoBehaviour
     public event Action<Vector2> RotateEvent;
     public event Action<Vector2> MouseInteractionEvent;
     public event Action InteractEvent;
+    public event Action<bool> AttackingEvent;
 
     private Vector2 screenCenter;
     private Vector3 direction;
@@ -59,7 +61,14 @@ public class InputController : MonoBehaviour
     public void OnMouseLeftClick(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
+        {
             InteractEvent?.Invoke();
+            AttackingEvent?.Invoke(true);
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            AttackingEvent?.Invoke(false);
+        }
     }
 
     public void OnMouseRightClick(InputAction.CallbackContext context)
@@ -92,6 +101,25 @@ public class InputController : MonoBehaviour
                 UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
             else
                 UIManager.Instance.ClosePopupUI(popup);
+        }
+    }
+
+    public void OnBuildMode(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            GameManager.Instance.ToggleBuildMode();
+        }
+    }
+
+    public void OnQuickSlot(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            if (int.TryParse(context.control.name, out int value))
+            {
+                CharacterManager.Instance.InputQuickSlotKey(value);
+            }
         }
     }
 }

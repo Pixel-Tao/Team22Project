@@ -9,8 +9,8 @@ using UnityEngine;
 public struct StatData
 {
     [Header("생명력")]
-    public int maxHealth;
-    public int health;
+    public float maxHealth;
+    public float health;
 
     [Header("스태미나")]
     public float stamina;

@@ -3,12 +3,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "S0_MobData", menuName = "Datas/SO_MobData")]
 public class MonsterSO : ScriptableObject
 {
-    public string name; 
-    public int health;
-    public int attack;   
+    [Header("기본 수치")]
+    public float health;
     public float speed;
+    
+    [Header("공격 수치")]
     public float attackDelay;
-    public float detectiveLength;
+    public float attackDamage;
     public float attackRange;
-    //public GameObject mobPrefabs;
+    public float detectiveLength;
+
+    [Header("공격 유형")]
+    public bool isRangedWeapon;
+    public string projectileName;
+    //[SerializeField]public string[] enemyObjectTags;
 }

@@ -9,6 +9,13 @@ namespace Defines
         Resource
     }
 
+    public enum EquipType
+    {
+        None,
+        Helmet,
+        Weapon
+    }
+
     public enum ConsumeableType
     {
         None,
@@ -16,7 +23,7 @@ namespace Defines
         Mana,
         Stamina,
         Hunger,
-        water
+        Water
     }
 
     public enum BuildingType
@@ -63,7 +70,7 @@ namespace Defines
     public enum JobType
     {
         None,
-        Bararian,
+        Babarian,
         Knight,
         Mage,
         Rogue
@@ -75,5 +82,46 @@ namespace Defines
         Ore,
         People,
         Food
+    }
+
+    // 장비에 따라 공격모션 달리하기 위한 애니메이터 레이어 Enum
+    // Animator Layer 순서와 동일함
+    public enum CharacterAnimCombatLayerType
+    {
+        Base_Layer, // Base Layer
+        // Hit Layer
+        Melee_1H_Layer = 2,
+        Melee_2H_Layer,
+        Ranged_1H_Layer,
+        Ranged_2H_Layer,
+        Spellcasting_Layer
+    }
+
+    public enum CharacterMoveStepType
+    {
+        Idle,
+        Forward,
+        Backward,
+        Left,
+        Right,
+    }
+
+    public enum SODataType
+    {
+        None,
+        Building,
+        Job,
+        Item,
+        MobData,
+        Tile
+    }
+
+    public enum SOItemDataType
+    {
+        None,
+        Consumable,
+        Helmet,
+        Resource,
+        Weapon,
     }
 }
