@@ -16,9 +16,14 @@ MonoBehaviour:
   description: "\uD55C\uC190\uC73C\uB85C \uB4E4\uC218 \uC788\uB294 \uB3C4\uB07C\uC785\uB2C8\uB2E4."
   itemValue: 0
   itemIcon: {fileID: 0}
-  itemType: 0
-  consumables: []
+  itemType: 1
+  isStackable: 0
+  stackSize: 0
+  equipType: 2
   equipPrefab: {fileID: 8099736589258849947, guid: 8c82fb70ae9ab114c85d17634fe3a8ac, type: 3}
+  combatMotionType: 2
+  helmetJob: {fileID: 0}
+  consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Axe
-  combatMotionType: 2
+  resourceType: 0
