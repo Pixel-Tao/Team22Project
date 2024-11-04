@@ -41,7 +41,6 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         get { return data; }
     }
 
-    // Start is called before the first frame update
     #region UNITY EVENTS
     void Start()
     {
@@ -66,7 +65,6 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         }
     }
     #endregion
-
     #region MOB BEHAVIOR SEQUENCE
     private void MobInit()
     {
@@ -120,7 +118,6 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         }
     }
     #endregion
-
     private Vector3 GetDestPos()
     {
         return targetObject.transform.position;
@@ -169,7 +166,6 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         SetState(MOBSTATE.DEAD);
         animator.SetTrigger(deadAnimId);
         yield return new WaitForSeconds(2f);
-        //POOLING
         SetState(MOBSTATE.MOVE);
         health = data.health;
         detectObject = null;

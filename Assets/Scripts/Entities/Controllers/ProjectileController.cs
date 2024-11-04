@@ -10,10 +10,11 @@ namespace Assets.Scripts.Entities.Objects
         private float damage;
         private float localTimer;
         private string[] tagName;
+        private bool meleeAttack;
         private GameObject currentTarget;
         Vector3 dirToTarget;
         
-        public void Init(GameObject target, string[] name, float _damage)
+        public void Init(GameObject target, string[] name, float _damage, bool isMelee = false)
         {
             damage = _damage;
             tagName = name;
@@ -57,9 +58,12 @@ namespace Assets.Scripts.Entities.Objects
             {
                 if (other.CompareTag(str))
                 {
-                    DestroySelf();
                     other.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
                     other.gameObject.GetComponent<IDamageable>().KnockBack(this.transform);
+                    if(meleeAttack)
+                    {
+                        DestroySelf();
+                    }
                 }
             }
            

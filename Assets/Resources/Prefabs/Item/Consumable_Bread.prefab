@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3688914038908016836}
   - component: {fileID: 2150057969344742601}
   - component: {fileID: -3946872157722832055}
-  - component: {fileID: 1505498208187972100}
+  - component: {fileID: 5792760974521241185}
   m_Layer: 7
   m_Name: Consumable_Bread
   m_TagString: Untagged
@@ -76,7 +76,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1505498208187972100
+--- !u!65 &5792760974521241185
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,8 +95,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.03404932, y: 0.03082714, z: 0.0275639}
-  m_Center: {x: 0, y: 0.003, z: 0.00000673905}
+  m_Size: {x: 0.17024663, y: 0.15413567, z: 0.1378195}
+  m_Center: {x: 0, y: 0.012869719, z: 0.00000673905}
 --- !u!1 &6627891490443994610
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3688914038908016836}

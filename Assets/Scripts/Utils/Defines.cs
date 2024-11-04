@@ -32,28 +32,45 @@ namespace Defines
         Castle,
         House,
         Tower,
-        Defence,
-        NaturalResources,
-        ResourceBuilding,
-        Blacksmith,
+        Wall_Straight,
+        Wall_Corner_A_Inside,
+        Wall_Corner_A_Outside,
+        Wall_Corner_B_Inside,
+        Wall_Corner_B_Outside,
+        Wall_Straight_Gate,
+        Wall_Corner_A_Gate,
+        
+        Bridge,
         Market,
-        well
+        Blacksmith,
 
-        /* 세부분류
-        Castle, //체력, 인구제공
-        House, //체력, 인구제공
-        Tower, //체력, 공격력 ,인구소모
-        Wall, //체력
-        Gate, //체력
-        GrainTile, //자원제공
-        Windmill, //자동제공
-        MineTile, //자원제공
-        Quarry, //자동제공
-        LoggingTile, //자원제공
-        Lumbermill, //자동제공
-        Blacksmith, //장비제작소
-        Market //배고픔을 채움
-        */
+        //자연 자원지대(가서 주워야함)
+        GrainLand,
+        LoggingArea_A,
+        LoggingArea_B,
+        MiningArea_A,
+        MiningArea_B,
+        MiningArea_C,
+        Well,
+
+        //건설한 자원건물(자동으로 인벤으로 들어감)
+        Windmill,
+        Lumbermill,
+        Quarry,
+        Watermill,
+
+        //타일 위에 배치되는 자연물 기능x
+        Dirt,
+        Mountain_A,
+        Mountain_A_Grass,
+        Mountain_A_Grass_Trees,
+        Mountain_B,
+        Mountain_B_Grass,
+        Mountain_B_Grass_Trees,
+        Mountain_C,
+        Mountain_C_Grass,
+        Mountain_C_Grass_Trees,
+
     }
 
     public enum TileType
