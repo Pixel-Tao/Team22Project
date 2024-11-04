@@ -215,7 +215,7 @@ public class Utils
         switch (buildingType)
         {
             case BuildingType.Windmill:
-                types = new BuildingType[] { BuildingType.Windmill };
+                types = new BuildingType[] { BuildingType.GrainLand };
                 break;
             case BuildingType.Lumbermill:
                 types = new BuildingType[] { BuildingType.LoggingArea_A, BuildingType.LoggingArea_B };

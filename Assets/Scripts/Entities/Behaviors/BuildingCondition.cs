@@ -57,23 +57,4 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     }
 
-    public void BuildingDestroy()
-    {
-        if (buildingObject.TileObj != null)
-        {
-            if (buildingObject.buildedSO.buildingType == BuildingType.House)
-            {
-                // 만약에 최대 인구수 증가시키는 기능이 있다면 최대 인구수와 가용 인구수 차감 필요함
-                GameManager.Instance.SubtractMaxPeople(buildingObject.buildedSO.providedPopulation);
-            }
-            else if (Utils.IsResourceBuilding(buildingObject.buildedSO.buildingType))
-            {
-                BuildingType originResourceType = Utils.BuidingTypeToOriginResourceType(buildingObject.buildedSO.buildingType);
-                BuildSO buildSO = ResourceManager.Instance.Load<BuildSO>(Utils.BuildingEnumToSODataPath(originResourceType));
-                buildingObject.TileObj.Build(buildSO);
-            }
-        }
-
-        PoolManager.Instance.Despawn(gameObject);
-    }
 }

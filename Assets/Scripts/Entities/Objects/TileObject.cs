@@ -89,14 +89,10 @@ public class TileObject : InteractableObject, IInteractable
     }
     public bool Build(BuildSO buildSO)
     {
-        GameObject prefab = ResourceManager.Instance.Load<GameObject>(Utils.BuildingEnumToPrefabPath(buildSO.buildingType));
-        if (prefab == null)
-        {
-            Debug.Log("Prefab is null");
-            return false;
-        }
-        building?.Destroy();
-        GameObject go = Instantiate(prefab, transform.position, Quaternion.identity);
+        if (Utils.IsNaturalResource(building.buildedSO.buildingType))
+            building?.Destroy();
+
+        GameObject go = Instantiate(buildSO.modelPrefab, transform.position, Quaternion.identity);
         BuildingObject buildingObj = go.GetComponent<BuildingObject>();
         buildingObj.buildedSO = buildSO;
         buildingObj.SetTile(this);

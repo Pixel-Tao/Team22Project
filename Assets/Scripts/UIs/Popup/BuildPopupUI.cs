@@ -109,7 +109,6 @@ public class BuildPopupUI : UIPopup
         if (tileObject?.building == null) return;
         tileObject.building.Destroy();
         GameManager.Instance.ReturnResources(tileObject.building.buildedSO.NeedResources, true);
-        tileObject.building = null;
         OnCloseButton();
     }
 
