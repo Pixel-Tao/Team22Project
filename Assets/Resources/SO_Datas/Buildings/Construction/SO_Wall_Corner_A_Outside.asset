@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uC131\uBCBD"
   description: "\uB4E0\uB4E0\uD569\uB2C8\uB2E4"
-  buildingType: 4
+  buildingType: 6
+  icon: {fileID: 0}
   NeedResources:
   - needResourceType: 0
     amount: 25
