@@ -22,7 +22,7 @@ public class Equipment : MonoBehaviour
         startHelmet = "Prefabs/Item/Helmet/Equip_Barbarian_Hat";
         EquipWeapon(SetitemSO(startWeapon));
         EquipHelmet(SetitemSO(startHelmet));
-        CharacterManager.Instance.LoadPlayer(Defines.JobType.Bararian);
+        CharacterManager.Instance.LoadPlayer(Defines.JobType.Babarian);
     }
 
     public void EquipWeapon(ItemSO itemSO)

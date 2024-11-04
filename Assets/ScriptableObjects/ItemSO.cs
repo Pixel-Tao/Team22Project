@@ -18,6 +18,7 @@ public class ItemSO : InteractableSO
     public EquipType equipType;
     public GameObject equipPrefab;
     public CharacterAnimCombatLayerType combatMotionType;
+    public JobSO helmetJob;
 
     [Header("소비")]
     public List<ConsumableData> consumables;
