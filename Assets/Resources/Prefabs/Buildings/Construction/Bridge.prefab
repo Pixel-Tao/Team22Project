@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9023210922956561732}
   m_Layer: 6
   m_Name: Bridge
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,9 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildedSO: {fileID: 11400000, guid: 5712be6d772791045963d9b2bffd34be, type: 2}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1001 &1756927979436590595
 PrefabInstance:
   m_ObjectHideFlags: 0
