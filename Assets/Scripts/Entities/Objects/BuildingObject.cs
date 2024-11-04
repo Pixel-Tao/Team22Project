@@ -11,27 +11,9 @@ public class BuildingObject : MonoBehaviour
 
     private string str;
 
-    private Ray ray;
-    private Vector3 rayOrigin;
-    [SerializeField] private LayerMask layerMask;
-
     private void Awake()
     {
         condition = GetComponent<BuildingCondition>();
-    }
-
-    private void Start()
-    {
-        Init();
-    }
-
-    private void Init()
-    {
-        str = string.Empty;
-        layerMask = LayerMask.GetMask("Tile");
-        rayOrigin = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.2f, transform.localPosition.z);
-        ray = new Ray(rayOrigin, Vector3.down);
-        Physics.Raycast(ray, 0.5f, layerMask);
     }
 
     public string GetInfo()//외부에서 호출할 함수
@@ -57,17 +39,6 @@ public class BuildingObject : MonoBehaviour
                 str += HealthInfo();
                 str += AttackInfo();
                 str += consumingPopInfo();
-                str += BuildingInfo();
-                break;
-            case BuildingType.Defence://체력
-                str += HealthInfo();
-                str += BuildingInfo();
-                break;
-            case BuildingType.NaturalResources://생산품정보,생산주기
-                productionInfo();
-                break;
-            case BuildingType.ResourceBuilding://체력,생산품정보,생산주기
-                str += HealthInfo();
                 str += BuildingInfo();
                 break;
 
