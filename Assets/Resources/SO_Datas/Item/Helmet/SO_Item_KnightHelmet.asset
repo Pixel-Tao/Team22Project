@@ -14,9 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uAE30\uC0AC \uD22C\uAD6C"
   description: "\uAE30\uC0AC\uAC00 \uC0AC\uC6A9\uD558\uB294 \uD22C\uAD6C"
-  itemPower: 50
+  itemValue: 0
   itemIcon: {fileID: 0}
   itemType: 1
+  isStackable: 0
+  stackSize: 0
+  equipType: 1
   equipPrefab: {fileID: 3357190496700703531, guid: c752651a60309ba43a973b397313818b, type: 3}
+  combatMotionType: 0
+  helmetJob: {fileID: 0}
+  consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Knight_Helmet
+  resourceType: 0

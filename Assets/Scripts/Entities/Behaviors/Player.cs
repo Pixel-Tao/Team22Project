@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
 
         characterModelGameObject = Instantiate(jobSO.characterModelPrefab, transform);
         characterModelGameObject.name = jobSO.characterModelPrefab.name;
+        equipment?.SetCharacterModel(characterModelGameObject);
         if (transform.TryGetComponent(out CharacterAnimController anim))
         {
             anim.SetAnimator(characterModelGameObject.GetComponent<Animator>());
@@ -82,39 +83,6 @@ public class Player : MonoBehaviour
         // TODO : 일반모드일때 추가로 작성해야할게 있다면 여기서
     }
 
-
-    #region 임시
-    private CharacterModel characterModel;
-    private CharacterAnimController characterAnimController;
-
-    public ItemSO itemSO;
-
-    public void EquipWeapon(ItemSO item)
-    {
-        UnEquipWeapon();
-        itemSO = item;
-        if (characterModel == null)
-            characterModel = characterModelGameObject.GetComponent<CharacterModel>();
-
-        if (characterAnimController == null)
-            characterAnimController = GetComponent<CharacterAnimController>();
-
-        GameObject weapon = Instantiate(item.equipPrefab);
-        characterModel.InsertRightHandSlot(weapon.transform);
-        characterAnimController.UseCombatLayer(item.combatMotionType);
-    }
-    public void UnEquipWeapon()
-    {
-        if (characterModel == null)
-            characterModel = characterModelGameObject.GetComponent<CharacterModel>();
-
-        if (characterAnimController == null)
-            characterAnimController = GetComponent<CharacterAnimController>();
-
-        characterModel.ClearRightHandSlot();
-        characterAnimController.ResetLayerWeight();
-    }
-
     public void Equip(ItemSO item)
     {
         if (item.itemType != ItemType.Equipable) return;
@@ -130,7 +98,7 @@ public class Player : MonoBehaviour
     }
     public void UnEquip(EquipType equipType)
     {
-        switch(equipType)
+        switch (equipType)
         {
             case EquipType.Weapon:
                 equipment.UnEquipWeapon();
@@ -140,5 +108,4 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-    #endregion
 }

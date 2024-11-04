@@ -124,6 +124,7 @@ public class CharacterManager : Singleton<CharacterManager>
         itemSlotDatas[index].itemCount -= 1;
         if (itemSlotDatas[index].itemCount <= 0)
         {
+            itemQuickSlots[itemSlotDatas[index].quickSlotKey] = null;
             itemSlotDatas[index].itemSO = null;
             itemSlotDatas[index].itemCount = 0;
             itemSlotDatas[index].quickSlotKey = -1;
@@ -221,7 +222,7 @@ public class CharacterManager : Singleton<CharacterManager>
     public void InputQuickSlotKey(int quickSlotKey)
     {
         ItemSlotData itemSlotData = GetQuickSlotData(quickSlotKey);
-        if (itemSlotData == null) return;
+        if (itemSlotData?.itemSO == null) return;
 
         if (itemSlotData.itemSO.itemType == ItemType.Consumable)
         {
