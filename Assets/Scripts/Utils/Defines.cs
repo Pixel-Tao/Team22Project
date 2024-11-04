@@ -77,11 +77,7 @@ namespace Defines
     {
         None,
         Ground,
-        Water,
-        Road,
-        Tree,
-        Mine,
-        Farm
+        CantBuild
     }
 
     public enum JobType

@@ -17,9 +17,14 @@ MonoBehaviour:
     \uC11D\uAD81\uC785\uB2C8\uB2E4."
   itemValue: 0
   itemIcon: {fileID: 0}
-  itemType: 0
-  consumables: []
+  itemType: 1
+  isStackable: 0
+  stackSize: 0
+  equipType: 2
   equipPrefab: {fileID: 6301642543837957201, guid: 5f8e9c83238c2dc4b8567bca4252a959, type: 3}
+  combatMotionType: 4
+  helmetJob: {fileID: 0}
+  consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Crossbow
-  combatMotionType: 4
+  resourceType: 0

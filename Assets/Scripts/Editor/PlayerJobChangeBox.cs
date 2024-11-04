@@ -48,7 +48,7 @@ public class PlayerJobChangeBox : Editor
 
     private void EquipWeapon(ItemSO itemSO)
     {
-        CharacterManager.Instance.Player.EquipWeapon(itemSO);
+        CharacterManager.Instance.Player.Equip(itemSO);
     }
 
     private ItemSO GetItemSO(string name)

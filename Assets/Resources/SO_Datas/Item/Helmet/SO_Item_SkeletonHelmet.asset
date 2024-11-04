@@ -14,9 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uC2A4\uCF08\uB808\uD1A4 \uD22C\uAD6C"
   description: "\uC2A4\uCF08\uB808\uD1A4\uC774 \uC4F0\uB358 \uD22C\uAD6C"
-  itemPower: 10
+  itemValue: 0
   itemIcon: {fileID: 0}
   itemType: 1
+  isStackable: 0
+  stackSize: 0
+  equipType: 1
   equipPrefab: {fileID: 394767849182724491, guid: 8d93e85aab5742d498c3b03f34f0f9ca, type: 3}
+  combatMotionType: 0
+  helmetJob: {fileID: 0}
+  consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Skeleton_Helmet
+  resourceType: 0

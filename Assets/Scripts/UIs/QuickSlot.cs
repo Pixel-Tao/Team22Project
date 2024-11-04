@@ -34,7 +34,7 @@ public class QuickSlot : MonoBehaviour
     {
         this.itemSlotData = itemSlotData;
 
-        if (itemSlotData == null)
+        if (itemSlotData?.itemSO == null)
         {
             Clear();
             return;

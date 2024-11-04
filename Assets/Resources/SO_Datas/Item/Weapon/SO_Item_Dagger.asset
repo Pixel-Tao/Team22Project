@@ -16,9 +16,14 @@ MonoBehaviour:
   description: "\uBE60\uB974\uAC8C \uACF5\uACA9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   itemValue: 0
   itemIcon: {fileID: 0}
-  itemType: 0
-  consumables: []
+  itemType: 1
+  isStackable: 0
+  stackSize: 0
+  equipType: 2
   equipPrefab: {fileID: 2197973062241171064, guid: 5d7f1775eff15fd47afc76bf19a21bd2, type: 3}
+  combatMotionType: 2
+  helmetJob: {fileID: 0}
+  consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Dagger
-  combatMotionType: 2
+  resourceType: 0

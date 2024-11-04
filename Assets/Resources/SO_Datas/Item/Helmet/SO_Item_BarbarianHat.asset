@@ -14,9 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uBC14\uBC14\uB9AC\uC548 \uBAA8\uC790"
   description: "\uBC14\uBC14\uB9AC\uC548\uC774 \uC0AC\uC6A9\uD558\uB294 \uBAA8\uC790"
-  itemPower: 40
+  itemValue: 0
   itemIcon: {fileID: 0}
   itemType: 1
+  isStackable: 0
+  stackSize: 0
+  equipType: 1
   equipPrefab: {fileID: 1674088653280091381, guid: 6931cacb94080b849a34ff9fbf4f9714, type: 3}
+  combatMotionType: 0
+  helmetJob: {fileID: 0}
+  consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Barbarian_Hat
+  resourceType: 0
