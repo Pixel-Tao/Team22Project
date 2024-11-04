@@ -74,7 +74,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2625056696790555534}
-  - {fileID: 9134017138546638436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &544917023816755280
@@ -376,11 +375,6 @@ MonoBehaviour:
   rightDotRange: 0.5
   backwardSpeedRatio: 0.5
   sideSpeedRatio: 0.75
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  maxSlopeAngle: 90
-  groundChecker: {fileID: 9134017138546638436}
 --- !u!114 &6963018956725721211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,34 +470,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWeapon: 
   startHelmet: 
---- !u!1 &8006517776265532799
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9134017138546638436}
-  m_Layer: 0
-  m_Name: GroundChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9134017138546638436
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8006517776265532799}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.4, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3912268893347326548}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
