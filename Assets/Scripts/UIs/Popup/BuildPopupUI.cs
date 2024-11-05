@@ -68,7 +68,7 @@ public class BuildPopupUI : UIPopup
 
         foreach (BuildingSlot slot in slots)
         {
-            BuildingSO buildingSO =  slot.buildingSO;
+            BuildingSO buildingSO = slot.buildingSO;
             if (buildingSO == null)
             {
                 slot.HideSlot();
@@ -84,21 +84,35 @@ public class BuildPopupUI : UIPopup
                     slot.ShowResourceSlot(tileObject.building.BuildingSO, true);
                     continue;
                 }
+                else
+                {
+                    slot.HideSlot();
+                }
             }
-            else if (tileObject.IsBuildableByBuilding(buildingSO.buildingType))
+            else if (tileObject.IsNaturalObject())
             {
-                // 빈 땅임
-                slot.ShowSlot();
-                continue;
+                // 자연물
+                if (tileObject.IsNaturalResourceBuildable(slot.buildingSO.buildingType))
+                {
+                    slot.ShowSlot();
+                }
+                else
+                {
+                    slot.HideSlot();
+                }
             }
-            else if (tileObject.IsNaturalResourceBuildable(buildingSO.buildingType))
+            else
             {
-                // 자연물 위에 건설 가능한 땅임
-                slot.ShowSlot();
-                continue;
+                // 그냥 땅
+                if (tileObject.IsGroundBuildable(slot.buildingSO.buildingType))
+                {
+                    slot.ShowSlot();
+                }
+                else
+                {
+                    slot.HideSlot();
+                }
             }
-
-            slot.HideSlot();
         }
     }
 

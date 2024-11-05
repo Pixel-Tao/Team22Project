@@ -33,6 +33,7 @@ public class GameManager : Singleton<GameManager>
         {
             // 건설모드일때 카메라 시점 변경
             CharacterManager.Instance.Player.BuildMode();
+            UIManager.Instance.PeekPopupUI<BuildPopupUI>()?.OnCloseButton();
         }
         else
         {

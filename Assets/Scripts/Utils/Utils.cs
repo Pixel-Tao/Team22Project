@@ -40,7 +40,7 @@ public class Utils
     public static string BuildingEnumToPath(BuildingType buildingType, bool isPrefab, bool withoutPrefix = false)
     {
         string prefabPrefix = isPrefab ? "Prefabs/Buildings/" : "SO_Datas/Buildings/";
-        string rst = $"{(withoutPrefix ? string.Empty : prefabPrefix)}Construction/{(isPrefab ? string.Empty : "SO_")}Castle_Red";
+        string rst = $"{(withoutPrefix ? string.Empty : prefabPrefix)}Construction/{(isPrefab ? string.Empty : "SO_")}{buildingType}";
         Debug.Log(rst);
         return rst;
     }
@@ -59,23 +59,4 @@ public class Utils
         return rst;
     }
 
-    public static BuildingType OriginResourceTypeToBuildingType(NaturalObjectType targetType)
-    {
-        switch (targetType)
-        {
-            case Defines.NaturalObjectType.GrainLand:
-                return Defines.BuildingType.Windmill_Red;
-            case Defines.NaturalObjectType.LoggingArea_A:
-            case Defines.NaturalObjectType.LoggingArea_B:
-                return Defines.BuildingType.Lumbermill_Red;
-            case Defines.NaturalObjectType.MiningArea_A:
-            case Defines.NaturalObjectType.MiningArea_B:
-            case Defines.NaturalObjectType.MiningArea_C:
-                return Defines.BuildingType.Quarry_Red;
-            case Defines.NaturalObjectType.Well:
-                return Defines.BuildingType.Watermill_Red;
-        }
-
-        return Defines.BuildingType.None;
-    }
 }

@@ -115,19 +115,14 @@ public class TileObject : InteractableObject, IInteractable
     /// 건설 가능한 땅이면서 건물이 없으면 true 아니면 false
     /// </summary>
     /// <returns></returns>
-    public bool IsBuildable()
+    public bool IsGround()
     {
         return TileSO?.tileType == TileType.Ground && building == null;
     }
 
-    /// <summary>
-    /// 건설 하려는 건물 타입이 건설 가능한 구역이면 true 아니면 false
-    /// </summary>
-    /// <param name="buildingType"></param>
-    /// <returns></returns>
-    public bool IsBuildableByBuilding(BuildingType buildingType)
+    public bool IsNaturalObject()
     {
-        return IsBuildable() && IsNaturalResourceBuildable(buildingType);
+        return naturalBuilding != null && naturalBuilding.buildedSO.buildType == BuildType.NaturalObject;
     }
 
     /// <summary>
@@ -136,17 +131,7 @@ public class TileObject : InteractableObject, IInteractable
     /// <returns></returns>
     public bool IsDestroyable()
     {
-        return building != null && !IsNaturalResource();
-    }
-
-    /// <summary>
-    /// 자연물이면 true 아니면 false
-    /// </summary>
-    /// <returns></returns>
-    public bool IsNaturalResource()
-    {
-        if (building == null) return false;
-        return building.buildedSO.buildType == BuildType.NaturalObject;
+        return building != null && building.buildedSO.buildType == BuildType.Building;
     }
 
     /// <summary>
@@ -156,14 +141,58 @@ public class TileObject : InteractableObject, IInteractable
     /// <returns></returns>
     public bool IsNaturalResourceBuildable(BuildingType wantBuildingType)
     {
-        if (building == null) return false;
-        if ( building.buildedSO.buildType == BuildType.NaturalObject)
+        if (naturalBuilding == null) return false;
+
+        if (naturalBuilding.buildedSO.buildType == BuildType.NaturalObject)
         {
-            BuildNaturalObjectSO so = building.buildedSO as BuildNaturalObjectSO;
-            BuildingType allowType = Utils.OriginResourceTypeToBuildingType(so.naturalObjectType);
-            return allowType == wantBuildingType;
+            BuildNaturalObjectSO so = naturalBuilding.buildedSO as BuildNaturalObjectSO;
+            return CompareResourceBuildType(wantBuildingType, so.naturalObjectType);
+        }
+        return false;
+    }
+
+    public bool IsGroundBuildable(BuildingType wantBuildingType)
+    {
+        return !IsNaturalObject() && !IsNaturalResourceBuildable(wantBuildingType);
+    }
+
+    public bool CompareResourceBuildType(BuildingType buildingType, NaturalObjectType noType)
+    {
+        switch (noType)
+        {
+            case Defines.NaturalObjectType.GrainLand:
+                return Defines.BuildingType.Windmill_Red == buildingType;
+            case Defines.NaturalObjectType.LoggingArea_A:
+            case Defines.NaturalObjectType.LoggingArea_B:
+                return Defines.BuildingType.Lumbermill_Red == buildingType;
+            case Defines.NaturalObjectType.MiningArea_A:
+            case Defines.NaturalObjectType.MiningArea_B:
+            case Defines.NaturalObjectType.MiningArea_C:
+                return Defines.BuildingType.Quarry_Red == buildingType;
+            case Defines.NaturalObjectType.Well:
+                return Defines.BuildingType.Watermill_Red == buildingType;
         }
 
         return false;
+    }
+
+    public BuildingType GetBuildingType(NaturalObjectType noType)
+    {
+        switch (noType)
+        {
+            case Defines.NaturalObjectType.GrainLand:
+                return Defines.BuildingType.Windmill_Red;
+            case Defines.NaturalObjectType.LoggingArea_A:
+            case Defines.NaturalObjectType.LoggingArea_B:
+                return Defines.BuildingType.Lumbermill_Red;
+            case Defines.NaturalObjectType.MiningArea_A:
+            case Defines.NaturalObjectType.MiningArea_B:
+            case Defines.NaturalObjectType.MiningArea_C:
+                return Defines.BuildingType.Quarry_Red;
+            case Defines.NaturalObjectType.Well:
+                return Defines.BuildingType.Watermill_Red;
+        }
+
+        return BuildingType.None;
     }
 }
