@@ -161,9 +161,9 @@ namespace Defines
 
     public enum MOBTYPE
     {
-        WARRIOR,
-        ROUGUE,
-        MAGE,
+        WarriorMob,
+        RougueMob,
+        MageMob,
         END,
     }
 

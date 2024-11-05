@@ -1,5 +1,6 @@
 using Defines;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -49,9 +50,10 @@ public class GameManager : Singleton<GameManager>
     {
         base.Init();
 
-        AddWood(100);
-        AddOre(100);
-        AddFood(100);
+        AddWood(1000);
+        AddOre(1000);
+        AddFood(1000);
+        AddMaxPeople(1000);
         IsBuildMode = false;
 
         ItemList = ResourceManager.Instance.GetSOData<ItemListSO>("Item/SO_ItemList");
@@ -227,5 +229,15 @@ public class GameManager : Singleton<GameManager>
                     break;
             }
         }
+    }
+
+    public ItemSO GetRandomEquip(Defines.EquipType type)
+    {
+        if (type == EquipType.None) return null;
+        
+        List<ItemSO> temp = type == EquipType.Weapon ?
+            ItemList.Weapons : ItemList.Helmets;
+        
+        return temp[UnityEngine.Random.Range(0, temp.Count)];    
     }
 }

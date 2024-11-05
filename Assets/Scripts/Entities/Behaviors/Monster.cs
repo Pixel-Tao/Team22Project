@@ -61,7 +61,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     private void MobInit()
     {
         GameObject[] objects = FindObjectsOfType<GameObject>();
-        SetTarget(objects.ToList().Find(obj => obj.name == "Goal").transform);
+        SetTarget(GameManager.Instance.Goal.transform);
         attackTimer = data.attackDelay;
         agent.speed = data.speed;
 
@@ -70,7 +70,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         deadAnimId = Animator.StringToHash("isDead");
 
         playerObject = CharacterManager.Instance.Player.gameObject;
-        destObject = objects.ToList().Find(obj => obj.name == "Goal");
+        destObject = GameManager.Instance.Goal.gameObject;
         health = data.health;
     }
     private void UpdateMove()

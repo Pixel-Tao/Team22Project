@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3134189139564212285}
   - component: {fileID: 1552982221501157979}
-  - component: {fileID: 1866233018993600133}
+  - component: {fileID: 7572838314405904330}
   m_Layer: 6
   m_Name: GrassTile
   m_TagString: Untagged
@@ -51,7 +51,8 @@ MonoBehaviour:
   building: {fileID: 0}
   flashInterval: 0.2
   flashColor: {r: 1, g: 0.4669811, b: 0.4669811, a: 1}
---- !u!114 &1866233018993600133
+  isPlayerOnTile: 0
+--- !u!114 &7572838314405904330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

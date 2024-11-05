@@ -62,29 +62,7 @@ public class TileChangeBox : Editor
             if (GUILayout.Button($"{buidingType} Build"))
             {
                 GameObject prefab = Resources.Load<GameObject>(Utils.BuildingEnumToPrefabPath(buidingType));
-
-                if (prefab == null)
-                {
-                    Debug.Log("Debug : 프리팹을 찾지못함 스위치 케이스를 확인하시오.");
-                    return;
-                }
-                if (go != null)
-                {
-                    Debug.Log($"만든적 있음 : 건물은 타일에 하나만");
-                }
-                else if (go == null)
-                {
-                    Debug.Log($"만든적 없음");
-                    TileObject tile = target as TileObject;
-
-                    GameObject InstanceParent = GameObject.Find(tile.gameObject.transform.parent.name + "AddOn");
-
-                    go = Instantiate(prefab, tile.transform.position, Quaternion.identity);
-                    go.transform.SetParent(InstanceParent.transform);
-
-                    tile.building = go.GetComponent<BuildingObject>();
-                }
-
+                GenerateObject(prefab);
             }
         }
 
@@ -145,11 +123,11 @@ public class TileChangeBox : Editor
             TileObject tile = target as TileObject;
 
             GameObject InstanceParent = GameObject.Find(tile.gameObject.transform.parent.name + "AddOn");
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.transform.SetParent(InstanceParent.transform);
+            instance.transform.position = tile.transform.position;
 
-            go = Instantiate(prefab, tile.transform.position, Quaternion.identity);
-            go.transform.SetParent(InstanceParent.transform);
-
-            tile.building = go.GetComponent<BuildingObject>();
+            tile.building = instance.GetComponent<BuildingObject>();
         }
     }
     

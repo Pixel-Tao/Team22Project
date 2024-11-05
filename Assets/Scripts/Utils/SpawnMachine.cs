@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Defines;
 
 namespace Assets.Scripts.Utils
 {
     internal class SpawnMachine : MonoBehaviour
     {
         private Defines.SPAWNSTATE state = Defines.SPAWNSTATE.WORKING;
-        public List<string> monsters;
+        public List<MOBTYPE> monsters;
         public float maxSpawnArea;
         public float minSpawnScale;
         public float currentSpawnScale;
