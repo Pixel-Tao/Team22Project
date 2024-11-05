@@ -1,5 +1,6 @@
 using Defines;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -228,5 +229,15 @@ public class GameManager : Singleton<GameManager>
                     break;
             }
         }
+    }
+
+    public ItemSO GetRandomEquip(Defines.EquipType type)
+    {
+        if (type == EquipType.None) return null;
+        
+        List<ItemSO> temp = type == EquipType.Weapon ?
+            ItemList.Weapons : ItemList.Helmets;
+        
+        return temp[UnityEngine.Random.Range(0, temp.Count)];    
     }
 }
