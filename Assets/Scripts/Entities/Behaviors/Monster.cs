@@ -118,6 +118,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         }
     }
     #endregion
+    
     private Vector3 GetDestPos()
     {
         return targetObject.transform.position;
@@ -151,12 +152,12 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         
         if(!data.isRangedWeapon)
         {
-            SoundManager.Instance.PlayOneShot("AttackRougue");
+            SoundManager.Instance.PlayOneShotPoint("AttackRougue", transform.position);
             targetObject.GetComponent<IDamageable>().TakeDamage(data.attackDamage);
         }
         else
         {
-            SoundManager.Instance.PlayOneShot("AttackMage");
+            SoundManager.Instance.PlayOneShotPoint("AttackMage", transform.position);
             GameObject temp = PoolManager.Instance.SpawnProjectile(data.projectileName);
             temp.transform.position = this.gameObject.transform.position;
             string[] tags = GetComponentInChildren<Detector>().TagNames;

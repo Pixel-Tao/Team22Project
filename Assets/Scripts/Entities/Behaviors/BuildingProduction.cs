@@ -80,7 +80,7 @@ public class BuildingProduction : MonoBehaviour
     {
         if (other.CompareTag("PlayerProjectile") && building?.buildedSO?.buildType == Defines.BuildType.NaturalObject)
         {
-            SoundManager.Instance.PlayOneShot("HitResource");
+            SoundManager.Instance.PlayOneShotPoint("HitResource", transform.position);
             MakeProduct();
         }
     }

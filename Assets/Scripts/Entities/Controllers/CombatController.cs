@@ -30,7 +30,7 @@ public class CombatController : MonoBehaviour
     private void Attack()
     {
         // 근접 공격 or 원거리 공격
-        SoundManager.Instance.PlayOneShot("AttackPlayer");
+        SoundManager.Instance.PlayOneShotPoint("AttackPlayer", transform.position);
         GameObject obj = PoolManager.Instance.SpawnProjectile("SlashProjectile", this.gameObject.transform);
         obj.gameObject.transform.position = this.transform.position + (Vector3.up * 0.25f);
         string[] tags = { "Monster" };
