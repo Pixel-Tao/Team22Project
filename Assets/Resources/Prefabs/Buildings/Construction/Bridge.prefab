@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7351348426819868085}
   - component: {fileID: 9023210922956561732}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Bridge
   m_TagString: Structure
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c823128c2cbf040a513eca762cf731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildedSO: {fileID: 11400000, guid: 5712be6d772791045963d9b2bffd34be, type: 2}
+  buildedSO: {fileID: 11400000, guid: 61f6ae2571253da48bf0c760c94ab6e2, type: 2}
 --- !u!1001 &1756927979436590595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,6 +98,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5838dc54e86178549855df94d34169f0, type: 3}
       propertyPath: m_Name
       value: Collider
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5838dc54e86178549855df94d34169f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 5838dc54e86178549855df94d34169f0, type: 3}
@@ -191,6 +195,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5838dc54e86178549855df94d34169f0, type: 3}
       propertyPath: m_Name
       value: building_bridge_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5838dc54e86178549855df94d34169f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

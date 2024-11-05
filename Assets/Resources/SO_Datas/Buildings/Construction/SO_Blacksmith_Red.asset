@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d1ec68de3632344a0595afc27f3492, type: 3}
+  m_Name: SO_Blacksmith_Red
+  m_EditorClassIdentifier: 
+  displayName: "\uB300\uC7A5\uAC04"
+  description: "\uCC29\uC6A9\uAC00\uB2A5\uD55C \uC7A5\uBE44\uB97C \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
+  buildType: 1
+  modelPrefab: {fileID: 0}
+  ProductPrefabs: []
+  ProductiontDelay: 0
+  buildingType: 13
+  icon: {fileID: 0}
+  NeedResources:
+  - needResourceType: 1
+    amount: 200
+  - needResourceType: 2
+    amount: 5
+  health: 500
+  providedPopulation: 0
+  consumingPopulation: 0
+  attackPower: 0
+  attackRange: 0
+  attackDelay: 0

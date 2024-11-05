@@ -6,6 +6,7 @@ using UnityEngine;
 public class TileObject : InteractableObject, IInteractable
 {
     public BuildingObject building;
+    public BuildingObject naturalBuilding { get; private set; }
 
     [SerializeField] private float flashInterval = 0.5f;
     [SerializeField] private Color flashColor;
@@ -29,7 +30,10 @@ public class TileObject : InteractableObject, IInteractable
         {
             originColors.Add(meshRenderers[i].material.color);
         }
-
+        if (building != null && building.buildedSO.buildType == BuildType.NaturalObject)
+        {
+            naturalBuilding = building;
+        }
     }
 
     public void Flash()
@@ -89,8 +93,11 @@ public class TileObject : InteractableObject, IInteractable
     }
     public bool Build(BuildSO buildSO)
     {
-        if (Utils.IsNaturalResource(building.buildedSO.buildingType))
-            building?.Destroy();
+        if (naturalBuilding != null)
+        {
+            // 자연물에 건설하는거면 자연물 숨김
+            naturalBuilding.gameObject.SetActive(false);
+        }
 
         GameObject go = Instantiate(buildSO.modelPrefab, transform.position, Quaternion.identity);
         BuildingObject buildingObj = go.GetComponent<BuildingObject>();
@@ -120,7 +127,7 @@ public class TileObject : InteractableObject, IInteractable
     /// <returns></returns>
     public bool IsBuildableByBuilding(BuildingType buildingType)
     {
-        return IsBuildable() && Utils.IsGroundBuildable(buildingType);
+        return IsBuildable() && IsNaturalResourceBuildable(buildingType);
     }
 
     /// <summary>
@@ -139,7 +146,7 @@ public class TileObject : InteractableObject, IInteractable
     public bool IsNaturalResource()
     {
         if (building == null) return false;
-        return Utils.IsNaturalResource(building.buildedSO.buildingType);
+        return building.buildedSO.buildType == BuildType.NaturalObject;
     }
 
     /// <summary>
@@ -150,6 +157,13 @@ public class TileObject : InteractableObject, IInteractable
     public bool IsNaturalResourceBuildable(BuildingType wantBuildingType)
     {
         if (building == null) return false;
-        return Utils.IsResourceBuildable(wantBuildingType, building.buildedSO.buildingType);
+        if ( building.buildedSO.buildType == BuildType.NaturalObject)
+        {
+            BuildNaturalObjectSO so = building.buildedSO as BuildNaturalObjectSO;
+            BuildingType allowType = Utils.OriginResourceTypeToBuildingType(so.naturalObjectType);
+            return allowType == wantBuildingType;
+        }
+
+        return false;
     }
 }

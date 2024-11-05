@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1649844230993070240}
   - component: {fileID: 4611860235098773415}
   - component: {fileID: 161763564624179772}
-  m_Layer: 0
+  - component: {fileID: 5885287150829303746}
+  m_Layer: 8
   m_Name: Castle_Red
   m_TagString: Structure
   m_Icon: {fileID: 0}
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c823128c2cbf040a513eca762cf731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildedSO: {fileID: 11400000, guid: 118e7b3eb0d615549ab1541f21cd1dc9, type: 2}
+  buildedSO: {fileID: 11400000, guid: cd5b17893f1b9c94cab1753ed9760acf, type: 2}
 --- !u!114 &4611860235098773415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +82,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 3, z: 1.5}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &5885287150829303746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492723882497529749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf23b35c15829246865cb87982df240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7394065001790456035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,6 +145,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3073156531ebeed4d99497bc9a4898bc, type: 3}
       propertyPath: m_Name
       value: building_castle_red
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3073156531ebeed4d99497bc9a4898bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

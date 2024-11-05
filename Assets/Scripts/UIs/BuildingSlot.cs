@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BuildingSlot : MonoBehaviour
 {
-    public BuildSO buildSO;
+    public BuildingSO buildingSO;
 
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI titleText;
@@ -20,9 +20,9 @@ public class BuildingSlot : MonoBehaviour
     [SerializeField] private bool isDestroyable;
     public bool IsDestroyable => isDestroyable;
 
-    public void SetData(BuildSO buildSO)
+    public void SetData(BuildingSO buildSO)
     {
-        this.buildSO = buildSO;
+        this.buildingSO = buildSO;
 
         if (buildSO == null)
         {
@@ -45,7 +45,7 @@ public class BuildingSlot : MonoBehaviour
         peopleSlot.gameObject.SetActive(false);
     }
 
-    public void ShowResourceSlot(BuildSO buildSO, bool isHalfAmount = false)
+    public void ShowResourceSlot(BuildingSO buildSO, bool isHalfAmount = false)
     {
         if (buildSO.NeedResources == null)
             return;
@@ -95,7 +95,7 @@ public class BuildingSlot : MonoBehaviour
         else
         {
             // 건설
-            popup.Build(buildSO);
+            popup.Build(buildingSO);
         }
     }
     public void SetDestorySlot()

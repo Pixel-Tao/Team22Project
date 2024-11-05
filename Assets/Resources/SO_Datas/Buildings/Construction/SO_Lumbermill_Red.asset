@@ -9,24 +9,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a297f13eb321f4ca5dd9999b734787, type: 3}
+  m_Script: {fileID: 11500000, guid: a0d1ec68de3632344a0595afc27f3492, type: 3}
   m_Name: SO_Lumbermill_Red
   m_EditorClassIdentifier: 
   displayName: "\uC81C\uC7AC\uC18C"
   description: "\uB098\uBB34\uB97C \uC790\uB3D9 \uD68D\uB4DD\uD569\uB2C8\uB2E4."
-  buildingType: 22
+  buildType: 1
+  modelPrefab: {fileID: 4413421181645280817, guid: d43318afd8896c24fad1670da84a2507, type: 3}
+  ProductPrefabs:
+  - {fileID: 1818466247225354444, guid: 7b550d55894ffa0468f6518dce75c04b, type: 3}
+  ProductiontDelay: 0
+  buildingType: 15
+  icon: {fileID: 0}
   NeedResources:
   - needResourceType: 0
     amount: 50
   - needResourceType: 1
     amount: 100
-  health: 20
+  - needResourceType: 2
+    amount: 3
+  health: 500
   providedPopulation: 0
-  consumingPopulation: 3
+  consumingPopulation: 0
   attackPower: 0
   attackRange: 0
   attackDelay: 0
-  ProductPrefabs:
-  - {fileID: 1818466247225354444, guid: 7b550d55894ffa0468f6518dce75c04b, type: 3}
-  ProductiontDelay: 5
-  modelPrefab: {fileID: 4413421181645280817, guid: d43318afd8896c24fad1670da84a2507, type: 3}

@@ -14,74 +14,143 @@ public class TileChangeBox : Editor
 
         if (!Application.isPlaying)
         {
-            string[] buildings = System.Enum.GetNames(typeof(Defines.BuildingType));
-
-            GUILayout.Space(20);
-            for (int i = 0; i < buildings.Length; i++)
+            CommonButtons();
+            BuildingButtons();
+            EnvButtons();
+            NatualObjectButtons();
+        }
+    }
+    private void CommonButtons()
+    {
+        GUILayout.Space(20);
+        GUILayout.Label("공통 기능");
+        if (GUILayout.Button($"Clear"))
+        {
+            TileObject tile = target as TileObject;
+            if (tile.building != null)
             {
-                Defines.BuildingType buidingType = (Defines.BuildingType)i;
-                if (buidingType == Defines.BuildingType.None)
-                {
-                    if (GUILayout.Button($"Clear"))
-                    {
-                        TileObject tile = target as TileObject;
-                        if (tile.building != null)
-                        {
-                            DestroyImmediate(tile.building.gameObject);
-                            tile.building = null;
-                        }
-                    }
-                }
-                else
-                {
-                    if (GUILayout.Button($"{buidingType} Build"))
-                    {
-                        GameObject prefab = GetConstruct(buidingType);
-                        
-
-                        if (prefab == null)
-                        {
-                            Debug.Log("Debug : 프리팹을 찾지못함 스위치 케이스를 확인하시오.");
-                            return;
-                        }
-                        if (go != null)
-                        {
-                            Debug.Log($"만든적 있음 : 건물은 타일에 하나만");
-                        }
-                        else if (go == null)
-                        {
-                            Debug.Log($"만든적 없음");
-                            TileObject tile = target as TileObject;
-
-                            GameObject InstanceParent = GameObject.Find(tile.gameObject.transform.parent.name + "AddOn");
-
-                            go = Instantiate(prefab, tile.transform.position, Quaternion.identity);
-                            go.transform.SetParent(InstanceParent.transform);
-                            
-                            tile.building = go.GetComponent<BuildingObject>();
-                        }
-                        
-                    }
-                }
+                DestroyImmediate(tile.building.gameObject);
+                tile.building = null;
             }
-            GUILayout.Space(20);
-            if (GUILayout.Button($"건물 좌 회전"))
+        }
+        GUILayout.Space(20);
+        if (GUILayout.Button($"건물 좌 회전"))
+        {
+            TileObject tile = target as TileObject;
+            if (tile.building != null)
+                tile.building.transform.Rotate(0, -60, 0);
+        }
+        if (GUILayout.Button($"건물 우 회전"))
+        {
+            TileObject tile = target as TileObject;
+            if (tile.building != null)
+                tile.building.transform.Rotate(0, 60, 0);
+        }
+    }
+    private void BuildingButtons()
+    {
+        string[] buildings = System.Enum.GetNames(typeof(Defines.BuildingType));
+
+        GUILayout.Space(20);
+        GUILayout.Label("빌딩 건설");
+        for (int i = 0; i < buildings.Length; i++)
+        {
+            Defines.BuildingType buidingType = (Defines.BuildingType)i;
+            if (buidingType == Defines.BuildingType.None)
+                continue;
+
+            if (GUILayout.Button($"{buidingType} Build"))
             {
-                TileObject tile = target as TileObject;
-                if (tile.building != null)
-                    tile.building.transform.Rotate(0, -60, 0);
+                GameObject prefab = Resources.Load<GameObject>(Utils.BuildingEnumToPrefabPath(buidingType));
+
+                if (prefab == null)
+                {
+                    Debug.Log("Debug : 프리팹을 찾지못함 스위치 케이스를 확인하시오.");
+                    return;
+                }
+                if (go != null)
+                {
+                    Debug.Log($"만든적 있음 : 건물은 타일에 하나만");
+                }
+                else if (go == null)
+                {
+                    Debug.Log($"만든적 없음");
+                    TileObject tile = target as TileObject;
+
+                    GameObject InstanceParent = GameObject.Find(tile.gameObject.transform.parent.name + "AddOn");
+
+                    go = Instantiate(prefab, tile.transform.position, Quaternion.identity);
+                    go.transform.SetParent(InstanceParent.transform);
+
+                    tile.building = go.GetComponent<BuildingObject>();
+                }
+
             }
-            if (GUILayout.Button($"건물 우 회전"))
+        }
+
+    }
+    private void EnvButtons()
+    {
+        string[] envs = System.Enum.GetNames(typeof(Defines.EnvironmentType));
+
+        GUILayout.Space(20);
+        GUILayout.Label("환경 배치");
+        for (int i = 0; i < envs.Length; i++)
+        {
+            Defines.EnvironmentType envType = (Defines.EnvironmentType)i;
+            if (envType == Defines.EnvironmentType.None)
+                continue;
+
+            if (GUILayout.Button($"{envType} Build"))
             {
-                TileObject tile = target as TileObject;
-                if (tile.building != null)
-                    tile.building.transform.Rotate(0, 60, 0);
+                GameObject prefab = Resources.Load<GameObject>(Utils.BuildingEnumToPrefabPath(envType));
+                GenerateObject(prefab);
+            }
+        }
+    }
+    private void NatualObjectButtons()
+    {
+        string[] envs = System.Enum.GetNames(typeof(Defines.NaturalObjectType));
+
+        GUILayout.Space(20);
+        GUILayout.Label("자원생산물 배치");
+        for (int i = 0; i < envs.Length; i++)
+        {
+            Defines.NaturalObjectType noType = (Defines.NaturalObjectType)i;
+            if (noType == Defines.NaturalObjectType.None)
+                continue;
+
+            if (GUILayout.Button($"{noType} Build"))
+            {
+                GameObject prefab = Resources.Load<GameObject>(Utils.BuildingEnumToPrefabPath(noType));
+                GenerateObject(prefab);
             }
         }
     }
 
-    public GameObject GetConstruct(Defines.BuildingType buidingType)
+    private void GenerateObject(GameObject prefab)
     {
-        return Resources.Load<GameObject>(Utils.BuildingEnumToPrefabPath(buidingType));
+        if (prefab == null)
+        {
+            Debug.Log("Debug : 프리팹을 찾지못함 스위치 케이스를 확인하시오.");
+            return;
+        }
+        if (go != null)
+        {
+            Debug.Log($"만든적 있음 : 건물은 타일에 하나만");
+        }
+        else if (go == null)
+        {
+            Debug.Log($"만든적 없음");
+            TileObject tile = target as TileObject;
+
+            GameObject InstanceParent = GameObject.Find(tile.gameObject.transform.parent.name + "AddOn");
+
+            go = Instantiate(prefab, tile.transform.position, Quaternion.identity);
+            go.transform.SetParent(InstanceParent.transform);
+
+            tile.building = go.GetComponent<BuildingObject>();
+        }
     }
+    
 }

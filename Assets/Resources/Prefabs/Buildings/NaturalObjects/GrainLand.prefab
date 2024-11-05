@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1545925768902557581}
   - component: {fileID: -69982709961598322}
   - component: {fileID: -5056560851863332055}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GrainLand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,6 +160,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 55a02751130b5f84b8cc45896d524dce, type: 3}
       propertyPath: m_Name
       value: building_grain
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55a02751130b5f84b8cc45896d524dce, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

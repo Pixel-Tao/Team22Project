@@ -18,7 +18,9 @@ namespace Assets.Scripts.Entities.Behaviors
 
         private void Awake()
         {
-            BuildSO data = GetComponent<BuildingObject>().buildedSO;
+            BuildingSO data = GetComponent<BuildingObject>().BuildingSO;
+            if (data == null) return;
+
             attackDelay = data.attackDelay;
             attackRange = data.attackRange;
             attackDamage = data.attackPower;

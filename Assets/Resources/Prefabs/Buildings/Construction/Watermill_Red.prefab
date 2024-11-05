@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1783850102946736403}
   - component: {fileID: 1593361327278891420}
   - component: {fileID: 5754110432131476390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Watermill_Red
   m_TagString: Structure
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c823128c2cbf040a513eca762cf731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildedSO: {fileID: 11400000, guid: a1372ec2fef45204c8537b8d5997588c, type: 2}
+  buildedSO: {fileID: 11400000, guid: a605aee639049584289618f5dd93f71c, type: 2}
 --- !u!114 &1593361327278891420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +132,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5c6891e75489c224a99eafc8b30bded6, type: 3}
       propertyPath: m_Name
       value: building_watermill_red
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c6891e75489c224a99eafc8b30bded6, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129398807401691421, guid: 5c6891e75489c224a99eafc8b30bded6, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

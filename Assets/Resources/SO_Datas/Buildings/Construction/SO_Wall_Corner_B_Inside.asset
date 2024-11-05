@@ -9,24 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a297f13eb321f4ca5dd9999b734787, type: 3}
+  m_Script: {fileID: 11500000, guid: a0d1ec68de3632344a0595afc27f3492, type: 3}
   m_Name: SO_Wall_Corner_B_Inside
   m_EditorClassIdentifier: 
-  displayName: "\uC131\uBCBD"
-  description: "\uB4E0\uB4E0\uD569\uB2C8\uB2E4"
+  displayName: "\uC131\uBCBDB(\uC548\uCABD \uACE1\uC120)"
+  description: "\uB4E0\uB4E0\uD569\uB2C8\uB2E4."
+  buildType: 1
+  modelPrefab: {fileID: 3063478374262445109, guid: 4c44f5a2080d0b94b89ecb6f0d51e2a1, type: 3}
+  ProductPrefabs: []
+  ProductiontDelay: 0
   buildingType: 7
   icon: {fileID: 0}
   NeedResources:
   - needResourceType: 0
-    amount: 25
+    amount: 50
   - needResourceType: 1
-    amount: 25
+    amount: 50
   health: 100
   providedPopulation: 0
   consumingPopulation: 0
   attackPower: 0
   attackRange: 0
   attackDelay: 0
-  ProductPrefabs: []
-  ProductiontDelay: 0
-  modelPrefab: {fileID: 3063478374262445109, guid: 4c44f5a2080d0b94b89ecb6f0d51e2a1, type: 3}

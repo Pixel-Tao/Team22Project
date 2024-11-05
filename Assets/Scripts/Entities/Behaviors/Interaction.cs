@@ -54,6 +54,12 @@ public class Interaction : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(screenAxis);
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
         {
+            if (hit.collider?.transform?.parent == null)
+            {
+                ClearTile();
+                return;
+            }
+
             if (hit.collider.transform.parent.TryGetComponent(out TileObject tileObj))
             {
                 float distance = Vector3.Distance(tileObj.transform.position, transform.position);

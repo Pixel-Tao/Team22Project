@@ -25,13 +25,19 @@ namespace Defines
         Hunger,
         Water
     }
-
+    public enum  BuildType
+    {
+        None,
+        Building,
+        Environment,
+        NaturalObject,
+    }
     public enum BuildingType
     {
         None,
-        Castle,
-        House,
-        Tower,
+        Castle_Red,
+        House_A_Red,
+        Tower_A_Red,
         Wall_Straight,
         Wall_Corner_A_Inside,
         Wall_Corner_A_Outside,
@@ -41,25 +47,21 @@ namespace Defines
         Wall_Corner_A_Gate,
         
         Bridge,
-        Watermill,
-        Blacksmith,
-
-        //자연 자원지대(가서 주워야함)
-        GrainLand,
-        LoggingArea_A,
-        LoggingArea_B,
-        MiningArea_A,
-        MiningArea_B,
-        MiningArea_C,
-        Well,
+        Watermill_Red,
+        Blacksmith_Red,
 
         //건설한 자원건물(자동으로 인벤으로 들어감)
-        Windmill,
-        Lumbermill,
-        Quarry,
-        Market,
+        Windmill_Red,
+        Lumbermill_Red,
+        Quarry_Red,
+        Market_Red,
 
+
+    }
+    public enum EnvironmentType
+    {
         //타일 위에 배치되는 자연물 기능x
+        None,
         Dirt,
         Mountain_A,
         Mountain_A_Grass,
@@ -70,7 +72,19 @@ namespace Defines
         Mountain_C,
         Mountain_C_Grass,
         Mountain_C_Grass_Trees,
+    }
 
+    public enum NaturalObjectType
+    {
+        //자연 자원지대(가서 주워야함)
+        None,
+        GrainLand,
+        LoggingArea_A,
+        LoggingArea_B,
+        MiningArea_A,
+        MiningArea_B,
+        MiningArea_C,
+        Well,
     }
 
     public enum TileType

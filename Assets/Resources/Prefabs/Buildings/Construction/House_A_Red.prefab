@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1219072673088416863}
   - component: {fileID: 577845030463151059}
   - component: {fileID: 3936716051625532546}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: House_A_Red
   m_TagString: Structure
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c823128c2cbf040a513eca762cf731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildedSO: {fileID: 11400000, guid: b8f77fa65be3d344dbc4b3f29eef1c9d, type: 2}
+  buildedSO: {fileID: 11400000, guid: d5385934a063df645989b19fe7c3205b, type: 2}
 --- !u!114 &577845030463151059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +132,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fb2b4daca43abae46a45c857b6b7f2fe, type: 3}
       propertyPath: m_Name
       value: building_home_A_red
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb2b4daca43abae46a45c857b6b7f2fe, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

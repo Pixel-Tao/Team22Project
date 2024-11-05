@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 680613603092518481}
   - component: {fileID: 9089245416923693504}
   - component: {fileID: -6541476699996239319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Well
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,6 +160,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7868d9f53b4cb96419a33a7020e1dc6d, type: 3}
       propertyPath: m_Name
       value: building_well_red
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7868d9f53b4cb96419a33a7020e1dc6d, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

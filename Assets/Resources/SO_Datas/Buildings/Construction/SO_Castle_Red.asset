@@ -9,19 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a297f13eb321f4ca5dd9999b734787, type: 3}
+  m_Script: {fileID: 11500000, guid: a0d1ec68de3632344a0595afc27f3492, type: 3}
   m_Name: SO_Castle_Red
   m_EditorClassIdentifier: 
   displayName: "\uC131"
   description: "\uC131\uC740 \uBC18\uB4DC\uC2DC \uC9C0\uCF1C\uB0B4\uC57C\uD569\uB2C8\uB2E4"
+  buildType: 1
+  modelPrefab: {fileID: 2492723882497529749, guid: e3266925eaa52ae4bb02306c20814f3e, type: 3}
+  ProductPrefabs: []
+  ProductiontDelay: 0
   buildingType: 1
+  icon: {fileID: 0}
   NeedResources: []
-  health: 100
+  health: 5000
   providedPopulation: 10
   consumingPopulation: 0
   attackPower: 0
   attackRange: 0
   attackDelay: 0
-  ProductPrefabs: []
-  ProductiontDelay: 0
-  modelPrefab: {fileID: 2492723882497529749, guid: e3266925eaa52ae4bb02306c20814f3e, type: 3}

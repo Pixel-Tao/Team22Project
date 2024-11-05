@@ -12,6 +12,8 @@ public class GameManager : Singleton<GameManager>
     public bool IsBuildMode { get; private set; } = false;
     public bool IsBuilding { get; private set; } = false;
 
+    public Goal Goal { get; private set; }
+
     public int WoodCount { get; private set; }
     public int OreCount { get; private set; }
     public int FoodCount { get; private set; }
@@ -20,6 +22,10 @@ public class GameManager : Singleton<GameManager>
 
     public ItemListSO ItemList { get; private set; }
 
+    public void AddGoal(Goal goal)
+    {
+        this.Goal = goal;
+    }
     public void ToggleBuildMode()
     {
         IsBuildMode = !IsBuildMode;

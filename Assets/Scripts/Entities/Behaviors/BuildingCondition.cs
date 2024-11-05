@@ -28,14 +28,14 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     private void Init()
     {
-        if (buildingObject.buildedSO == null) return;
+        if (buildingObject.BuildingSO == null) return;
 
-        MaxHealth = buildingObject.buildedSO.health;
+        MaxHealth = buildingObject.BuildingSO.health;
         CurHealth = MaxHealth;
 
-        CurAttackPower = buildingObject.buildedSO.attackPower;
-        CurAttackRange = buildingObject.buildedSO.attackRange;
-        CurAttackDelay = buildingObject.buildedSO.attackDelay;
+        CurAttackPower = buildingObject.BuildingSO.attackPower;
+        CurAttackRange = buildingObject.BuildingSO.attackRange;
+        CurAttackDelay = buildingObject.BuildingSO.attackDelay;
 
         CurProductiontDelay = buildingObject.buildedSO.ProductiontDelay;
     }

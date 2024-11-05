@@ -31,8 +31,12 @@ public class BuildPopupUI : UIPopup
                 slots.Add(slot);
                 continue;
             }
-            if (Utils.IsBuildable(buildingType) == false) continue;
-            BuildSO buildSO = ResourceManager.Instance.GetSOBuildingData<BuildSO>(buildingType);
+            else if (buildingType == BuildingType.Castle_Red)
+            {
+                continue;
+            }
+
+            BuildingSO buildSO = ResourceManager.Instance.GetSOBuildingData<BuildingSO>(buildingType);
             if (buildSO == null)
             {
                 Debug.LogWarning($"Failed to load building : {buildingType}");
@@ -45,7 +49,7 @@ public class BuildPopupUI : UIPopup
 
     }
 
-    private BuildingSlot GenerateBuildingSlot(BuildSO buildSO)
+    private BuildingSlot GenerateBuildingSlot(BuildingSO buildSO)
     {
         GameObject go = ResourceManager.Instance.Instantiate("UI/Slot/BuildingSlot", buidingSlots);
         BuildingSlot slot = go.GetComponent<BuildingSlot>();
@@ -64,23 +68,30 @@ public class BuildPopupUI : UIPopup
 
         foreach (BuildingSlot slot in slots)
         {
-            if (slot.buildSO == null)
+            BuildingSO buildingSO =  slot.buildingSO;
+            if (buildingSO == null)
+            {
+                slot.HideSlot();
+                continue;
+            }
+
+            if (slot.buildingSO == null)
             {
                 if (slot.IsDestroyable && tileObject.IsDestroyable())
                 {
                     // 건물이 올라가있는 곳임
                     slot.ShowSlot();
-                    slot.ShowResourceSlot(tileObject.building.buildedSO, true);
+                    slot.ShowResourceSlot(tileObject.building.BuildingSO, true);
                     continue;
                 }
             }
-            else if (tileObject.IsBuildableByBuilding(slot.buildSO.buildingType))
+            else if (tileObject.IsBuildableByBuilding(buildingSO.buildingType))
             {
                 // 빈 땅임
                 slot.ShowSlot();
                 continue;
             }
-            else if (tileObject.IsNaturalResourceBuildable(slot.buildSO.buildingType))
+            else if (tileObject.IsNaturalResourceBuildable(buildingSO.buildingType))
             {
                 // 자연물 위에 건설 가능한 땅임
                 slot.ShowSlot();
@@ -91,7 +102,7 @@ public class BuildPopupUI : UIPopup
         }
     }
 
-    public void Build(BuildSO buildSO)
+    public void Build(BuildingSO buildSO)
     {
         if (GameManager.Instance.UseResources(buildSO.NeedResources) == false)
         {
@@ -104,11 +115,12 @@ public class BuildPopupUI : UIPopup
         tileObject = null;
         OnCloseButton();
     }
+
     public void BuildingDestroy()
     {
         if (tileObject?.building == null) return;
+        GameManager.Instance.ReturnResources(tileObject.building.BuildingSO.NeedResources, true);
         tileObject.building.Destroy();
-        GameManager.Instance.ReturnResources(tileObject.building.buildedSO.NeedResources, true);
         OnCloseButton();
     }
 

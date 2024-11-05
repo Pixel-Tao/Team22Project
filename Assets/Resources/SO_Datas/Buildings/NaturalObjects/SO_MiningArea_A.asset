@@ -9,21 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a297f13eb321f4ca5dd9999b734787, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f2138ac8a1669d46a559c525b438776, type: 3}
   m_Name: SO_MiningArea_A
   m_EditorClassIdentifier: 
   displayName: "\uB3CC\uBC2D"
   description: "\uC2E0\uC120\uD55C \uB3CC\uC774 \uC790\uB3D9\uC73C\uB85C\uB098\uC640"
-  buildingType: 17
-  icon: {fileID: 0}
-  NeedResources: []
-  health: 0
-  providedPopulation: 0
-  consumingPopulation: 0
-  attackPower: 0
-  attackRange: 0
-  attackDelay: 0
+  buildType: 3
+  modelPrefab: {fileID: 4393659197638243508, guid: b0c6162a5afca1b488191adcee47c503, type: 3}
   ProductPrefabs:
   - {fileID: 8036013169813756631, guid: 4b75885c578bfec4f9684b9b8cb7469b, type: 3}
-  ProductiontDelay: 5
-  modelPrefab: {fileID: 4393659197638243508, guid: b0c6162a5afca1b488191adcee47c503, type: 3}
+  ProductiontDelay: 3
+  naturalObjectType: 4

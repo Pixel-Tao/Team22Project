@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class BuildingProduction : MonoBehaviour
 {
-    BuildSO data;
+    BuildingObject building;
     GameObject productObject;
     private float delay;
     private float localTimer;
     Rigidbody rigid;
+
+
 
     private void Start()
     {
@@ -15,8 +17,8 @@ public class BuildingProduction : MonoBehaviour
     }
     private void Init()
     {
-        data = gameObject.GetComponent<BuildingObject>().buildedSO;
-        delay = data.ProductiontDelay;
+        building = gameObject.GetComponent<BuildingObject>();
+        delay = building.buildedSO.ProductiontDelay;
     }
 
     private void Update()
@@ -24,25 +26,32 @@ public class BuildingProduction : MonoBehaviour
         localTimer += Time.deltaTime;
         if (localTimer > delay)
         {
-            switch (data.buildingType)
+            if (building.buildedSO.buildType == Defines.BuildType.Building)
             {
-                case Defines.BuildingType.Windmill:
-                    CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Food));
-                    break;
-                case Defines.BuildingType.Lumbermill:
-                    CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Wood));
-                    break;
-                case Defines.BuildingType.Quarry:
-                    CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Ore));
-                    break;
-                case Defines.BuildingType.Market:
-                    MakeProduct();
-                    break;
-                default:
-                    break;
+                BuildingSO buildingSO = building.buildedSO as BuildingSO;
+                if (buildingSO == null)
+                    return;
+
+                switch (buildingSO.buildingType)
+                {
+                    case Defines.BuildingType.Windmill_Red:
+                        CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Food));
+                        break;
+                    case Defines.BuildingType.Lumbermill_Red:
+                        CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Wood));
+                        break;
+                    case Defines.BuildingType.Quarry_Red:
+                        CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Ore));
+                        break;
+                    case Defines.BuildingType.Market_Red:
+                        MakeProduct();
+                        break;
+                    default:
+                        break;
+                }
             }
             localTimer = 0;
-        }    
+        }
     }
 
     private ItemSO CreateTempItem(Defines.ResourceType type)
@@ -54,14 +63,14 @@ public class BuildingProduction : MonoBehaviour
     }
     private void MakeProduct()
     {
-        for (int i = 0; i < data.ProductPrefabs.Length; i++)
+        for (int i = 0; i < building.buildedSO.ProductPrefabs.Length; i++)
         {
-            GameObject obj = Instantiate(data.ProductPrefabs[i],transform);
-            float axisX = Random.Range(-1f, 1f); 
-            float axisZ = Random.Range(-1f, 1f); 
+            GameObject obj = Instantiate(building.buildedSO.ProductPrefabs[i], transform);
+            float axisX = Random.Range(-1f, 1f);
+            float axisZ = Random.Range(-1f, 1f);
             obj.transform.position = this.gameObject.transform.position;
-            Vector3 dir = ((new Vector3(axisX, 3f, axisZ) + transform.position) - transform.position).normalized; 
-            
+            Vector3 dir = ((new Vector3(axisX, 3f, axisZ) + transform.position) - transform.position).normalized;
+
             rigid = obj.GetComponent<Rigidbody>();
             rigid.AddForce(dir * 5f, ForceMode.Impulse);
         }
@@ -69,7 +78,7 @@ public class BuildingProduction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("PlayerProjectile"))
+        if (other.CompareTag("PlayerProjectile") && building?.buildedSO?.buildType == Defines.BuildType.NaturalObject)
         {
             SoundManager.Instance.PlayOneShot("HitResource");
             MakeProduct();

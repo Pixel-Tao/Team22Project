@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7904354083536451386}
   - component: {fileID: 1318655091952249357}
   - component: {fileID: 3711151564842989826}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: rock_single_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5119246789177638812}
   - component: {fileID: 4940090702266563556}
   - component: {fileID: 8423355275036677345}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: rock_single_E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8676552324508280507}
   - component: {fileID: 1312897872259592419}
   - component: {fileID: 1499559928116539347}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: rock_single_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 1595771726251949925}
   - component: {fileID: 8586232266734876776}
   - component: {fileID: 2614582702360138235}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: MiningArea_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 3400847318911783736}
   - component: {fileID: 4959409706006190030}
   - component: {fileID: 4645342481256956730}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: rock_single_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 1060688859155430361}
   - component: {fileID: 5305227504782572198}
   - component: {fileID: 7444795840042592223}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: rock_single_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}

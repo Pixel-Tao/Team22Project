@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1004890481881646418}
   - component: {fileID: 8232842566406605582}
   - component: {fileID: 7413877991603957133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall_Straight_Gate
   m_TagString: Structure
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c823128c2cbf040a513eca762cf731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildedSO: {fileID: 11400000, guid: e49a74fe2e2fa6041a9b9de0ee21784e, type: 2}
+  buildedSO: {fileID: 11400000, guid: 8675df74dd4a01b4db388c79ef84ef85, type: 2}
 --- !u!114 &8232842566406605582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,9 +129,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4677237296440866189, guid: 57165b94ec4f0e7408a782f5c298f0d7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 57165b94ec4f0e7408a782f5c298f0d7, type: 3}
       propertyPath: m_Name
       value: wall_straight_gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 57165b94ec4f0e7408a782f5c298f0d7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046628172763319773, guid: 57165b94ec4f0e7408a782f5c298f0d7, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
