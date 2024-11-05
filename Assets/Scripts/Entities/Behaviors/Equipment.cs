@@ -52,12 +52,9 @@ public class Equipment : MonoBehaviour
         if (characterAnimController == null)
             characterAnimController = GetComponent<CharacterAnimController>();
 
-
         GameObject weapon = Instantiate(itemSO.equipPrefab);
         Collider weaponCollider = weapon.GetComponent<Collider>();
         weaponCollider.enabled = false;
-        Condition cu = CharacterManager.Instance.Player.GetComponent<Condition>();
-        cu.EquipWeapon(itemSO.itemValue);
         if (!itemSO.LeftHand)
         {
             characterModel.InsertRightHandSlot(weapon);
@@ -79,8 +76,6 @@ public class Equipment : MonoBehaviour
         if (characterAnimController == null)
             characterAnimController = GetComponent<CharacterAnimController>();
 
-        Condition cu = CharacterManager.Instance.Player.GetComponent<Condition>();
-        cu.EquipWeapon(-itemSO.itemValue);
         EquipWeaponDate = null;
         characterModel.ClearLeftHandSlot();
         characterModel.ClearRightHandSlot();
