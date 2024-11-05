@@ -30,6 +30,7 @@ namespace Assets.Scripts.Entities.Objects
 
         void UpdateProjectile()
         {
+
             localTimer += Time.deltaTime;
             if (currentTarget != null)
             {
@@ -39,7 +40,7 @@ namespace Assets.Scripts.Entities.Objects
                 this.transform.position += (dirToTarget + Vector3.up * 0.1f).normalized * speed * Time.deltaTime;
             }
             
-            if (this.transform.position.y < 0 || !currentTarget.activeSelf || localTimer > deadTime)
+            if (currentTarget == null || this.transform.position.y < 0 || !currentTarget.activeSelf || localTimer > deadTime)
             {
                 DestroySelf();
             }
