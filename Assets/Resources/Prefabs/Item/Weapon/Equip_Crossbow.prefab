@@ -26,9 +26,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665209547106714764}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6680288082857929125}
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665209547106714764}
-  m_Mesh: {fileID: 4579058040505081941, guid: 6cdbfdc3814614147a3b3ade29d65c52, type: 3}
+  m_Mesh: {fileID: 4579058040505081941, guid: 8478813ae62097244a410c3b344cefb5, type: 3}
 --- !u!23 &6958737543700780607
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7205189804858053933, guid: 6cdbfdc3814614147a3b3ade29d65c52, type: 3}
+  - {fileID: 7205189804858053933, guid: 8478813ae62097244a410c3b344cefb5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6680288082857929125}
   - component: {fileID: 7514903326422406238}
+  - component: {fileID: 8036037188225173292}
   m_Layer: 0
   m_Name: Equip_Crossbow
   m_TagString: Untagged
@@ -108,14 +109,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6301642543837957201}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.22798562, y: 0.90720594, z: -0.20278995, w: -0.28961393}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4497113184049658602}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 210, z: -20}
 --- !u!114 &7514903326422406238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,4 +130,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 226fca6bb032fa3469ffd9c9432f1e12, type: 2}
-  itemSO: {fileID: 11400000, guid: 226fca6bb032fa3469ffd9c9432f1e12, type: 2}
+  followSpeed: 10
+--- !u!65 &8036037188225173292
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6301642543837957201}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.18187812, y: 0.08222664, z: 0.2438174}
+  m_Center: {x: 0, y: 0.008, z: 0.066}

@@ -57,13 +57,13 @@ public class CharacterManager : Singleton<CharacterManager>
         GameObject playerObj = ResourceManager.Instance.Instantiate(playerPrefabName);
         playerObj.name = "Player";
         Player player = Utils.GetOrAddComponent<Player>(playerObj);
-        JobChange(JobType.Babarian);
+        JobChange(JobType.None);
         InitItemSlotDatas();
     }
 
     public void JobChange(JobType jobType)
     {
-        JobSO jobSO = ResourceManager.Instance.GetSOJobData<JobSO>(JobType.Babarian);
+        JobSO jobSO = ResourceManager.Instance.GetSOJobData<JobSO>(jobType);
         Player.SetJob(jobSO);
     }
 

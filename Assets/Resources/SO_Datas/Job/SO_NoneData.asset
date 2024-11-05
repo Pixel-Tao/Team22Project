@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8248a04aa28164146b5ddc80c5f77c5e, type: 3}
+  m_Name: SO_NoneData
+  m_EditorClassIdentifier: 
+  displayTitle: "\uB178\uBE44\uC2A4"
+  description: "\uD3C9\uBC94\uD55C \uB178\uBE44\uC2A4"
+  characterModelPrefab: {fileID: 1411122766747366330, guid: fbf902bc18a9e7d43a0faa8b1436484f, type: 3}
+  jobType: 0
+  stat:
+    maxHealth: 150
+    health: 0
+    stamina: 0
+    maxStamina: 200
+    passiveStamina: 10
+    hunger: 0
+    maxHunger: 200
+    passiveHunger: 5
+    thirst: 0
+    maxThirst: 200
+    passiveThirst: 5
+    damage: 5
+    moveSpeed: 3
+    attackSpeed: 1
+    attackRange: 1

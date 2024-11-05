@@ -71,7 +71,7 @@ public class BuildingProduction : MonoBehaviour
     {
         if(other.CompareTag("PlayerProjectile"))
         {
-            SoundManager.Instance.PlayOneShot("HitResource");
+            SoundManager.Instance.PlayOneShotPoint("HitResource", transform.position);
             MakeProduct();
         }
     }

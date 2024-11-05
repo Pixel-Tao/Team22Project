@@ -15,14 +15,15 @@ MonoBehaviour:
   displayName: "\uC2A4\uCF08\uB808\uD1A4 \uD22C\uAD6C"
   description: "\uC2A4\uCF08\uB808\uD1A4\uC774 \uC4F0\uB358 \uD22C\uAD6C"
   itemValue: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 13be48c627b4fb7408ed4495a611d969, type: 3}
   itemType: 1
   isStackable: 0
   stackSize: 0
   equipType: 1
   equipPrefab: {fileID: 394767849182724491, guid: 8d93e85aab5742d498c3b03f34f0f9ca, type: 3}
   combatMotionType: 0
-  helmetJob: {fileID: 0}
+  helmetJob: {fileID: 11400000, guid: a2be02f855d255243bbbffad67340591, type: 2}
+  LeftHand: 0
   consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Skeleton_Helmet

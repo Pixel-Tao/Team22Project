@@ -10,6 +10,7 @@ public class BuildSO : InteractableSO
 
     [Header("해당 건물의 분류")]
     public Defines.BuildingType buildingType;
+    public Sprite icon;
 
     [Header("건설에 필요한 자원량(int)")]
     public ResourceData[] NeedResources;

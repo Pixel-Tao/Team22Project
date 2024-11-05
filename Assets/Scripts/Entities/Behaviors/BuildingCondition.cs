@@ -1,10 +1,11 @@
+using Defines;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingCondition : MonoBehaviour, IDamageable
 {
-    BuildSO buildedSO;
+    BuildingObject buildingObject;
 
     public float CurHealth { get; private set; }
     public float MaxHealth { get; private set; }
@@ -17,7 +18,7 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        buildedSO = GetComponent<BuildingObject>().buildedSO;
+        buildingObject = GetComponent<BuildingObject>();
     }
 
     private void Start()
@@ -27,14 +28,16 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     private void Init()
     {
-        MaxHealth = buildedSO.health;
+        if (buildingObject.buildedSO == null) return;
+
+        MaxHealth = buildingObject.buildedSO.health;
         CurHealth = MaxHealth;
 
-        CurAttackPower = buildedSO.attackPower;
-        CurAttackRange = buildedSO.attackRange;
-        CurAttackDelay = buildedSO.attackDelay;
+        CurAttackPower = buildingObject.buildedSO.attackPower;
+        CurAttackRange = buildingObject.buildedSO.attackRange;
+        CurAttackDelay = buildingObject.buildedSO.attackDelay;
 
-        CurProductiontDelay = buildedSO.ProductiontDelay;
+        CurProductiontDelay = buildingObject.buildedSO.ProductiontDelay;
     }
 
     public void Heal(int heal)
@@ -53,4 +56,5 @@ public class BuildingCondition : MonoBehaviour, IDamageable
     {
 
     }
+
 }

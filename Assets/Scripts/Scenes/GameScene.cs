@@ -20,6 +20,7 @@ public class GameScene : SceneBase
         UIManager.Instance.ShowSceneUI<GameSceneUI>();
         UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
         UIManager.Instance.CloseAllPopupUI();
+        SoundManager.Instance.SetBackGroundMusic("BGM");
     }
 
     protected override void OnSceneUnloaded()

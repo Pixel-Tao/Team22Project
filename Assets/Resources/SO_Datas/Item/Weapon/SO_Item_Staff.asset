@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: "\uC2A4\uD0DC\uD504"
   description: "\uB9C8\uBC95\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   itemValue: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 928122485eb19e8419cb6c70b9628d62, type: 3}
   itemType: 1
   isStackable: 0
   stackSize: 0
@@ -23,6 +23,7 @@ MonoBehaviour:
   equipPrefab: {fileID: 3286777139663197625, guid: 0a334167956960c4b8fe30a24a2dc48b, type: 3}
   combatMotionType: 6
   helmetJob: {fileID: 0}
+  LeftHand: 0
   consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Staff

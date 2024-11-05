@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a297f13eb321f4ca5dd9999b734787, type: 3}
+  m_Name: SO_Well
+  m_EditorClassIdentifier: 
+  displayName: "\uC6B0\uBB3C"
+  description: "\uC2E0\uC120\uD55C \uBB3C\uC774 \uC790\uB3D9\uC73C\uB85C\uB098\uC640"
+  buildingType: 20
+  icon: {fileID: 0}
+  NeedResources: []
+  health: 0
+  providedPopulation: 0
+  consumingPopulation: 0
+  attackPower: 0
+  attackRange: 0
+  attackDelay: 0
+  ProductPrefabs:
+  - {fileID: 9220331825408845403, guid: c46e6bc519a65ef429ffa129f827a57d, type: 3}
+  ProductiontDelay: 5
+  modelPrefab: {fileID: 7926591565551646512, guid: ae38a767e90fc7a42848d42c8e0478ec, type: 3}

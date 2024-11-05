@@ -122,7 +122,7 @@ namespace Defines
     public enum SODataType
     {
         None,
-        Building,
+        Buildings,
         Job,
         Item,
         MobData,
@@ -137,4 +137,27 @@ namespace Defines
         Resource,
         Weapon,
     }
+
+    public enum MOBSTATE
+    {
+        MOVE,
+        ATTACK,
+        DEAD,
+    }
+
+    public enum MOBTYPE
+    {
+        WARRIOR,
+        ROUGUE,
+        MAGE,
+        END,
+    }
+
+    public enum SPAWNSTATE
+    {
+        WAITING,
+        WORKING
+    }
+
+   
 }
