@@ -1,3 +1,4 @@
+using Assets.Scripts.UIs.Popup;
 using Defines;
 using System.Collections;
 using System.Collections.Generic;
@@ -71,13 +72,19 @@ public class TileObject : InteractableObject, IInteractable
     public void OnInteract(Transform target = null)
     {
         // TODO : 건물 건설 UI 띄우기
-        if (!GameManager.Instance.IsBuildMode) return;
-        if (GameManager.Instance.IsBuilding) return;
-        GameManager.Instance.ToggleBuilding();
-
-        Debug.Log(GetInteractPrompt());
-        BuildPopupUI popup = UIManager.Instance.ShowPopupUI<BuildPopupUI>();
-        popup.SelectedTile(this);   
+        if (GameManager.Instance.IsBuildMode)
+        {
+            if (GameManager.Instance.IsBuilding) return;
+            
+            GameManager.Instance.ToggleBuilding();
+            Debug.Log(GetInteractPrompt());
+            BuildPopupUI popup = UIManager.Instance.ShowPopupUI<BuildPopupUI>();
+            popup.SelectedTile(this);
+        }
+        else if(building?.BuildingSO?.buildingType == BuildingType.Blacksmith_Red)
+        {
+            UIManager.Instance.ShowPopupUI<SmithingPopupUI>();
+        }
     }
 
     public void OnBuildingRotate()
