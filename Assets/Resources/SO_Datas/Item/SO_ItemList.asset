@@ -18,14 +18,14 @@ MonoBehaviour:
   Helmets:
   - {fileID: 11400000, guid: 61dcf7470f70840499d01ad7ba0d5cf3, type: 2}
   - {fileID: 11400000, guid: 254924b0695d9eb44aa3bd9f50609768, type: 2}
+  - {fileID: 11400000, guid: 612107a023d590943acb181b92135027, type: 2}
   - {fileID: 11400000, guid: 93c8e84ee2176b043b3f694297ed1154, type: 2}
-  - {fileID: 11400000, guid: a19be033496a5bd458de39ffcd726a3f, type: 2}
   Weapons:
-  - {fileID: 11400000, guid: 8c193d83cbbf7344292007fe8a5d1477, type: 2}
-  - {fileID: 11400000, guid: ba1dae90fd0a52a44a2560c80a1e5eb8, type: 2}
-  Resources:
   - {fileID: 11400000, guid: 1023b8f3bb2ad154484e8404b928dc0d, type: 2}
   - {fileID: 11400000, guid: 226fca6bb032fa3469ffd9c9432f1e12, type: 2}
   - {fileID: 11400000, guid: 2ba8bac315fd4e94f98b2a44877e2d7c, type: 2}
   - {fileID: 11400000, guid: ddedf7bdfd2b4984fb7340ac4127b9e4, type: 2}
   - {fileID: 11400000, guid: 98348e4fe3378fc42b29fee6281f3b91, type: 2}
+  Resources:
+  - {fileID: 11400000, guid: 8c193d83cbbf7344292007fe8a5d1477, type: 2}
+  - {fileID: 11400000, guid: ba1dae90fd0a52a44a2560c80a1e5eb8, type: 2}

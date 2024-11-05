@@ -35,7 +35,10 @@ public class Condition : MonoBehaviour, IDamageable
             FullRecovery();
         }
     }
-
+    public void EquipWeapon(int itemVelue)
+    {
+        currentStat.damage += itemVelue;
+    }
     public void FullRecovery()
     {
         currentStat.health = currentStat.maxHealth;
