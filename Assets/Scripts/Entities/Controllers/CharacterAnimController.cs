@@ -44,7 +44,7 @@ public class CharacterAnimController : MonoBehaviour
         {
             animator.SetLayerWeight((int)layers[i], 0);
         }
-        CurrentCombatLayerType = CharacterAnimCombatLayerType.Base_Layer;
+        CurrentCombatLayerType = CharacterAnimCombatLayerType.Melee_1H_Layer;
     }
 
     // 장비 장착할때 함께 설정해야함.

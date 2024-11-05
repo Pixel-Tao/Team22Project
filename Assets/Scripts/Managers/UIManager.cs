@@ -13,15 +13,17 @@ public class UIManager : Singleton<UIManager>
     Dictionary<string, UIPopup> popupDict = new Dictionary<string, UIPopup>();
 
     public UIScene SceneUI { get; private set; }
-
+    private GameObject root;
     public GameObject Root
     {
         get
         {
-            GameObject root = GameObject.Find("UI_Root");
             if (root == null)
-                root = new GameObject { name = "UI_Root" };
-
+            {
+                root = GameObject.Find("UI_Root");
+                if (root == null)
+                    root = new GameObject { name = "UI_Root" };
+            }
             return root;
         }
     }

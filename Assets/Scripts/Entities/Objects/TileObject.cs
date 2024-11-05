@@ -98,7 +98,7 @@ public class TileObject : InteractableObject, IInteractable
     {
         building = null;
     }
-    public bool Build(BuildSO buildSO)
+    public bool Build(BuildingSO buildingSO)
     {
         if (naturalBuilding != null)
         {
@@ -106,9 +106,10 @@ public class TileObject : InteractableObject, IInteractable
             naturalBuilding.gameObject.SetActive(false);
         }
 
-        GameObject go = Instantiate(buildSO.modelPrefab, transform.position, Quaternion.identity);
+        GameObject go = PoolManager.Instance.SpawnBuilding(buildingSO.buildingType);
+        go.transform.position = transform.position;
         BuildingObject buildingObj = go.GetComponent<BuildingObject>();
-        buildingObj.buildedSO = buildSO;
+        buildingObj.buildedSO = buildingSO;
         buildingObj.SetTile(this);
         return true;
     }
