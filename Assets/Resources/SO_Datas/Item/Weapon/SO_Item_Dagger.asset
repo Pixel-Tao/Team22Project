@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: "\uB2E8\uAC80"
   description: "\uBE60\uB974\uAC8C \uACF5\uACA9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   itemValue: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: c857890b17d493a4eb1636bfa8b8bea4, type: 3}
   itemType: 1
   isStackable: 0
   stackSize: 0

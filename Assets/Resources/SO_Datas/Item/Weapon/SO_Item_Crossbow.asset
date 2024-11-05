@@ -16,7 +16,7 @@ MonoBehaviour:
   description: "\uD55C\uC190\uC73C\uB85C \uBC1C\uC0AC \uD560 \uC218 \uC788\uB294
     \uC11D\uAD81\uC785\uB2C8\uB2E4."
   itemValue: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 2a59cb7e9d9e9c448a2dba1d92918c0c, type: 3}
   itemType: 1
   isStackable: 0
   stackSize: 0

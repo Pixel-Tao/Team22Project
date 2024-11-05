@@ -17,6 +17,9 @@ public class Equipment : MonoBehaviour
     public string startWeapon;
     public string startHelmet;
 
+    private ItemSO EquipWeaponDate;
+    private ItemSO EquipHelmetDate;
+
     void Start()
     {
         //rightHandSlot = transform.Find("Rig/root/hips/spine/chest/upperarm.r/lowerarm.r/wrist.r/hand.r/handslot.r");
@@ -41,6 +44,7 @@ public class Equipment : MonoBehaviour
     public void EquipWeapon(ItemSO itemSO)
     {
         UnEquipWeapon();
+        EquipWeaponDate = itemSO;
         this.itemSO = itemSO;
         if (characterModel == null)
             characterModel = characterModelGameObject.GetComponent<CharacterModel>();
@@ -49,7 +53,16 @@ public class Equipment : MonoBehaviour
             characterAnimController = GetComponent<CharacterAnimController>();
 
         GameObject weapon = Instantiate(itemSO.equipPrefab);
-        characterModel.InsertRightHandSlot(weapon.transform);
+
+        if(!itemSO.LeftHand)
+        {
+            characterModel.InsertRightHandSlot(weapon.transform);
+        }
+        else
+        {
+            characterModel.InsertLeftHandSlot(weapon.transform);
+        }
+        
         characterAnimController.UseCombatLayer(itemSO.combatMotionType);
     }
 
@@ -62,6 +75,9 @@ public class Equipment : MonoBehaviour
         if (characterAnimController == null)
             characterAnimController = GetComponent<CharacterAnimController>();
 
+
+        EquipWeaponDate = null;
+        characterModel.ClearLeftHandSlot();
         characterModel.ClearRightHandSlot();
         characterAnimController.ResetLayerWeight();
     }
@@ -77,11 +93,40 @@ public class Equipment : MonoBehaviour
 
     public void EquipHelmet(ItemSO itemSO)
     {
+        UnEquipHelmet();
+        this.itemSO = itemSO;
+        if (characterModel == null)
+            characterModel = characterModelGameObject.GetComponent<CharacterModel>();
 
+        if (characterAnimController == null)
+            characterAnimController = GetComponent<CharacterAnimController>();
+
+        CharacterManager.Instance.JobChange(itemSO.helmetJob.jobType);
+        characterModel = characterModelGameObject.GetComponent<CharacterModel>();
+
+        if (EquipWeaponDate != null)
+        {
+            GameObject weapon = Instantiate(EquipWeaponDate.equipPrefab);
+
+            if (!EquipWeaponDate.LeftHand)
+            {
+                characterModel.InsertRightHandSlot(weapon.transform);
+            }
+            else
+            {
+                characterModel.InsertLeftHandSlot(weapon.transform);
+            }
+
+            characterAnimController.UseCombatLayer(EquipWeaponDate.combatMotionType);
+        }
     }
     public void UnEquipHelmet()
     {
         // 헬멧 장비 해제
+        if (characterModel == null)
+            characterModel = characterModelGameObject.GetComponent<CharacterModel>();
+
+        CharacterManager.Instance.JobChange(Defines.JobType.None);
     }
 
     public void SetCharacterModel(GameObject characterModelGameObject)
