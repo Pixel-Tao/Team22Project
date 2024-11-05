@@ -57,20 +57,23 @@ public class Interaction : MonoBehaviour
             if (hit.collider.transform.parent.TryGetComponent(out TileObject tileObj))
             {
                 float distance = Vector3.Distance(tileObj.transform.position, transform.position);
-                if (distance > buildInteractionDistance)
+                if (tileObj.IsPlayerOnTile || distance > buildInteractionDistance)
+                {
+                    ClearTile();
                     return;
+                }
 
                 TileSO tileSO = tileObj.data as TileSO;
-                switch (tileSO?.tileType)
+                if (tileSO?.tileType == Defines.TileType.Ground)
                 {
-                    case Defines.TileType.Ground:
-
-                        SetTile(tileObj);
-                        currentTile.Flash();
-                        break;
+                    SetTile(tileObj);
+                    currentTile.Flash();
+                    return;
                 }
             }
         }
+
+        ClearTile();
     }
 
     private void CheckSurroundings()
@@ -111,7 +114,14 @@ public class Interaction : MonoBehaviour
 
     private void ClearTile()
     {
+        currentTile?.UnFlash();
+        currentTile = null;
         PromptChangedEvent?.Invoke(string.Empty);
+    }
+
+    public void BuildingRotate()
+    {
+        currentTile?.OnBuildingRotate();
     }
 
     private void OnDrawGizmos()

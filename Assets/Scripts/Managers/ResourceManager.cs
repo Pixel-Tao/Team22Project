@@ -94,9 +94,10 @@ public class ResourceManager : Singleton<ResourceManager>
         return Load<T>($"SO_Datas/{path}");
     }
 
-    public T GetSOBuildingData<T>(string name) where T : ScriptableObject
+    public T GetSOBuildingData<T>(BuildingType buildingType) where T : ScriptableObject
     {
-        return GetSOData<T>(name, SODataType.Building, SOItemDataType.None);
+        string name = Utils.BuildingEnumToSODataPath(buildingType, true);
+        return GetSOData<T>(name, SODataType.Buildings, SOItemDataType.None);
     }
 
     public T GetSOJobData<T>(JobType jobType) where T : ScriptableObject

@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
         input.LookEvent += look.Look;
         input.MouseInteractionEvent += interaction.MouseInteraction;
         input.InteractEvent += interaction.Interact;
+        input.BuildingRotateEvent += interaction.BuildingRotate;
         input.AttackingEvent += combat.Attacking;
     }
     public void SetJob(JobSO jobSO)
@@ -106,6 +107,22 @@ public class Player : MonoBehaviour
             case EquipType.Helmet:
                 equipment.UnEquipHelmet();
                 break;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
+        {
+            tileObject.PlayerOnTile(true);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
+        {
+            tileObject.PlayerOnTile(false);
         }
     }
 }

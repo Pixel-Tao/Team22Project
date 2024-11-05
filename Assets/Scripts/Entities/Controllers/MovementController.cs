@@ -23,11 +23,24 @@ public class MovementController : MonoBehaviour
     [SerializeField][Range(0, 1)] private float backwardSpeedRatio = 0.5f;
     [SerializeField][Range(0, 1)] private float sideSpeedRatio = 0.75f;
 
+    [Header("경사각 관련")]
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float maxSlopeAngle = 60f;
+    private const float RAY_DISTANCE = 1f;
+    private RaycastHit slopeHit;
+    [SerializeField] private Transform groundChecker;
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<CharacterAnimController>();
         condition = GetComponent<Condition>();
+        if (groundChecker == null)
+        {
+            GameObject go = new GameObject("GroundChecker");
+            go.transform.SetParent(transform);
+        }
     }
 
     private void Update()
@@ -73,10 +86,22 @@ public class MovementController : MonoBehaviour
             type = CharacterMoveStepType.Left;
         }
 
+        bool isOnSlope = IsOnSlope();
+        bool isGrounded = IsGrounded();
+
         if (rb.velocity.magnitude < maxMoveSpeed)
         {
-            Vector3 acc = dir * acceleration;
-            rb.velocity += acc;
+            Vector3 velocity = dir * acceleration;
+            //if (isGrounded && isOnSlope)
+            //{
+            //    velocity = AdjustDirectionToSlope(velocity);
+            //    rb.useGravity = false;
+            //}
+            //else
+            //{
+            //    rb.useGravity = true;
+            //}
+            rb.velocity += velocity;
         }
         anim.MoveAnim(type);
     }
@@ -84,5 +109,59 @@ public class MovementController : MonoBehaviour
     public void Move(Vector3 move)
     {
         moveDirection = move;
+    }
+    public bool IsOnSlope()
+    {
+        Ray[] rays = new Ray[4]
+        {
+            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.1f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.1f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.1f) + (transform.up * 0.1f), Vector3.down),
+        };
+
+        foreach (Ray ray in rays)
+        {
+            if (Physics.Raycast(ray, out slopeHit, RAY_DISTANCE, groundLayer))
+            {
+                var angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+                Debug.Log($"Slope Angle : {angle} ({slopeHit.normal})");
+                if(angle != 0f && angle < maxSlopeAngle)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public bool IsGrounded()
+    {
+        Vector3 boxSize = new Vector3(transform.lossyScale.x, 0.1f, transform.lossyScale.z);
+        return Physics.CheckBox(groundChecker.position, boxSize, Quaternion.identity, groundLayer);
+    }
+    public Vector3 AdjustDirectionToSlope(Vector3 direction)
+    {
+        Vector3 adjustVelocityDir = Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+        return adjustVelocityDir;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Vector3 boxSize = new Vector3(transform.lossyScale.x, 0.1f, transform.lossyScale.z);
+        Gizmos.DrawWireCube(groundChecker.position, boxSize);
+
+        Ray[] rays = new Ray[4]
+       {
+            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.1f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.1f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.1f) + (transform.up * 0.1f), Vector3.down),
+       };
+
+        foreach (Ray ray in rays)
+        {
+            Gizmos.DrawRay(ray.origin, ray.direction * 1f);
+        }
     }
 }

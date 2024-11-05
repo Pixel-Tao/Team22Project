@@ -122,7 +122,7 @@ namespace Defines
     public enum SODataType
     {
         None,
-        Building,
+        Buildings,
         Job,
         Item,
         MobData,

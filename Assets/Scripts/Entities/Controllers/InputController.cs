@@ -10,11 +10,11 @@ public class InputController : MonoBehaviour
     public event Action<Vector2> RotateEvent;
     public event Action<Vector2> MouseInteractionEvent;
     public event Action InteractEvent;
+    public event Action BuildingRotateEvent;
     public event Action<bool> AttackingEvent;
 
     private Vector2 screenCenter;
     private Vector3 direction;
-    private bool isRotating;
 
     private void Awake()
     {
@@ -37,7 +37,6 @@ public class InputController : MonoBehaviour
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        if (isRotating) return;
         if (context.phase == InputActionPhase.Performed)
         {
             Vector2 position = context.ReadValue<Vector2>();
@@ -50,7 +49,6 @@ public class InputController : MonoBehaviour
 
     public void OnRotate(InputAction.CallbackContext context)
     {
-        if (!isRotating) return;
         if (context.phase == InputActionPhase.Performed)
         {
             Vector2 delta = context.ReadValue<Vector2>();
@@ -62,8 +60,15 @@ public class InputController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            InteractEvent?.Invoke();
-            AttackingEvent?.Invoke(true);
+            if (GameManager.Instance.IsBuildMode)
+            {
+                if (GameManager.Instance.IsBuilding) return;
+                InteractEvent?.Invoke();
+            }
+            else
+            {
+                AttackingEvent?.Invoke(true);
+            }
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
@@ -75,21 +80,20 @@ public class InputController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            isRotating = true;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else if (context.phase == InputActionPhase.Canceled)
-        {
-            isRotating = false;
-            Cursor.lockState = CursorLockMode.None;
-            RotateEvent?.Invoke(Vector3.zero);
+            if (GameManager.Instance.IsBuildMode)
+            {
+                BuildingRotateEvent?.Invoke();
+            }
         }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
-            InteractEvent?.Invoke();
+        {
+            if (!GameManager.Instance.IsBuildMode)
+                InteractEvent?.Invoke();
+        }
     }
 
     public void OnInventory(InputAction.CallbackContext context)
