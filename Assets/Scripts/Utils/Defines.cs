@@ -72,6 +72,11 @@ namespace Defines
         Mountain_C,
         Mountain_C_Grass,
         Mountain_C_Grass_Trees,
+        //건설흔적 환경물 기능x
+        Destroyed,
+        Scaffolding,
+        Stage_B,
+        Stage_C,
     }
 
     public enum NaturalObjectType

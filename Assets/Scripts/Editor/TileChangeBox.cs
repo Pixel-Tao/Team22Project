@@ -110,7 +110,7 @@ public class TileChangeBox : Editor
     {
         if (prefab == null)
         {
-            Debug.Log("Debug : 프리팹을 찾지못함 스위치 케이스를 확인하시오.");
+            Debug.Log("Debug : 프리팹을 찾지못함");
             return;
         }
         if (go != null)

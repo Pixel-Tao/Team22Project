@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: "\uB300\uC7A5\uAC04"
   description: "\uCC29\uC6A9\uAC00\uB2A5\uD55C \uC7A5\uBE44\uB97C \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
   buildType: 1
-  modelPrefab: {fileID: 0}
+  modelPrefab: {fileID: 3491010184824531105, guid: f0ff6931b0b12ed4eb96ba8c6b966314, type: 3}
   ProductPrefabs: []
   ProductiontDelay: 0
   buildingType: 13
