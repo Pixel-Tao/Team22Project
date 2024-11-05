@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == allowCollisionLayerMask &&
+        if (collision.gameObject.transform.parent != null &&
             collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
         {
             tileObject.PlayerOnTile(true);
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer == allowCollisionLayerMask && 
+        if (collision.gameObject.transform.parent != null &&
             collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
         {
             tileObject.PlayerOnTile(false);

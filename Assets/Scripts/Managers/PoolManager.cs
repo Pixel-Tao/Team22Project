@@ -10,11 +10,38 @@ public class PoolManager : Singleton<PoolManager>
     private int defaultCapacity = 10;
     private int maxSize = 100;
 
+    private GameObject root;
+    public GameObject Root
+    {
+        get
+        {
+            if (root == null)
+            {
+                root = GameObject.Find("Pool_Root");
+                if (root == null)
+                    root = new GameObject { name = "Pool_Root" };
+            }
+            return root;
+        }
+    }
+
     public void Init(int defaultCapacity = 10, int maxSize = 100)
     {
         Debug.Log("PoolManager Init");
         this.defaultCapacity = defaultCapacity;
         this.maxSize = maxSize;
+    }
+
+    private Transform GetTypeRoot(string name)
+    {
+        Transform buildingRoot = Root.transform.Find(name);
+        if (buildingRoot == null)
+        {
+            buildingRoot = new GameObject { name = name }.transform;
+            buildingRoot.SetParent(Root.transform);
+        }
+
+        return buildingRoot;
     }
 
     private ObjectPool CreatePool(string path, Transform parent)
@@ -34,18 +61,28 @@ public class PoolManager : Singleton<PoolManager>
 
         return pool.Spawn();
     }
+    public GameObject SpawnBuilding(BuildingType type, Transform parent = null)
+    {
+        GameObject go = Spawn($"Prefabs/Buildings/Construction/{type}", parent == null ? GetTypeRoot("Buildings") : parent);
+        return go;
+    }
     public GameObject SpawnMonster(MOBTYPE type, Transform parent = null)
     {
-        return Spawn($"Prefabs/Monsters/{type}", parent);
+        GameObject go = Spawn($"Prefabs/Monsters/{type}", parent == null ? GetTypeRoot("Monsters") : parent);
+        return go;
     }
     public GameObject SpawnItem(string name, Transform parent = null)
     {
-        return Spawn($"Prefabs/Item/{name}", parent);
+        GameObject go = Spawn($"Prefabs/Item/{name}", parent == null ? GetTypeRoot("Items") : parent);
+        return go;
     }
     public GameObject SpawnProjectile(string name, Transform parent = null)
     {
-        return Spawn($"Prefabs/Projectile/{name}", parent);
+        GameObject go = Spawn($"Prefabs/Projectile/{name}", parent == null ? GetTypeRoot("Projectiles") : parent);
+        return go;
     }
+
+
 
     public void Despawn(GameObject go)
     {
