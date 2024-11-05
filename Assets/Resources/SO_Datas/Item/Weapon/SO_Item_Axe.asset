@@ -21,7 +21,7 @@ MonoBehaviour:
   stackSize: 0
   equipType: 2
   equipPrefab: {fileID: 8099736589258849947, guid: 8c82fb70ae9ab114c85d17634fe3a8ac, type: 3}
-  combatMotionType: 0
+  combatMotionType: 2
   helmetJob: {fileID: 0}
   LeftHand: 0
   consumables: []
