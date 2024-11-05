@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildPopupUI : UIPopup
 {
@@ -10,6 +11,7 @@ public class BuildPopupUI : UIPopup
     [SerializeField] private Transform buidingSlots;
 
     private TileObject tileObject;
+    private GridLayoutGroup gridLayoutGroup;
 
     private void Awake()
     {
@@ -61,59 +63,94 @@ public class BuildPopupUI : UIPopup
     {
         this.tileObject = tileObject;
 
-        if (tileObject?.data == null)
+        if (tileObject?.TileSO == null)
             return;
 
-        TileSO tileSO = tileObject.data as TileSO;
+        if (tileObject.IsBuilded())
+        {
+            ShowDestroySlot();
+        }
+        else if (tileObject.IsNaturalObject())
+        {
+            // 자연물
+            ShowNaturalObjectBuilding(tileObject);
+        }
+        else if (tileObject.IsGround())
+        {
+            // 그냥 땅
+            ShowGroundBuilding(tileObject);
+        }
+    }
 
+    private void ShowNaturalObjectBuilding(TileObject tileObject)
+    {
+        int showCount = 0;
         foreach (BuildingSlot slot in slots)
         {
-            BuildingSO buildingSO = slot.buildingSO;
-            if (buildingSO == null)
+            if (slot.IsDestroyable || !tileObject.IsResourceBuilding(slot.buildingSO.buildingType))
             {
                 slot.HideSlot();
                 continue;
             }
 
-            if (slot.buildingSO == null)
+            if (tileObject.IsNaturalResourceBuildable(slot.buildingSO.buildingType))
             {
-                if (slot.IsDestroyable && tileObject.IsDestroyable())
-                {
-                    // 건물이 올라가있는 곳임
-                    slot.ShowSlot();
-                    slot.ShowResourceSlot(tileObject.building.BuildingSO, true);
-                    continue;
-                }
-                else
-                {
-                    slot.HideSlot();
-                }
-            }
-            else if (tileObject.IsNaturalObject())
-            {
-                // 자연물
-                if (tileObject.IsNaturalResourceBuildable(slot.buildingSO.buildingType))
-                {
-                    slot.ShowSlot();
-                }
-                else
-                {
-                    slot.HideSlot();
-                }
+                slot.ShowSlot();
+                showCount++;
             }
             else
             {
-                // 그냥 땅
-                if (tileObject.IsGroundBuildable(slot.buildingSO.buildingType))
-                {
-                    slot.ShowSlot();
-                }
-                else
-                {
-                    slot.HideSlot();
-                }
+                slot.HideSlot();
             }
         }
+        SetGridFixedColumn(showCount);
+    }
+    private void ShowGroundBuilding(TileObject tileObject)
+    {
+        int showCount = 0;
+        foreach (BuildingSlot slot in slots)
+        {
+            if (slot.IsDestroyable || tileObject.IsResourceBuilding(slot.buildingSO.buildingType))
+            {
+                slot.HideSlot();
+                continue;
+            }
+
+            if (tileObject.IsGroundBuildable(slot.buildingSO.buildingType))
+            {
+                slot.ShowSlot();
+                showCount++;
+            }
+            else
+            {
+                slot.HideSlot();
+            }
+        }
+        SetGridFixedColumn(showCount);
+    }
+    private void ShowDestroySlot()
+    {
+        foreach (BuildingSlot slot in slots)
+        {
+            if (slot.IsDestroyable)
+            {
+                slot.ShowSlot();
+                slot.ShowResourceSlot(tileObject.building.BuildingSO, true);
+            }
+            else
+            {
+                slot.HideSlot();
+            }
+        }
+        SetGridFixedColumn(1);
+    }
+
+    private void SetGridFixedColumn(int showSlotCount)
+    {
+        if (gridLayoutGroup == null)
+            gridLayoutGroup = buidingSlots.GetComponent<GridLayoutGroup>();
+
+        gridLayoutGroup.constraintCount = showSlotCount > 1 ? 2 : 1;
     }
 
     public void Build(BuildingSO buildSO)
@@ -135,6 +172,7 @@ public class BuildPopupUI : UIPopup
         if (tileObject?.building == null) return;
         GameManager.Instance.ReturnResources(tileObject.building.BuildingSO.NeedResources, true);
         tileObject.building.Destroy();
+        tileObject.ReturnNaturalObject();
         OnCloseButton();
     }
 

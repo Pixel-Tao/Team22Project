@@ -53,14 +53,15 @@ public class Equipment : MonoBehaviour
             characterAnimController = GetComponent<CharacterAnimController>();
 
         GameObject weapon = Instantiate(itemSO.equipPrefab);
-
-        if(!itemSO.LeftHand)
+        Collider weaponCollider = weapon.GetComponent<Collider>();
+        weaponCollider.enabled = false;
+        if (!itemSO.LeftHand)
         {
-            characterModel.InsertRightHandSlot(weapon.transform);
+            characterModel.InsertRightHandSlot(weapon);
         }
         else
         {
-            characterModel.InsertLeftHandSlot(weapon.transform);
+            characterModel.InsertLeftHandSlot(weapon);
         }
         
         characterAnimController.UseCombatLayer(itemSO.combatMotionType);
@@ -74,7 +75,6 @@ public class Equipment : MonoBehaviour
 
         if (characterAnimController == null)
             characterAnimController = GetComponent<CharacterAnimController>();
-
 
         EquipWeaponDate = null;
         characterModel.ClearLeftHandSlot();
@@ -110,11 +110,11 @@ public class Equipment : MonoBehaviour
 
             if (!EquipWeaponDate.LeftHand)
             {
-                characterModel.InsertRightHandSlot(weapon.transform);
+                characterModel.InsertRightHandSlot(weapon);
             }
             else
             {
-                characterModel.InsertLeftHandSlot(weapon.transform);
+                characterModel.InsertLeftHandSlot(weapon);
             }
 
             characterAnimController.UseCombatLayer(EquipWeaponDate.combatMotionType);

@@ -9,10 +9,13 @@ public class CharacterModel : MonoBehaviour
     [SerializeField] private Transform headSlot;
     [SerializeField] private Transform leftHandSlot;
 
-    public void InsertRightHandSlot(Transform item)
+    public void InsertRightHandSlot(GameObject item)
     {
-        item.SetParent(rightHandSlot);
-        item.transform.localPosition = Vector3.zero;
+        Transform itemTeansform = item.transform;
+        itemTeansform.SetParent(rightHandSlot);
+        itemTeansform.localPosition = Vector3.zero;
+        itemTeansform.localRotation = item.transform.rotation;
+
     }
     public void ClearRightHandSlot()
     {
@@ -29,10 +32,12 @@ public class CharacterModel : MonoBehaviour
         ClearSlot(headSlot);
     }
 
-    public void InsertLeftHandSlot(Transform item)
+    public void InsertLeftHandSlot(GameObject item)
     {
-        item.SetParent(leftHandSlot);
-        item.transform.localPosition = Vector3.zero;
+        Transform itemTeansform = item.transform;
+        itemTeansform.SetParent(leftHandSlot);
+        itemTeansform.localPosition = Vector3.zero;
+        itemTeansform.localRotation = item.transform.rotation;
     }
     public void ClearLeftHandSlot()
     {
