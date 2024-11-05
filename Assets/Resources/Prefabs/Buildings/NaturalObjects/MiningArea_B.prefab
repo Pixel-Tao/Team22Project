@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c823128c2cbf040a513eca762cf731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildedSO: {fileID: 11400000, guid: 1c27d19d81299874085b2702cbf952d1, type: 2}
+  buildedSO: {fileID: 11400000, guid: 317e5b1a18a507b48abd8e71e517210b, type: 2}
 --- !u!114 &1595771726251949925
 MonoBehaviour:
   m_ObjectHideFlags: 0
