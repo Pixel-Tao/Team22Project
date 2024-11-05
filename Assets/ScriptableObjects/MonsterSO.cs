@@ -16,5 +16,6 @@ public class MonsterSO : ScriptableObject
     [Header("공격 유형")]
     public bool isRangedWeapon;
     public string projectileName;
+    public string projectileSound;
     //[SerializeField]public string[] enemyObjectTags;
 }

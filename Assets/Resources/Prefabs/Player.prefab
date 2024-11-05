@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 9210941441874188719}
   - component: {fileID: 4267396946937573618}
   - component: {fileID: 6342241989588364640}
+  - component: {fileID: 7150592834103051928}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -476,6 +477,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWeapon: 
   startHelmet: 
+--- !u!81 &7150592834103051928
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725653115049193990}
+  m_Enabled: 1
 --- !u!1 &6944501229606329066
 GameObject:
   m_ObjectHideFlags: 0

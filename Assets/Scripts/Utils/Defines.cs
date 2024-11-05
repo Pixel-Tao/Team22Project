@@ -151,4 +151,27 @@ namespace Defines
         Resource,
         Weapon,
     }
+
+    public enum MOBSTATE
+    {
+        MOVE,
+        ATTACK,
+        DEAD,
+    }
+
+    public enum MOBTYPE
+    {
+        WARRIOR,
+        ROUGUE,
+        MAGE,
+        END,
+    }
+
+    public enum SPAWNSTATE
+    {
+        WAITING,
+        WORKING
+    }
+
+   
 }

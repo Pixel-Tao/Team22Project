@@ -1,25 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public enum SPAWNSTATE
-{
-    WAITING,
-    WORKING
-}
-
-public enum MOBTYPE
-{
-    WARRIOR,
-    ROUGUE,
-    MAGE,
-    END,
-}
-
 namespace Assets.Scripts.Utils
 {
     internal class SpawnMachine : MonoBehaviour
     {
-        private SPAWNSTATE state = SPAWNSTATE.WORKING;
+        private Defines.SPAWNSTATE state = Defines.SPAWNSTATE.WORKING;
         public List<string> monsters;
         public float maxSpawnArea;
         public float minSpawnScale;
@@ -30,9 +16,9 @@ namespace Assets.Scripts.Utils
         {
             switch (state)
             {
-                case SPAWNSTATE.WAITING:
+                case Defines.SPAWNSTATE.WAITING:
                     break;
-                case SPAWNSTATE.WORKING:
+                case Defines.SPAWNSTATE.WORKING:
                     localTimer += Time.deltaTime;
                     if (localTimer > currentSpawnScale)
                     {

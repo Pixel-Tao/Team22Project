@@ -14,10 +14,11 @@ namespace Assets.Scripts.Entities.Objects
         private GameObject currentTarget;
         Vector3 dirToTarget;
         
-        public void Init(GameObject target, string[] name, float _damage, bool isMelee = false)
+        public void Init(GameObject target, string[] tags, float _damage, bool isMelee = false)
         {
             damage = _damage;
-            tagName = name;
+            tagName = tags;
+            meleeAttack = isMelee;
             currentTarget = target;
             dirToTarget = currentTarget.transform.position - this.transform.position;
         }
@@ -60,7 +61,7 @@ namespace Assets.Scripts.Entities.Objects
                 {
                     other.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
                     other.gameObject.GetComponent<IDamageable>().KnockBack(this.transform);
-                    if(meleeAttack)
+                    if(!meleeAttack)
                     {
                         DestroySelf();
                     }

@@ -39,10 +39,11 @@ public class SoundManager : Singleton<SoundManager>
     /// BGM을 설정합니다.
     /// </summary>
     /// <param name="clipName"></param>
-    public void SetBackGroundMusic(string clipName)
+    public void SetBackGroundMusic(string clipName, bool isLoop = true)
     {
         localAudio.Stop();
         localAudio.clip = clips[clipName];
+        localAudio.loop = isLoop;
         localAudio.Play();
     }
 }

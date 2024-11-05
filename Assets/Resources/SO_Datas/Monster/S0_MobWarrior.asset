@@ -15,8 +15,9 @@ MonoBehaviour:
   health: 40
   speed: 0.8
   attackDelay: 0.85
-  attackDamage: 15
+  attackDamage: 5
   attackRange: 0.4
   detectiveLength: 3
   isRangedWeapon: 0
-  projectileName: 
+  projectileName: DeathSlashProjectile
+  projectileSound: AttackWarrior

@@ -5,14 +5,6 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
-
-public enum MOBSTATE
-{
-    MOVE,
-    ATTACK,
-    DEAD,
-}
 
 public class Monster : MonoBehaviour, IDamageable, IRangable
 {
@@ -28,7 +20,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     private Animator animator;
     private CircleCollider2D circleCollider;
     private Rigidbody rb;
-    private MOBSTATE state = MOBSTATE.MOVE;
+    private Defines.MOBSTATE state = Defines.MOBSTATE.MOVE;
 
     private GameObject targetObject;//현재 주시되는
     private GameObject detectObject;//현재 감지된
@@ -49,18 +41,18 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         rb = GetComponentInChildren<Rigidbody>();
         MobInit();
     }
-
     private void Update()
     {
         switch (state)
         {
-            case MOBSTATE.MOVE:
+            case Defines.MOBSTATE.MOVE:
                 UpdateMove();
                 break;
-            case MOBSTATE.ATTACK:
+            case Defines.MOBSTATE.ATTACK:
                 UpdateAttack();
                 break;
-            case MOBSTATE.DEAD:
+            case Defines.MOBSTATE.DEAD:
+                //TODO : AFTER DEAD
                 break;
         }
     }
@@ -77,7 +69,6 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         damagedAnimId = Animator.StringToHash("isDamaged");
         deadAnimId = Animator.StringToHash("isDead");
 
-        //TODO : goal, player
         playerObject = CharacterManager.Instance.Player.gameObject;
         destObject = objects.ToList().Find(obj => obj.name == "Goal");
         health = data.health;
@@ -93,19 +84,19 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         if (GetDestLength() <= data.attackRange + xFixable)
         {
             attackTimer = data.attackDelay;
-            SetState(MOBSTATE.ATTACK);
+            SetState(Defines.MOBSTATE.ATTACK);
         } 
     }
     private void UpdateAttack()
     {
         if(targetObject == null)
         {
-            SetState(MOBSTATE.MOVE);
+            SetState(Defines.MOBSTATE.MOVE);
             return;
         }      
         else if(targetObject != null)
         {
-            if (GetDestLength() > data.attackRange + xFixable) SetState(MOBSTATE.MOVE);
+            if (GetDestLength() > data.attackRange + xFixable) SetState(Defines.MOBSTATE.MOVE);
             rb.transform.LookAt(targetObject.transform);
         }
 
@@ -141,35 +132,30 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         agent.SetDestination(target.position);
         agent.isStopped = false;
     }
-    private void SetState(MOBSTATE type)
+    private void SetState(Defines.MOBSTATE type)
     {
         agent.isStopped = true;
         state = type;
     }
     private void AttackToTarget()
     {
-        if (targetObject == null) return;
-        
-        if(!data.isRangedWeapon)
-        {
-            SoundManager.Instance.PlayOneShotPoint("AttackRougue", transform.position);
-            targetObject.GetComponent<IDamageable>().TakeDamage(data.attackDamage);
-        }
-        else
-        {
-            SoundManager.Instance.PlayOneShotPoint("AttackMage", transform.position);
-            GameObject temp = PoolManager.Instance.SpawnProjectile(data.projectileName);
-            temp.transform.position = this.gameObject.transform.position;
-            string[] tags = GetComponentInChildren<Detector>().TagNames;
-            temp.GetComponent<ProjectileController>().Init(targetObject, GetComponentInChildren<Detector>().TagNames, data.attackDamage);
-        }
+        if (targetObject == null) return;      
+        SoundManager.Instance.PlayOneShotPoint(data.projectileSound, transform.position);
+        GameObject temp = PoolManager.Instance.SpawnProjectile(data.projectileName);
+        temp.transform.position = this.gameObject.transform.position + (Vector3.up * 0.4f);
+        string[] tags = GetComponentInChildren<Detector>().TagNames;
+        temp.GetComponent<ProjectileController>().Init
+        (targetObject, 
+        GetComponentInChildren<Detector>().TagNames, 
+        data.attackDamage, 
+        !data.isRangedWeapon);
     }
     private IEnumerator DespawnObject()
     {
-        SetState(MOBSTATE.DEAD);
+        SetState(Defines.MOBSTATE.DEAD);
         animator.SetTrigger(deadAnimId);
         yield return new WaitForSeconds(2f);
-        SetState(MOBSTATE.MOVE);
+        SetState(Defines.MOBSTATE.MOVE);
         health = data.health;
         detectObject = null;
         PoolManager.Instance.Despawn(this.gameObject);
