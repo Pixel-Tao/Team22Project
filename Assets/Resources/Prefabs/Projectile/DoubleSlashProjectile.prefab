@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3421661004989784189}
   - component: {fileID: 5774359768763159674}
   - component: {fileID: 7505554885761120279}
-  m_Layer: 0
+  - component: {fileID: -1597662462024165164}
+  m_Layer: 9
   m_Name: DoubleSlashProjectile
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
@@ -69,6 +70,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   deadTime: 0.5
+--- !u!54 &-1597662462024165164
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355716815426836643}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1001 &6701931505465708309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80,6 +108,10 @@ PrefabInstance:
     - target: {fileID: 3600389243222657682, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d, type: 3}
       propertyPath: m_Name
       value: Double Slash Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600389243222657682, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4238138844443951365, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -120,6 +152,14 @@ PrefabInstance:
     - target: {fileID: 4238138844443951365, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936908092126958425, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8529673643228393185, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

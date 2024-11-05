@@ -5,12 +5,17 @@ namespace Assets.Scripts.Utils
 {
     internal class SpawnMachine : MonoBehaviour
     {
-        private Defines.SPAWNSTATE state = Defines.SPAWNSTATE.WORKING;
+        private Defines.SPAWNSTATE state = Defines.SPAWNSTATE.WAITING;
         public List<string> monsters;
         public float maxSpawnArea;
         public float minSpawnScale;
         public float currentSpawnScale;
         private float localTimer;
+
+        private void Start()
+        {
+            RandomSpawnMobs();
+        }
 
         private void Update()
         {

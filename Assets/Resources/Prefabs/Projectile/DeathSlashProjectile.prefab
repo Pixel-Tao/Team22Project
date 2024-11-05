@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2821935556370433202}
   - component: {fileID: 6604538191397341698}
   - component: {fileID: 4062780909084417407}
-  m_Layer: 0
+  - component: {fileID: -8079635446464758172}
+  m_Layer: 9
   m_Name: DeathSlashProjectile
-  m_TagString: PlayerProjectile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,6 +70,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   deadTime: 0.5
+--- !u!54 &-8079635446464758172
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613739473825979581}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &5243496073071729371
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +108,7 @@ GameObject:
   - component: {fileID: 3163953899389070699}
   - component: {fileID: 1115310909707811882}
   - component: {fileID: 1458496552520212090}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SlashParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4970,7 +4998,7 @@ GameObject:
   - component: {fileID: 9179225645685359181}
   - component: {fileID: 1789577197896776987}
   - component: {fileID: 4362612297314338867}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shockwave 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9858,7 +9886,7 @@ GameObject:
   - component: {fileID: 1771824722379220357}
   - component: {fileID: 4996882729324512908}
   - component: {fileID: 1143215919436013473}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}

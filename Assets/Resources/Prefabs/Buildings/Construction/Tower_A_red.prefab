@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6707436817553212844}
-  - component: {fileID: 437814725381772387}
   - component: {fileID: 4532164685369394705}
+  - component: {fileID: 437814725381772387}
   - component: {fileID: 2605744425598076631}
   - component: {fileID: 3915020111622142539}
-  m_Layer: 8
-  m_Name: Tower_A_Red
+  m_Layer: 0
+  m_Name: Tower_A_red
   m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,6 +37,18 @@ Transform:
   - {fileID: 7064141584985463920}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4532164685369394705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4370932658370238653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cf3edc4edf1b74d88852b40f1ed0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &437814725381772387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,18 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildedSO: {fileID: 11400000, guid: 6570160c7ea093d43956aeaf8258ad76, type: 2}
---- !u!114 &4532164685369394705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4370932658370238653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8cf3edc4edf1b74d88852b40f1ed0a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2605744425598076631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 7064141584985463920}
   - component: {fileID: 1521092073554644191}
   - component: {fileID: 3329832225359070574}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 788855523704253984, guid: 66d7c130bcbd836498f90ae3e0b1e17d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66d7c130bcbd836498f90ae3e0b1e17d, type: 3}
       propertyPath: m_Name
@@ -223,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66d7c130bcbd836498f90ae3e0b1e17d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

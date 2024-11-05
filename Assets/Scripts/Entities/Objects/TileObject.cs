@@ -77,7 +77,7 @@ public class TileObject : InteractableObject, IInteractable
 
         Debug.Log(GetInteractPrompt());
         BuildPopupUI popup = UIManager.Instance.ShowPopupUI<BuildPopupUI>();
-        popup.SelectedTile(this);
+        popup.SelectedTile(this);   
     }
 
     public void OnBuildingRotate()
