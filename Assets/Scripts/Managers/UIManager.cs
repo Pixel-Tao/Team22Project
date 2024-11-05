@@ -155,5 +155,20 @@ public class UIManager : Singleton<UIManager>
         SceneUI = null;
     }
 
-
+    public void FadeIn(float delay = 1, bool isAutoClose = true, Action fadedCallback = null)
+    {
+        var fade = ShowPopupUI<FadeInOutPopupUI>();
+        fade.FadeIn(delay, isAutoClose, fadedCallback);
+    }
+    public void FadeOut(float delay = 1, bool isAutoClose = true, Action fadedCallback = null)
+    {
+        var fade = ShowPopupUI<FadeInOutPopupUI>();
+        fade.FadeOut(delay, isAutoClose, fadedCallback);
+    }
+    public void FadeClose()
+    {
+        var fade = FindPopup<FadeInOutPopupUI>();
+        if (fade != null)
+            fade.FadeOut();
+    }
 }

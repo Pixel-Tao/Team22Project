@@ -8,7 +8,12 @@ public class TitleSceneUI : UIScene
 
     public void StartButton()
     {
-        SceneManager.LoadScene("GameScene");
+        UIManager.Instance.FadeOut(2, false,() =>
+        {
+            SceneManager.LoadScene("GameScene");
+            UIManager.Instance.SingletonDestroy();
+            UIManager.Instance.FadeClose();
+        });
     }
 
     public void OptionButton()

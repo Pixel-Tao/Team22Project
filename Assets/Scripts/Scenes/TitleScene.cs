@@ -1,16 +1,18 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TitleScene : SceneBase
 {
+    private GameObject titleCameraTrack;
+    private GameObject worldMap;
+
     protected override void OnSceneLoad()
     {
         Debug.Log("TitleScene OnSceneLoad");
 
         UIManager.Instance.ShowSceneUI<TitleSceneUI>();
-        GameObject mapParent = new GameObject("MapParent");
-        mapParent.transform.position = Vector3.zero;
-        GameObject map = ResourceManager.Instance.Instantiate("WorldMap", mapParent.transform);
-        map.transform.localPosition = Vector3.zero;
+        worldMap = ResourceManager.Instance.Instantiate("WorldMap");
+        titleCameraTrack = ResourceManager.Instance.Instantiate("TitleCameraTrack");
     }
 
     protected override void OnSceneUnloaded()
