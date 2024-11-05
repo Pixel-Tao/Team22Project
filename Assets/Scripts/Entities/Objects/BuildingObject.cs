@@ -138,19 +138,11 @@ public class BuildingObject : MonoBehaviour
 
     public void Destroy()
     {
-        if (TileObj != null && buildedSO.buildType == BuildType.Building)
+        if (BuildingSO?.buildingType == BuildingType.House_A_Red)
         {
-            if (BuildingSO.buildingType == BuildingType.House_A_Red)
-            {
-                // 만약에 최대 인구수 증가시키는 기능이 있다면 최대 인구수와 가용 인구수 차감 필요함
-                GameManager.Instance.SubtractMaxPeople(BuildingSO.providedPopulation);
-                TileObj.building = null;
-            }
-        }
-        else if (TileObj != null && buildedSO.buildType == BuildType.NaturalObject)
-        {
-            TileObj.naturalBuilding.gameObject.SetActive(true);
-            SetTile(TileObj);
+            // 만약에 최대 인구수 증가시키는 기능이 있다면 최대 인구수와 가용 인구수 차감 필요함
+            GameManager.Instance.SubtractMaxPeople(BuildingSO.providedPopulation);
+            TileObj.building = null;
         }
 
         PoolManager.Instance.Despawn(gameObject);
