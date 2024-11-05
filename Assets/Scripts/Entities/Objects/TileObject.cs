@@ -120,18 +120,24 @@ public class TileObject : InteractableObject, IInteractable
         return TileSO?.tileType == TileType.Ground && building == null;
     }
 
+    /// <summary>
+    /// 자원 타일인지
+    /// </summary>
+    /// <returns></returns>
     public bool IsNaturalObject()
     {
         return naturalBuilding != null && naturalBuilding.buildedSO.buildType == BuildType.NaturalObject;
     }
 
     /// <summary>
-    /// 건물이 있지만 건물이 자연물이 아니면 true 아니면 false
+    /// 자원 타일이면 자원 복원
     /// </summary>
-    /// <returns></returns>
-    public bool IsDestroyable()
+    public void ReturnNaturalObject()
     {
-        return building != null && building.buildedSO.buildType == BuildType.Building;
+        if (!IsNaturalObject()) return;
+
+        naturalBuilding.gameObject.SetActive(true);
+        naturalBuilding.SetTile(this);
     }
 
     /// <summary>
@@ -176,23 +182,23 @@ public class TileObject : InteractableObject, IInteractable
         return false;
     }
 
-    public BuildingType GetBuildingType(NaturalObjectType noType)
+    public bool IsResourceBuilding(BuildingType buildingType)
     {
-        switch (noType)
+        switch (buildingType)
         {
-            case Defines.NaturalObjectType.GrainLand:
-                return Defines.BuildingType.Windmill_Red;
-            case Defines.NaturalObjectType.LoggingArea_A:
-            case Defines.NaturalObjectType.LoggingArea_B:
-                return Defines.BuildingType.Lumbermill_Red;
-            case Defines.NaturalObjectType.MiningArea_A:
-            case Defines.NaturalObjectType.MiningArea_B:
-            case Defines.NaturalObjectType.MiningArea_C:
-                return Defines.BuildingType.Quarry_Red;
-            case Defines.NaturalObjectType.Well:
-                return Defines.BuildingType.Watermill_Red;
+            case BuildingType.Windmill_Red:
+            case BuildingType.Lumbermill_Red:
+            case BuildingType.Quarry_Red:
+            case BuildingType.Market_Red:
+            case BuildingType.Watermill_Red:
+                return true;
         }
 
-        return BuildingType.None;
+        return false;
+    }
+
+    public bool IsBuilded()
+    {
+        return building != null && building.BuildingSO?.buildType == BuildType.Building;
     }
 }

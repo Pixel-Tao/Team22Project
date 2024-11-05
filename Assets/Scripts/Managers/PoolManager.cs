@@ -1,3 +1,4 @@
+using Defines;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,9 +34,9 @@ public class PoolManager : Singleton<PoolManager>
 
         return pool.Spawn();
     }
-    public GameObject SpawnMonster(string name, Transform parent = null)
+    public GameObject SpawnMonster(MOBTYPE type, Transform parent = null)
     {
-        return Spawn($"Prefabs/Monsters/{name}", parent);
+        return Spawn($"Prefabs/Monsters/{type}", parent);
     }
     public GameObject SpawnItem(string name, Transform parent = null)
     {

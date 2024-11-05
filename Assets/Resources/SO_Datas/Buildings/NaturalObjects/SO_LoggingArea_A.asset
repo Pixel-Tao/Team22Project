@@ -19,4 +19,4 @@ MonoBehaviour:
   ProductPrefabs:
   - {fileID: 1818466247225354444, guid: 7b550d55894ffa0468f6518dce75c04b, type: 3}
   ProductiontDelay: 3
-  naturalObjectType: 0
+  naturalObjectType: 2

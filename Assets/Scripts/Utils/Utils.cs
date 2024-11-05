@@ -47,7 +47,7 @@ public class Utils
     public static string BuildingEnumToPath(NaturalObjectType naturalType, bool isPrefab, bool withoutPrefix = false)
     {
         string prefabPrefix = isPrefab ? "Prefabs/Buildings/" : "SO_Datas/Buildings/";
-        string rst = $"{(withoutPrefix ? string.Empty : prefabPrefix)}Environment/{(isPrefab ? string.Empty : "SO_")}{naturalType}";
+        string rst = $"{(withoutPrefix ? string.Empty : prefabPrefix)}NaturalObjects/{(isPrefab ? string.Empty : "SO_")}{naturalType}";
         Debug.Log(rst);
         return rst;
     }

@@ -8,6 +8,8 @@ using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private LayerMask allowCollisionLayerMask;
+
     private MovementController movement;
     private LookController look;
     private InputController input;
@@ -112,7 +114,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
+        if (collision.gameObject.layer == allowCollisionLayerMask &&
+            collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
         {
             tileObject.PlayerOnTile(true);
         }
@@ -120,7 +123,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
+        if (collision.gameObject.layer == allowCollisionLayerMask && 
+            collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
         {
             tileObject.PlayerOnTile(false);
         }
