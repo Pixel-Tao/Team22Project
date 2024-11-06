@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
-using UnityEngine.Diagnostics;
 using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
