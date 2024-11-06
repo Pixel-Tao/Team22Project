@@ -1,3 +1,4 @@
+using Assets.Scripts.UIs.Popup;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -128,6 +129,18 @@ public class InputController : MonoBehaviour
             {
                 CharacterManager.Instance.InputQuickSlotKey(value);
             }
+        }
+    }
+
+    public void OnDebug(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            ConsolePopupUI popup = UIManager.Instance.FindPopup<ConsolePopupUI>();
+            if (popup == null)
+                UIManager.Instance.ShowPopupUI<ConsolePopupUI>();
+            else
+                UIManager.Instance.ClosePopupUI(popup);
         }
     }
 }

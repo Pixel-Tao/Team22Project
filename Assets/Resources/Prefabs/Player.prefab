@@ -239,6 +239,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d81237ed-7f13-4406-b515-9aa5f381e2a4
     m_ActionName: Player/QuickSlot[/Keyboard/1,/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 816201128733226030}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnDebug
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 00a153df-28d7-43eb-b068-e4762651dcba
+    m_ActionName: Player/Debug[/Keyboard/backquote]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -467,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirePos: {fileID: 898343126129157071}
+  defaultAttackStamina: 20
 --- !u!114 &6342241989588364640
 MonoBehaviour:
   m_ObjectHideFlags: 0

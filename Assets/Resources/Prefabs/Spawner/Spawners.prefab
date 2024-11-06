@@ -121,7 +121,7 @@ MonoBehaviour:
   monsters: 020000000000000001000000
   maxSpawnArea: 1
   minSpawnScale: 20
-  currentSpawnScale: 60
+  currentSpawnScale: 120
 --- !u!1 &1261458487267024473
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   monsters: 020000000000000000000000
   maxSpawnArea: 1
   minSpawnScale: 20
-  currentSpawnScale: 100
+  currentSpawnScale: 200
 --- !u!1 &3806325408710880886
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   monsters: 000000000100000001000000
   maxSpawnArea: 1
   minSpawnScale: 30
-  currentSpawnScale: 60
+  currentSpawnScale: 120
 --- !u!1 &4435018326464091126
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
   monsters: 02000000000000000100000000000000
   maxSpawnArea: 2
   minSpawnScale: 10
-  currentSpawnScale: 20
+  currentSpawnScale: 50
 --- !u!1 &4819915765649154816
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +587,7 @@ MonoBehaviour:
   monsters: 000000000000000000000000
   maxSpawnArea: 1
   minSpawnScale: 10
-  currentSpawnScale: 60
+  currentSpawnScale: 120
 --- !u!1 &4828691967472890795
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +709,7 @@ MonoBehaviour:
   monsters: 000000000100000001000000
   maxSpawnArea: 2
   minSpawnScale: 10
-  currentSpawnScale: 20
+  currentSpawnScale: 50
 --- !u!1 &6591362841162494583
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +831,7 @@ MonoBehaviour:
   monsters: 010000000000000001000000
   maxSpawnArea: 1
   minSpawnScale: 10
-  currentSpawnScale: 60
+  currentSpawnScale: 120
 --- !u!1 &7265705287801863704
 GameObject:
   m_ObjectHideFlags: 0

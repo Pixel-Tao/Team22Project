@@ -301,4 +301,16 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
+
+    //디버그를 위한 임시기능..
+    public void AcceptConsole(string val)
+    {
+        if (val == "WOOD") AddWood(10000);
+        else if (val == "FOOD") AddFood(10000);
+        else if (val == "IRON") AddOre(10000);
+        else if (val == "GOD")
+        {
+            //TODO : GODMOD
+        }
+    }
 }
