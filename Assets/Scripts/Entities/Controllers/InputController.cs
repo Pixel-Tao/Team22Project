@@ -39,6 +39,8 @@ public class InputController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            if (GameManager.Instance.IsInteracting) return;
+
             Vector2 position = context.ReadValue<Vector2>();
             Vector2 directionFromCenter = position - screenCenter;
             direction = new Vector3(directionFromCenter.x, 0f, directionFromCenter.y).normalized;
@@ -60,9 +62,9 @@ public class InputController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
+            if (GameManager.Instance.IsInteracting) return;
             if (GameManager.Instance.IsBuildMode)
             {
-                if (GameManager.Instance.IsBuilding) return;
                 InteractEvent?.Invoke();
             }
             else
@@ -80,6 +82,7 @@ public class InputController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
+            if (GameManager.Instance.IsInteracting) return;
             if (GameManager.Instance.IsBuildMode)
             {
                 BuildingRotateEvent?.Invoke();
@@ -91,6 +94,7 @@ public class InputController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
+            if (GameManager.Instance.IsInteracting) return;
             if (!GameManager.Instance.IsBuildMode)
                 InteractEvent?.Invoke();
         }
@@ -100,7 +104,7 @@ public class InputController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            InventoryPopupUI popup = UIManager.Instance.PeekPopupUI<InventoryPopupUI>();
+            InventoryPopupUI popup = UIManager.Instance.FindPopup<InventoryPopupUI>();
             if (popup == null)
                 UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
             else

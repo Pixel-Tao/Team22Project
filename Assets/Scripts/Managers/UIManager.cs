@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
-using UnityEngine.Diagnostics;
 using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
@@ -11,6 +10,8 @@ public class UIManager : Singleton<UIManager>
 
     Stack<UIPopup> popupStack = new Stack<UIPopup>();
     Dictionary<string, UIPopup> popupDict = new Dictionary<string, UIPopup>();
+
+    public bool IsPopupOpeing => popupStack.Count > 0;
 
     public UIScene SceneUI { get; private set; }
     private GameObject root;
@@ -164,6 +165,15 @@ public class UIManager : Singleton<UIManager>
     {
         CloseAllPopupUI();
         SceneUI = null;
+    }
+
+    public void Prompt(string text = null)
+    {
+        SceneUI?.Prompt(text);
+    }
+    public void SystemMessage(string text)
+    {
+        SceneUI?.SystemMessage(text);
     }
 
     public void FadeIn(float delay = 1, bool isAutoClose = true, Action fadedCallback = null)

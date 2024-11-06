@@ -1,27 +1,69 @@
 using Defines;
-using UnityEngine.UI;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace Assets.Scripts.UIs.Popup
+public class SmithingPopupUI : UIPopup
 {
-    internal class SmithingPopupUI : UIPopup
+    [SerializeField] private NeedResourceSlot woodSlot;
+    [SerializeField] private NeedResourceSlot oreSlot;
+    [SerializeField] private NeedResourceSlot foodSlot;
+
+    private void Start()
     {
-        /*public Button createWeaponButton;
-        public Button createAromorButton;
-        public Button exitPanelButton;*/
-        public void CreateWeaponButton()
+        foreach (ResourceData resource in GameManager.Instance.ItemList.NeedResources)
         {
-            CreateButtonHelper(EquipType.Weapon);
+            switch (resource.needResourceType)
+            {
+                case ResourceType.Wood:
+                    woodSlot.SetData(resource, false);
+                    continue;
+                case ResourceType.Ore:
+                    oreSlot.SetData(resource, false);
+                    continue;
+                case ResourceType.Food:
+                    foodSlot.SetData(resource, false);
+                    continue;
+            }
+        }
+    }
+
+    public void CreateWeaponButton()
+    {
+        CreateButtonHelper(EquipType.Weapon);
+    }
+
+    public void CreateArmorButton()
+    {
+        CreateButtonHelper(EquipType.Helmet);
+    }
+
+    public void CreateButtonHelper(EquipType type)
+    {
+        if (!GameManager.Instance.UseResources(GameManager.Instance.ItemList.NeedResources))
+        {
+            UIManager.Instance.SystemMessage($"소지 자원이 부족합니다.");
+            return;
         }
 
-        public void CreateArmorButton()
-        {
-            CreateButtonHelper(EquipType.Helmet);
-        }
+        ItemSO item = GetRandomEquip(type);
 
-        public void CreateButtonHelper(EquipType type)
+        if (CharacterManager.Instance.AddItemSlotData(item))
         {
-            ItemSO item = GameManager.Instance.GetRandomEquip(type);
-            CharacterManager.Instance.AddItem(item);
+            UIManager.Instance.SystemMessage($"{item.displayName} 장비를 생성했습니다.");
         }
+        else
+        {
+            UIManager.Instance.SystemMessage($"인벤토리가 가득 찼습니다.");
+        }
+    }
+
+    public ItemSO GetRandomEquip(Defines.EquipType type)
+    {
+        if (type == EquipType.None) return null;
+        var itemList = GameManager.Instance.ItemList;
+        List<ItemSO> temp = type == EquipType.Weapon ?
+            itemList.Weapons : itemList.Helmets;
+
+        return temp[UnityEngine.Random.Range(0, temp.Count)];
     }
 }

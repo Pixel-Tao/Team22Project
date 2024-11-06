@@ -24,6 +24,9 @@ MonoBehaviour:
   combatMotionType: 3
   helmetJob: {fileID: 0}
   LeftHand: 1
+  attack: 20
+  attackSpeed: 2
+  attackScale: 2
   consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Sword
