@@ -73,6 +73,7 @@ public class TileObject : InteractableObject, IInteractable
         if (GameManager.Instance.IsBuildMode)
         {
             if (GameManager.Instance.IsInteracting) return;
+            if (IsGoal()) return;
 
             Debug.Log(GetInteractPrompt());
             BuildPopupUI popup = UIManager.Instance.ShowPopupUI<BuildPopupUI>();
@@ -116,6 +117,16 @@ public class TileObject : InteractableObject, IInteractable
     public void PlayerOnTile(bool isOn)
     {
         isPlayerOnTile = isOn;
+        DoorSwitch(isOn);
+    }
+
+    private void DoorSwitch(bool isOpen)
+    {
+        if (building?.BuildingSO?.buildType != BuildType.Building) return;
+        if (building.TryGetComponent(out DoorController door) == false) return;
+
+        if (isOpen) door.Open();
+        else door.Close();
     }
 
     /// <summary>
@@ -196,7 +207,6 @@ public class TileObject : InteractableObject, IInteractable
             case BuildingType.Windmill_Red:
             case BuildingType.Lumbermill_Red:
             case BuildingType.Quarry_Red:
-            case BuildingType.Market_Red:
             case BuildingType.Watermill_Red:
                 return true;
         }
@@ -207,5 +217,10 @@ public class TileObject : InteractableObject, IInteractable
     public bool IsBuilded()
     {
         return building != null && building.BuildingSO?.buildType == BuildType.Building;
+    }
+
+    public bool IsGoal()
+    {
+        return building != null && building.BuildingSO?.buildingType == BuildingType.Castle_Red;
     }
 }

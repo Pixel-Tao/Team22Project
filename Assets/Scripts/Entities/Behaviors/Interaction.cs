@@ -16,6 +16,7 @@ public class Interaction : MonoBehaviour
 
     [SerializeField] private bool isBuildMode;
     [SerializeField] private float checkInterval = 0.2f;
+    [SerializeField] private float ItemAttractSpeed;
     private Camera cam;
     private float time;
     public Vector2 screenAxis;
@@ -86,6 +87,7 @@ public class Interaction : MonoBehaviour
         {
             if (colliders[i].TryGetComponent(out ItemObject itemObj))
             {
+                itemObj.FollowSpeed = ItemAttractSpeed;
                 itemObj.OnInteract(transform);
                 return;
             }

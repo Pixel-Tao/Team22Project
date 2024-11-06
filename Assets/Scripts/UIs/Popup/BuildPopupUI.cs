@@ -44,6 +44,10 @@ public class BuildPopupUI : UIPopup
                 Debug.LogWarning($"Failed to load building : {buildingType}");
                 continue;
             }
+            if (buildSO.buildType == BuildType.None || buildSO.buildingType == BuildingType.None)
+            {
+                continue;
+            }
 
             slots.Add(GenerateBuildingSlot(buildSO));
         }
@@ -66,7 +70,7 @@ public class BuildPopupUI : UIPopup
         if (tileObject?.TileSO == null)
             return;
 
-        if (tileObject.IsBuilded())
+        if (tileObject.IsBuilded() && !tileObject.IsGoal())
         {
             ShowDestroySlot();
         }
