@@ -18,7 +18,7 @@ MonoBehaviour:
   modelPrefab: {fileID: 4413421181645280817, guid: d43318afd8896c24fad1670da84a2507, type: 3}
   ProductPrefabs:
   - {fileID: 1818466247225354444, guid: 7b550d55894ffa0468f6518dce75c04b, type: 3}
-  ProductiontDelay: 0
+  ProductiontDelay: 5
   buildingType: 15
   icon: {fileID: 0}
   NeedResources:

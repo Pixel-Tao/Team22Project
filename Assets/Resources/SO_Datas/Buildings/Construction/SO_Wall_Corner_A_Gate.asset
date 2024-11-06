@@ -19,7 +19,7 @@ MonoBehaviour:
   modelPrefab: {fileID: 3370877591571394604, guid: 8d25833bf3ec33c4e8294c1bf42d9e45, type: 3}
   ProductPrefabs: []
   ProductiontDelay: 0
-  buildingType: 9
+  buildingType: 10
   icon: {fileID: 0}
   NeedResources:
   - needResourceType: 1
