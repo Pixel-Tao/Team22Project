@@ -185,6 +185,7 @@ namespace Defines
 
     public enum DayCycle
     {
+        NONE,
         DAY,
         NIGHT,
     }
