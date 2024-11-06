@@ -306,11 +306,14 @@ public class GameManager : Singleton<GameManager>
     //디버그를 위한 임시기능..
     public void AcceptConsole(string val)
     {
-        if (val == "WOOD") AddWood(10000);
-        else if (val == "FOOD") AddFood(10000);
-        else if (val == "IRON") AddOre(10000);
-        else if (val == "GOD")
+        if (val?.ToUpper() == "WOOD") AddWood(10000);
+        else if (val?.ToUpper() == "FOOD") AddFood(10000);
+        else if (val?.ToUpper() == "ORE") AddOre(10000);
+        else if (val?.ToUpper() == "SHOW ME THE MONEY")
         {
+            AddWood(10000);
+            AddFood(10000);
+            AddOre(10000);
             //TODO : GODMOD
         }
     }
