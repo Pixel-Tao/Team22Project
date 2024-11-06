@@ -58,8 +58,14 @@ public class Interaction : MonoBehaviour
 
             if (hit.collider.transform.parent.TryGetComponent(out TileObject tileObj))
             {
+                if (tileObj.IsPlayerOnTile && GameManager.Instance.IsBuildMode)
+                {
+                    ClearTile();
+                    return;
+                }
+
                 float distance = Vector3.Distance(tileObj.transform.position, transform.position);
-                if (tileObj.IsPlayerOnTile || distance > buildInteractionDistance)
+                if (distance > buildInteractionDistance)
                 {
                     ClearTile();
                     return;
