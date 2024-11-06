@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2821935556370433202}
   - component: {fileID: 6604538191397341698}
   - component: {fileID: 4062780909084417407}
-  - component: {fileID: -7652384994095348060}
+  - component: {fileID: -2783409561313590951}
   m_Layer: 9
   m_Name: SlashProjectile
   m_TagString: PlayerProjectile
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   deadTime: 0.5
---- !u!54 &-7652384994095348060
+--- !u!54 &-2783409561313590951
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0

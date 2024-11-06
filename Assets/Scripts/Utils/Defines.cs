@@ -183,5 +183,10 @@ namespace Defines
         WORKING
     }
 
+    public enum DayCycle
+    {
+        DAY,
+        NIGHT,
+    }
    
 }

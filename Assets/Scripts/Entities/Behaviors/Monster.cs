@@ -143,8 +143,10 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         if (targetObject == null) return;
         SoundManager.Instance.PlayOneShotPoint(data.projectileSound, transform.position);
         GameObject temp = PoolManager.Instance.SpawnProjectile(data.projectileName);
+        
         temp.transform.position = this.gameObject.transform.position + (Vector3.up * 0.4f);
         string[] tags = GetComponentInChildren<Detector>().TagNames;
+        
         temp.GetComponent<ProjectileController>().Init
         (targetObject,
         GetComponentInChildren<Detector>().TagNames,
@@ -153,13 +155,14 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     }
     private IEnumerator DespawnObject()
     {
-        agent.enabled = false;
         SetState(Defines.MOBSTATE.DEAD);
         animator.SetTrigger(deadAnimId);
         yield return new WaitForSeconds(2f);
+        
         SetState(Defines.MOBSTATE.MOVE);
         health = data.health;
         detectObject = null;
+        agent.enabled = false;
         PoolManager.Instance.Despawn(this.gameObject);
     }
 

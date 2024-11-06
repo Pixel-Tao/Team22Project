@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3421661004989784189}
   - component: {fileID: 5774359768763159674}
   - component: {fileID: 7505554885761120279}
-  - component: {fileID: -1597662462024165164}
+  - component: {fileID: 912385067285853310}
   m_Layer: 9
   m_Name: DoubleSlashProjectile
   m_TagString: PlayerProjectile
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   deadTime: 0.5
---- !u!54 &-1597662462024165164
+--- !u!54 &912385067285853310
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
