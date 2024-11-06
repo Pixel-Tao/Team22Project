@@ -9,8 +9,10 @@ public class CharacterAnimController : MonoBehaviour
     private readonly int AttackHash = Animator.StringToHash("Attack");
     private readonly int HitHash = Animator.StringToHash("Hit");
     private readonly int DeadHash = Animator.StringToHash("IsDead");
+    private readonly int SpeedMultiplierHash = Animator.StringToHash("SpeedMultiplier");
 
     private Animator animator;
+    private float defaultAttackSpeed = 1f;
 
     private List<CharacterAnimCombatLayerType> layers;
 
@@ -68,6 +70,8 @@ public class CharacterAnimController : MonoBehaviour
             Debug.LogWarning("CurrentCombatLayerType is not set");
             return;
         }
+        
+        animator.SetFloat(SpeedMultiplierHash, defaultAttackSpeed);
         animator.SetTrigger(AttackHash);
     }
     public void HitAnim()
