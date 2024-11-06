@@ -353,6 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6365240c372e3344f92eaed1cb9469b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolDefaultCapacity: 20
+  poolMaxSize: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
