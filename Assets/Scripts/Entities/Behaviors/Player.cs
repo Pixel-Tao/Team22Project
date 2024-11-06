@@ -112,21 +112,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.transform.parent != null &&
-            collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
-        {
-            tileObject.PlayerOnTile(true);
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.transform.parent != null &&
+    //        collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
+    //    {
+    //        tileObject.PlayerOnTile(true);
+    //    }
+    //}
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.transform.parent != null &&
-            collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
-        {
-            tileObject.PlayerOnTile(false);
-        }
-    }
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.transform.parent != null &&
+    //        collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
+    //    {
+    //        tileObject.PlayerOnTile(false);
+    //    }
+    //}
 }

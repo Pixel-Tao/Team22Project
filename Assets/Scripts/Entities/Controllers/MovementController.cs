@@ -23,12 +23,11 @@ public class MovementController : MonoBehaviour
     [SerializeField][Range(0, 1)] private float backwardSpeedRatio = 0.5f;
     [SerializeField][Range(0, 1)] private float sideSpeedRatio = 0.75f;
 
-    [Header("경사각 관련")]
+    [Header("타일 확인")]
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private float maxSlopeAngle = 60f;
-    private const float RAY_DISTANCE = 1f;
-    private RaycastHit slopeHit;
-    [SerializeField] private Transform groundChecker;
+    [SerializeField] private float groundCheckInterval = 0.1f;
+    private TileObject onTile;
+    private float groundCheckTime;
 
 
     private void Awake()
@@ -36,16 +35,11 @@ public class MovementController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<CharacterAnimController>();
         condition = GetComponent<Condition>();
-        if (groundChecker == null)
-        {
-            GameObject go = new GameObject("GroundChecker");
-            go.transform.SetParent(transform);
-        }
     }
 
     private void Update()
     {
-
+        GroundCheck();
     }
 
     private void FixedUpdate()
@@ -86,21 +80,9 @@ public class MovementController : MonoBehaviour
             type = CharacterMoveStepType.Left;
         }
 
-        bool isOnSlope = IsOnSlope();
-        bool isGrounded = IsGrounded();
-
         if (rb.velocity.magnitude < maxMoveSpeed)
         {
             Vector3 velocity = dir * acceleration;
-            //if (isGrounded && isOnSlope)
-            //{
-            //    velocity = AdjustDirectionToSlope(velocity);
-            //    rb.useGravity = false;
-            //}
-            //else
-            //{
-            //    rb.useGravity = true;
-            //}
             rb.velocity += velocity;
         }
         anim.MoveAnim(type);
@@ -110,58 +92,32 @@ public class MovementController : MonoBehaviour
     {
         moveDirection = move;
     }
-    public bool IsOnSlope()
-    {
-        Ray[] rays = new Ray[4]
-        {
-            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.1f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.1f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.1f) + (transform.up * 0.1f), Vector3.down),
-        };
 
-        foreach (Ray ray in rays)
+    public void GroundCheck()
+    {
+        if (Time.time - groundCheckTime > groundCheckInterval)
         {
-            if (Physics.Raycast(ray, out slopeHit, RAY_DISTANCE, groundLayer))
+            groundCheckTime = Time.time;
+            Ray ray = new Ray(transform.position, Vector3.down);
+            if (Physics.Raycast(ray, out RaycastHit hit, 1f, groundLayer))
             {
-                var angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-                Debug.Log($"Slope Angle : {angle} ({slopeHit.normal})");
-                if(angle != 0f && angle < maxSlopeAngle)
+                if (hit.collider.transform.parent != null &&
+                    hit.collider.transform.parent.TryGetComponent(out TileObject tile))
                 {
-                    return true;
+                    if (onTile != tile)
+                    {
+                        onTile?.PlayerOnTile(false);
+                        onTile = tile;
+                        onTile?.PlayerOnTile(true);
+                    }
+                }
+                else
+                {
+                    onTile.PlayerOnTile(false);
+                    onTile = null;
                 }
             }
         }
-        return false;
-    }
-    public bool IsGrounded()
-    {
-        Vector3 boxSize = new Vector3(transform.lossyScale.x, 0.1f, transform.lossyScale.z);
-        return Physics.CheckBox(groundChecker.position, boxSize, Quaternion.identity, groundLayer);
-    }
-    public Vector3 AdjustDirectionToSlope(Vector3 direction)
-    {
-        Vector3 adjustVelocityDir = Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
-        return adjustVelocityDir;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Vector3 boxSize = new Vector3(transform.lossyScale.x, 0.1f, transform.lossyScale.z);
-        Gizmos.DrawWireCube(groundChecker.position, boxSize);
-
-        Ray[] rays = new Ray[4]
-       {
-            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.1f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.1f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.1f) + (transform.up * 0.1f), Vector3.down),
-       };
-
-        foreach (Ray ray in rays)
-        {
-            Gizmos.DrawRay(ray.origin, ray.direction * 1f);
-        }
-    }
 }

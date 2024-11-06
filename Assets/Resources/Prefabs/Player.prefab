@@ -397,8 +397,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  maxSlopeAngle: 60
-  groundChecker: {fileID: 5133606294975584129}
+  groundCheckInterval: 0.2
 --- !u!114 &6963018956725721211
 MonoBehaviour:
   m_ObjectHideFlags: 0
