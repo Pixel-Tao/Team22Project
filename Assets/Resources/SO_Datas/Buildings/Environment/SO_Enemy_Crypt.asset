@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d1ec68de3632344a0595afc27f3492, type: 3}
+  m_Name: SO_Enemy_Crypt
+  m_EditorClassIdentifier: 
+  displayName: "\uD1A0\uAD74"
+  description: "\uC545\uC758 \uADFC\uC6D0 \uC911 \uD55C\uACF3\uC785\uB2C8\uB2E4"
+  buildType: 2
+  modelPrefab: {fileID: 2304586420485631299, guid: 0bc98a2fe48039e48a71c1c63934db5f, type: 3}
+  ProductPrefabs: []
+  ProductiontDelay: 0
+  buildingType: 18
+  icon: {fileID: 0}
+  NeedResources: []
+  health: 5000
+  providedPopulation: 0
+  consumingPopulation: 0
+  attackPower: 0
+  attackRange: 0
+  attackDelay: 0
