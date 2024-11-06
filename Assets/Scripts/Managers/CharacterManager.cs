@@ -27,7 +27,7 @@ public class CharacterManager : Singleton<CharacterManager>
         this.player = player;
     }
 
-    public void AddItem(ItemSO itemSO)
+    public bool AddItem(ItemSO itemSO)
     {
         if (itemSO.itemType == Defines.ItemType.Resource)
         {
@@ -36,18 +36,20 @@ public class CharacterManager : Singleton<CharacterManager>
             {
                 case ResourceType.Wood:
                     GameManager.Instance.AddWood(10);
-                    break;
+                    return true;
                 case ResourceType.Ore:
                     GameManager.Instance.AddOre(10);
-                    break;
+                    return true;
                 case ResourceType.Food:
                     GameManager.Instance.AddFood(10);
-                    break;
+                    return true;
             }
+
+            return false;
         }
         else
         {
-            AddItemSlotData(itemSO);
+            return AddItemSlotData(itemSO);
         }
     }
 
@@ -96,7 +98,7 @@ public class CharacterManager : Singleton<CharacterManager>
         }
     }
 
-    public void AddItemSlotData(ItemSO item)
+    public bool AddItemSlotData(ItemSO item)
     {
         ItemSlotData itemSlotData = null;
         if (item.isStackable)
@@ -108,9 +110,17 @@ public class CharacterManager : Singleton<CharacterManager>
         {
             itemSlotData = GetEmptySlotData();
         }
+
+        if (itemSlotData == null)
+        {
+            Debug.LogWarning("ItemSlot is Full");
+            return false;
+        }
+
         itemSlotData.itemSO = item;
         itemSlotData.itemCount += 1;
         OnItemSlotDataChanged?.Invoke(itemSlotData);
+        return true;
     }
     public ItemSlotData GetItemSlotData(int index)
     {

@@ -12,6 +12,8 @@ public class UIManager : Singleton<UIManager>
     Stack<UIPopup> popupStack = new Stack<UIPopup>();
     Dictionary<string, UIPopup> popupDict = new Dictionary<string, UIPopup>();
 
+    public bool IsPopupOpeing => popupStack.Count > 0;
+
     public UIScene SceneUI { get; private set; }
     private GameObject root;
     public GameObject Root
@@ -164,6 +166,11 @@ public class UIManager : Singleton<UIManager>
     {
         CloseAllPopupUI();
         SceneUI = null;
+    }
+
+    public void Prompt(string text = null)
+    {
+        SceneUI.Prompt(text);
     }
 
     public void FadeIn(float delay = 1, bool isAutoClose = true, Action fadedCallback = null)

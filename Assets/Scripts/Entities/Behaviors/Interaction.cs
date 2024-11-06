@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-    public event Action<string> PromptChangedEvent;
 
     [Header("건설모드")]
     [SerializeField] private float buildInteractionDistance = 3f;
@@ -110,14 +109,14 @@ public class Interaction : MonoBehaviour
         ClearTile();
         if (tile == null) return;
         currentTile = tile;
-        PromptChangedEvent?.Invoke(currentTile.GetInteractPrompt());
+        UIManager.Instance.Prompt(currentTile?.GetInteractPrompt());
     }
 
     private void ClearTile()
     {
         currentTile?.UnFlash();
         currentTile = null;
-        PromptChangedEvent?.Invoke(string.Empty);
+        UIManager.Instance.Prompt();
     }
 
     public void BuildingRotate()

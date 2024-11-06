@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530617581171955084, guid: 1e90fb2f92da45f4b9676aa853d8f374, type: 3}
       propertyPath: m_text
-      value: Build
+      value: "\uAC74\uC124"
       objectReference: {fileID: 0}
     - target: {fileID: 7195011874627378042, guid: 1e90fb2f92da45f4b9676aa853d8f374, type: 3}
       propertyPath: m_Pivot.x

@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     public event Action<int> OnFoodCountChanged;
 
     public bool IsBuildMode { get; private set; } = false;
-    public bool IsBuilding { get; private set; } = false;
+    public bool IsInteracting => UIManager.Instance.IsPopupOpeing;
 
     public Goal Goal { get; private set; }
 
@@ -41,10 +41,6 @@ public class GameManager : Singleton<GameManager>
             // 건설모드가 아닐때 카메라 시점 변경
             CharacterManager.Instance.Player.NormalMode();
         }
-    }
-    public void ToggleBuilding()
-    {
-        IsBuilding = !IsBuilding;
     }
     public override void Init()
     {
