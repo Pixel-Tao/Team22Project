@@ -30,6 +30,8 @@ namespace Assets.Scripts.Entities.Behaviors
         {
             if(currentTarget != null && currentTarget.activeSelf)
             {
+                if (currentTarget.TryGetComponent<Monster>(out Monster mob) && mob.Health <= 0) return;
+
                 localTimer += Time.deltaTime;
                 if (localTimer > attackDelay && 
                     ((currentTarget.transform.position - this.gameObject.transform.position).magnitude <= attackRange))

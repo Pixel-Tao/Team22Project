@@ -32,6 +32,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     {
         get { return data; }
     }
+    public float Health { get { return health; } }
 
     #region UNITY EVENTS
     void Start()
