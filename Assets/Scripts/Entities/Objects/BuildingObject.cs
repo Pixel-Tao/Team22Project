@@ -56,6 +56,11 @@ public class BuildingObject : MonoBehaviour
 
     }
 
+    public void StatReset()
+    {
+        condition?.Init();
+    }
+
     public string GetInfo()//외부에서 호출할 함수
     {
         str = $"{buildedSO.displayName}\n{buildedSO.description}\n";
