@@ -24,7 +24,7 @@ public class GameScene : SceneBase
         CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
         GameObject go = ResourceManager.Instance.Instantiate("WorldMap");
         NavMeshSurface navMeshSurface = go.GetComponent<NavMeshSurface>();
-        navMeshSurface.BuildNavMesh();
+        //navMeshSurface.BuildNavMesh();
         //SoundManager.Instance.SetBackGroundMusic("BGM");
     }
     private void UISetting()
