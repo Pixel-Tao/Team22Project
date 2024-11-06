@@ -19,7 +19,7 @@ MonoBehaviour:
   ProductPrefabs: []
   ProductiontDelay: 0
   buildingType: 8
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e215f29b3fb0388429c3742f3eb849c2, type: 3}
   NeedResources:
   - needResourceType: 0
     amount: 50

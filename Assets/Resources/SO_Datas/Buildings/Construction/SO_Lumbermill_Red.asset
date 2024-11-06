@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 1818466247225354444, guid: 7b550d55894ffa0468f6518dce75c04b, type: 3}
   ProductiontDelay: 0
   buildingType: 15
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: eac74c334268127488bcab0ea9261cdc, type: 3}
   NeedResources:
   - needResourceType: 0
     amount: 50
