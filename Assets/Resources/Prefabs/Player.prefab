@@ -356,6 +356,7 @@ MonoBehaviour:
     m_Bits: 128
   isBuildMode: 1
   checkInterval: 0.2
+  ItemAttractSpeed: 3
   screenAxis: {x: 0, y: 0}
   currentTile: {fileID: 0}
 --- !u!114 &1437048438874421935

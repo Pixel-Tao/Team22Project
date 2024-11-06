@@ -122,8 +122,7 @@ public class TileObject : InteractableObject, IInteractable
 
     private void DoorSwitch(bool isOpen)
     {
-        if (building == null) return;
-        if (building.BuildingSO.buildType != BuildType.Building) return;
+        if (building?.BuildingSO?.buildType != BuildType.Building) return;
         if (building.TryGetComponent(out DoorController door) == false) return;
 
         if (isOpen) door.Open();
