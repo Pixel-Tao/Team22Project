@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1522499314131567292}
   - component: {fileID: -542715483923683021}
   - component: {fileID: 4541796461050175788}
+  - component: {fileID: 2999345452573534873}
   m_Layer: 8
   m_Name: Wall_Corner_A_Gate
   m_TagString: Structure
@@ -60,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cf3edc4edf1b74d88852b40f1ed0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curHealth: 0
 --- !u!65 &4541796461050175788
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81,6 +83,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8, y: 1, z: 1.7}
   m_Center: {x: 0.1, y: 0.5, z: -0.3}
+--- !u!114 &2999345452573534873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370877591571394604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d89a2772669aa34e85732a8e6f4138b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftDoor: {fileID: 6265537627947482630}
+  leftDoorOpenAngle: 90
+  rightDoor: {fileID: 4786881884072636612}
+  rightDoorOpenAngle: -90
 --- !u!1001 &444888124699893477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145,6 +163,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5827418373216133347, guid: 6d2a2afcce65edf4f94be1563035393e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827418373216133347, guid: 6d2a2afcce65edf4f94be1563035393e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827418373216133347, guid: 6d2a2afcce65edf4f94be1563035393e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827418373216133347, guid: 6d2a2afcce65edf4f94be1563035393e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -153,5 +187,15 @@ PrefabInstance:
 --- !u!4 &118841921496660238 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6d2a2afcce65edf4f94be1563035393e, type: 3}
+  m_PrefabInstance: {fileID: 444888124699893477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4786881884072636612 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4304626702071353823, guid: 6d2a2afcce65edf4f94be1563035393e, type: 3}
+  m_PrefabInstance: {fileID: 444888124699893477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6265537627947482630 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5827418373216133347, guid: 6d2a2afcce65edf4f94be1563035393e, type: 3}
   m_PrefabInstance: {fileID: 444888124699893477}
   m_PrefabAsset: {fileID: 0}

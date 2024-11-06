@@ -25,7 +25,7 @@ MonoBehaviour:
   helmetJob: {fileID: 0}
   LeftHand: 0
   attack: 10
-  attackSpeed: 0
+  attackSpeed: 0.5
   attackScale: 1.2
   consumables: []
   dropItemPrefab: {fileID: 0}

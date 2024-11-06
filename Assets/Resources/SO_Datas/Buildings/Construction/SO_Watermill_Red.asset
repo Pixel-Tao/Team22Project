@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uBB3C\uB808\uBC29\uC544"
   description: "\uBB3C\uC744 \uC790\uB3D9 \uD68D\uB4DD\uD569\uB2C8\uB2E4."
-  buildType: 1
+  buildType: 0
   modelPrefab: {fileID: 6787804297344469204, guid: 2e86c84aba9cd7742b4ecf0a7f469e56, type: 3}
   ProductPrefabs:
   - {fileID: 9220331825408845403, guid: c46e6bc519a65ef429ffa129f827a57d, type: 3}
-  ProductiontDelay: 0
+  ProductiontDelay: 5
   buildingType: 12
   icon: {fileID: 0}
   NeedResources:
