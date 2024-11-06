@@ -22,11 +22,18 @@ MonoBehaviour:
   equipType: 0
   equipPrefab: {fileID: 0}
   combatMotionType: 0
+  helmetJob: {fileID: 0}
+  LeftHand: 0
+  attack: 0
+  attackSpeed: 0
+  attackScale: 0
+  attackStamina: 0
   consumables:
   - consumeableType: 4
-    amount: 50
-  - consumeableType: 5
-    amount: 30
+    amount: 200
   dropItemPrefab: {fileID: 1428717543096977886, guid: 49ed514d2faacd842a42aab6fe89169b, type: 3}
   childPath: 
   resourceType: 0
+  needResources:
+  - needResourceType: 3
+    amount: 50

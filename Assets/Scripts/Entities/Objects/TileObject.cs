@@ -111,6 +111,7 @@ public class TileObject : InteractableObject, IInteractable
         BuildingObject buildingObj = go.GetComponent<BuildingObject>();
         buildingObj.buildedSO = buildingSO;
         buildingObj.SetTile(this);
+        buildingObj.StatReset();
         return true;
     }
 

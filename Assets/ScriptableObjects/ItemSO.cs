@@ -25,6 +25,7 @@ public class ItemSO : InteractableSO
     public float attack;
     public float attackSpeed;
     public float attackScale;
+    public float attackStamina;
 
     [Header("소비")]
     public List<ConsumableData> consumables;
@@ -33,4 +34,8 @@ public class ItemSO : InteractableSO
 
     [Header("리소스")]
     public ResourceType resourceType;
+
+    [Header("생성에 필요한 자원량(int)")]
+    public ResourceData[] needResources;
+
 }

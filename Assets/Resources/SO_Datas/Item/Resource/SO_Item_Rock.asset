@@ -22,7 +22,14 @@ MonoBehaviour:
   equipType: 0
   equipPrefab: {fileID: 0}
   combatMotionType: 0
+  helmetJob: {fileID: 0}
+  LeftHand: 0
+  attack: 0
+  attackSpeed: 0
+  attackScale: 0
+  attackStamina: 0
   consumables: []
-  dropItemPrefab: {fileID: 9220331825408845403, guid: c46e6bc519a65ef429ffa129f827a57d, type: 3}
+  dropItemPrefab: {fileID: 8036013169813756631, guid: 4b75885c578bfec4f9684b9b8cb7469b, type: 3}
   childPath: Rock
   resourceType: 1
+  needResources: []

@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: SO_Wall_Corner_A_Gate
   m_EditorClassIdentifier: 
   displayName: "\uC131\uBB38A(\uACE1\uC120)"
-  description: "\uC5EC\uB2EB\uC774 \uAC00\uB2A5\uD560 \uBB38\uC785\uB2C8\uB2E4 \uC544\uC9C1
-    \uC548\uC5F4\uB9B0\uB2E4\uB294 \uB73B\uC774\uC8E0"
+  description: "\uC5EC\uB2EB\uAE30 \uAC00\uB2A5\uD55C \uC131\uBB38 \uC785\uB2C8\uB2E4."
   buildType: 1
   modelPrefab: {fileID: 3370877591571394604, guid: 8d25833bf3ec33c4e8294c1bf42d9e45, type: 3}
   ProductPrefabs: []
   ProductiontDelay: 0
   buildingType: 10
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 3348639a49b23cc499eafdd54712943d, type: 3}
   NeedResources:
   - needResourceType: 1
     amount: 100

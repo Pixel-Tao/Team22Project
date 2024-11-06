@@ -77,7 +77,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     {
         float playerLength = (playerObject.transform.position - transform.position).magnitude;
 
-        if (detectObject == null) SetTarget(playerLength < data.detectiveLength ? playerObject.transform : destObject.transform);
+        if (detectObject == null || !detectObject.activeSelf) SetTarget(playerLength < data.detectiveLength ? playerObject.transform : destObject.transform);
         else SetTarget(detectObject.transform);
 
         xFixable = targetObject.TryGetComponent<BoxCollider>(out BoxCollider temp) ? temp.size.x / 2 : 0;
@@ -89,6 +89,12 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     }
     private void UpdateAttack()
     {
+        if (detectObject != null && !detectObject.activeSelf)
+        {
+            targetObject = null;
+            detectObject = null;
+        }
+        
         if (targetObject == null)
         {
             SetState(Defines.MOBSTATE.MOVE);

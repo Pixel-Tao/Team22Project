@@ -8,6 +8,7 @@ public class BuildingObject : MonoBehaviour
     public TileObject TileObj { get; private set; }
 
     public BuildingSO BuildingSO => buildedSO as BuildingSO;
+    public BuildNaturalObjectSO BuildNaturalObjectSO => buildedSO as BuildNaturalObjectSO;
     public int ProvidedPopulation => BuildingSO?.providedPopulation ?? 0;
     public int ConsumingPopulation => GetCumsumingPopulation();
 
@@ -15,7 +16,6 @@ public class BuildingObject : MonoBehaviour
     private string rightClickMessage => GameManager.Instance.IsBuildMode ? "[마우스 우클릭 시 건물 회전]" : string.Empty;
     private string interactMessage => !GameManager.Instance.IsBuildMode ? "[E 키를 눌러 상호작용]" : string.Empty;
     private string attackMessage => !GameManager.Instance.IsBuildMode ? "[공격하여 아이템 획득]" : string.Empty;
-
 
     private int GetCumsumingPopulation()
     {
@@ -36,6 +36,15 @@ public class BuildingObject : MonoBehaviour
         condition = GetComponent<BuildingCondition>();
     }
 
+    private void Start()
+    {
+        if (BuildingSO?.buildingType == BuildingType.Castle_Red)
+        {
+            UpdatePeople();
+        }
+    }
+
+
     public void SetTile(TileObject tile)
     {
         TileObj = tile;
@@ -47,11 +56,14 @@ public class BuildingObject : MonoBehaviour
 
     }
 
+    public void StatReset()
+    {
+        condition?.Init();
+    }
+
     public string GetInfo()//외부에서 호출할 함수
     {
         str = $"{buildedSO.displayName}\n{buildedSO.description}\n";
-        str = string.Empty;
-
         if (BuildingSO != null)
         {
             switch (BuildingSO.buildingType)
@@ -176,7 +188,7 @@ public class BuildingObject : MonoBehaviour
             || BuildingSO?.buildingType == BuildingType.House_A_Red
             )
         {
-            GameManager.Instance.SubtractMaxPeople(BuildingSO.providedPopulation);
+            GameManager.Instance.AddMaxPeople(BuildingSO.providedPopulation);
         }
     }
 

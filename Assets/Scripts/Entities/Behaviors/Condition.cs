@@ -61,7 +61,12 @@ public class Condition : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         SoundManager.Instance.PlayOneShot("Damaged");
-        currentStat.health -= Mathf.Clamp(damage, 0, currentStat.maxHealth);
+        SubtractHealth(damage);
+    }
+
+    public void SubtractHealth(float amount)
+    {
+        currentStat.health -= Mathf.Clamp(amount, 0, currentStat.maxHealth);
         HealthChangedEvent?.Invoke(currentStat.health, currentStat.maxHealth);
         if (currentStat.health <= 0)
         {
@@ -91,6 +96,9 @@ public class Condition : MonoBehaviour, IDamageable
     public void Hungry(float amount)
     {
         currentStat.hunger = Mathf.Clamp(currentStat.hunger - amount, 0, currentStat.maxHunger);
+        if (currentStat.hunger <= 0)
+            SubtractHealth(amount);
+
         HungerChangedEvent?.Invoke(currentStat.hunger, currentStat.maxHunger);
     }
 
@@ -114,11 +122,11 @@ public class Condition : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (currentStat.passiveHunger > 0)
+        if (currentStat.passiveHunger >= 0)
             Hungry(currentStat.passiveHunger * Time.deltaTime);
         if (currentStat.passiveThirst > 0)
             Thirsty(currentStat.passiveThirst * Time.deltaTime);
-        if (currentStat.passiveStamina > 0)
+        if (currentStat.passiveStamina > 0 && currentStat.thirst > 0)
             StaminaRecovery(currentStat.passiveStamina * Time.deltaTime);
     }
 
@@ -126,6 +134,9 @@ public class Condition : MonoBehaviour, IDamageable
     {
         // TODO : 사망처리
         Debug.Log("Die");
+        transform.position = Vector3.zero;
+        FullRecovery();
+        TakeDamage(CurrentStat.maxHealth / 2);
     }
 
     public void KnockBack(Transform dest)

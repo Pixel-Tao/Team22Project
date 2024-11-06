@@ -19,6 +19,39 @@ public class BuildingProduction : MonoBehaviour
         delay = building.buildedSO.ProductiontDelay;
     }
 
+    private void Update()
+    {
+        localTimer += Time.deltaTime;
+        if (localTimer > delay)
+        {
+            if (building.buildedSO.buildType == Defines.BuildType.Building)
+            {
+                BuildingSO buildingSO = building.buildedSO as BuildingSO;
+                if (buildingSO == null)
+                    return;
+
+                switch (buildingSO.buildingType)
+                {
+                    case Defines.BuildingType.Windmill_Red:
+                        CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Food));
+                        break;
+                    case Defines.BuildingType.Lumbermill_Red:
+                        CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Wood));
+                        break;
+                    case Defines.BuildingType.Quarry_Red:
+                        CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Ore));
+                        break;
+                    //case Defines.BuildingType.Market_Red:
+                    //    MakeProduct();
+                    //break;
+                    default:
+                        break;
+                }
+            }
+            localTimer = 0;
+        }
+    }
+
     private ItemSO CreateTempItem(Defines.ResourceType type)
     {
         ItemSO temp = new ItemSO();
@@ -30,7 +63,22 @@ public class BuildingProduction : MonoBehaviour
     {
         for (int i = 0; i < building.buildedSO.ProductPrefabs.Length; i++)
         {
-            GameObject obj = Instantiate(building.buildedSO.ProductPrefabs[i], transform);
+            GameObject itemPrefab = building.buildedSO.ProductPrefabs[i];
+            ItemObject itemObj = itemPrefab.GetComponent<ItemObject>();
+            if (itemObj == null)
+                return;
+
+            ItemSO itemSO = itemObj.data as ItemSO;
+            if (itemSO == null) return;
+
+            if (itemSO.needResources.Length > 0
+                && GameManager.Instance.UseResources(itemSO.needResources) == false)
+            {
+                UIManager.Instance.SystemMessage("자원이 부족합니다.");
+                return;
+            }
+
+            GameObject obj = Instantiate(itemSO.dropItemPrefab, transform);
             float axisX = Random.Range(-1f, 1f);
             float axisZ = Random.Range(-1f, 1f);
             obj.transform.position = this.gameObject.transform.position;
@@ -45,8 +93,13 @@ public class BuildingProduction : MonoBehaviour
     {
         if (other.CompareTag("PlayerProjectile"))
         {
-            SoundManager.Instance.PlayOneShotPoint("HitResource", transform.position);
-            MakeProduct();
+            if (building?.buildedSO?.buildType == Defines.BuildType.NaturalObject
+                || building?.BuildingSO?.buildingType == Defines.BuildingType.Market_Red)
+            {
+                SoundManager.Instance.PlayOneShotPoint("HitResource", transform.position);
+                MakeProduct();
+
+            }
         }
     }
 }

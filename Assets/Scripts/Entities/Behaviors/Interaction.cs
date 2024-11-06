@@ -34,6 +34,7 @@ public class Interaction : MonoBehaviour
         if (isBuildMode != GameManager.Instance.IsBuildMode)
         {
             isBuildMode = GameManager.Instance.IsBuildMode;
+            ClearTile();
         }
 
         if (Time.time - time >= checkInterval)
@@ -70,6 +71,8 @@ public class Interaction : MonoBehaviour
                     SetTile(tileObj);
                     if (GameManager.Instance.IsBuildMode)
                         currentTile.Flash();
+                    else
+                        currentTile.UnFlash();
                     return;
                 }
             }
@@ -106,15 +109,24 @@ public class Interaction : MonoBehaviour
 
     private void SetTile(TileObject tile)
     {
-        if (currentTile == tile) return;
+        if (currentTile != null && currentTile == tile)
+        {
+            string prompt = $"{tile?.GetInteractPrompt()}";
+            UIManager.Instance.Prompt(prompt);
+        }
+        else if (tile == null)
+        {
+            ClearTile();
+        }
+        else
+        {
+            if (GameManager.Instance.IsBuildMode)
+                currentTile?.UnFlash();
+            currentTile = tile;
 
-        ClearTile();
-        if (tile == null) return;
-        currentTile = tile;
-
-        string prompt = $"{currentTile?.GetInteractPrompt()}";
-
-        UIManager.Instance.Prompt(prompt);
+            string prompt = $"{tile?.GetInteractPrompt()}";
+            UIManager.Instance.Prompt(prompt);
+        }
     }
 
     private void ClearTile()

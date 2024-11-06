@@ -7,8 +7,6 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 {
     BuildingObject buildingObject;
 
-    public float curHealth;
-
     public float CurHealth { get; private set; }
     public float MaxHealth { get; private set; }
 
@@ -28,7 +26,7 @@ public class BuildingCondition : MonoBehaviour, IDamageable
         Init();
     }
 
-    private void Init()
+    public void Init()
     {
         if (buildingObject.BuildingSO == null) return;
 
@@ -55,8 +53,8 @@ public class BuildingCondition : MonoBehaviour, IDamageable
         {
             CurHealth = 0;
             buildingObject.Destroy();
+            buildingObject.TileObj?.ReturnNaturalObject();
         }
-        curHealth = CurHealth;
     }
 
     public void KnockBack(Transform dest)

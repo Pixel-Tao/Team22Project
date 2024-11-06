@@ -109,22 +109,23 @@ public class GameManager : Singleton<GameManager>
         {
             // 건설모드일때 카메라 시점 변경
             CharacterManager.Instance.Player.BuildMode();
-            UIManager.Instance.PeekPopupUI<BuildPopupUI>()?.OnCloseButton();
         }
         else
         {
             // 건설모드가 아닐때 카메라 시점 변경
             CharacterManager.Instance.Player.NormalMode();
         }
+        UIManager.Instance.CloseAllPopupUI();
+        UIManager.Instance.ModeChange(IsBuildMode);
     }
     public override void Init()
     {
         base.Init();
 
-        AddWood(1000);
-        AddOre(1000);
-        AddFood(1000);
-        AddMaxPeople(1000);
+        AddWood(100);
+        AddOre(100);
+        AddFood(100);
+        //AddMaxPeople(1000);
         IsBuildMode = false;
 
         ItemList = ResourceManager.Instance.GetSOData<ItemListSO>("Item/SO_ItemList");
@@ -241,7 +242,7 @@ public class GameManager : Singleton<GameManager>
                     GameManager.Instance.AddFood(amount);
                     break;
                 case ResourceType.People:
-                    GameManager.Instance.AddPeople(amount);
+                    GameManager.Instance.AddPeople((int)resourceData.amount);
                     break;
             }
         }
@@ -299,6 +300,18 @@ public class GameManager : Singleton<GameManager>
                     SubtractPeople((int)resource.amount);
                     break;
             }
+        }
+    }
+
+    //디버그를 위한 임시기능..
+    public void AcceptConsole(string val)
+    {
+        if (val == "WOOD") AddWood(10000);
+        else if (val == "FOOD") AddFood(10000);
+        else if (val == "IRON") AddOre(10000);
+        else if (val == "GOD")
+        {
+            //TODO : GODMOD
         }
     }
 }
