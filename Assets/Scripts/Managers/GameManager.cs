@@ -121,10 +121,10 @@ public class GameManager : Singleton<GameManager>
     {
         base.Init();
 
-        AddWood(1000);
-        AddOre(1000);
-        AddFood(1000);
-        AddMaxPeople(1000);
+        AddWood(100);
+        AddOre(100);
+        AddFood(100);
+        //AddMaxPeople(1000);
         IsBuildMode = false;
 
         ItemList = ResourceManager.Instance.GetSOData<ItemListSO>("Item/SO_ItemList");

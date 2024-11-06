@@ -23,11 +23,11 @@ MonoBehaviour:
     maxStamina: 200
     passiveStamina: 10
     hunger: 0
-    maxHunger: 200
-    passiveHunger: 5
+    maxHunger: 800
+    passiveHunger: 3
     thirst: 0
-    maxThirst: 200
-    passiveThirst: 5
+    maxThirst: 800
+    passiveThirst: 3
     damage: 8
     moveSpeed: 3.5
     attackSpeed: 1

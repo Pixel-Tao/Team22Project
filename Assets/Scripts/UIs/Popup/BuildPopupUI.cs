@@ -163,6 +163,7 @@ public class BuildPopupUI : UIPopup
         {
             // 자원 부족
             Debug.Log("Not enough resources");
+            UIManager.Instance.SystemMessage("자원이 부족합니다.");
             return;
         }
 

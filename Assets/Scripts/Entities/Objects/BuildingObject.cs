@@ -36,6 +36,15 @@ public class BuildingObject : MonoBehaviour
         condition = GetComponent<BuildingCondition>();
     }
 
+    private void Start()
+    {
+        if (BuildingSO?.buildingType == BuildingType.Castle_Red)
+        {
+            UpdatePeople();
+        }
+    }
+
+
     public void SetTile(TileObject tile)
     {
         TileObj = tile;
@@ -176,7 +185,7 @@ public class BuildingObject : MonoBehaviour
             || BuildingSO?.buildingType == BuildingType.House_A_Red
             )
         {
-            GameManager.Instance.SubtractMaxPeople(BuildingSO.providedPopulation);
+            GameManager.Instance.AddMaxPeople(BuildingSO.providedPopulation);
         }
     }
 

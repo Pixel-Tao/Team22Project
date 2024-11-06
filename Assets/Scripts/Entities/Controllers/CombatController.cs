@@ -12,10 +12,13 @@ public class CombatController : MonoBehaviour
     private Equipment equipment;
     private bool isAttacking;
 
+    [SerializeField] private float defaultAttackStamina = 20f;
+
     public float AttackDamage => (equipment?.EquipWeaponDate?.attack ?? 0) + (condition?.CurrentStat.damage ?? 0);
     // 기본 공격속도 + 장비 공격속도
     public float AttackSpeed => (condition?.CurrentStat.attackSpeed ?? 0) + (equipment?.EquipWeaponDate?.attackSpeed ?? 0);
     public float AttackScale => 1 + (equipment?.EquipWeaponDate?.attackScale ?? 0);
+    public float AttackStamina => (defaultAttackStamina) + (equipment?.EquipWeaponDate?.attackStamina ?? 0);
 
     private float time;
 
@@ -78,6 +81,12 @@ public class CombatController : MonoBehaviour
 
     private void Attack(string projectileName, Transform transform)
     {
+        if (condition.UseStamina(AttackStamina) == false)
+        {
+            UIManager.Instance.SystemMessage("스태미너가 부족합니다.");
+            return;
+        }
+
         GameObject obj = PoolManager.Instance.SpawnProjectile(projectileName, transform);
         obj.gameObject.transform.position = this.transform.position + (Vector3.up * 0.25f);
         obj.transform.localScale = new Vector3(AttackScale, 1, AttackScale);

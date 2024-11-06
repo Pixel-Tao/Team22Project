@@ -22,12 +22,12 @@ public class GameScene : SceneBase
     private void GameSetting()
     {
         CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
-        GameObject go = ResourceManager.Instance.Instantiate("WorldMap");
-        NavMeshSurface navMeshSurface = go.GetComponent<NavMeshSurface>();
+        GameObject mapGameObject = ResourceManager.Instance.Instantiate("WorldMap");
+        NavMeshSurface navMeshSurface = mapGameObject.GetComponent<NavMeshSurface>();
+        navMeshSurface.BuildNavMesh();
+        ResourceManager.Instance.Instantiate("Spawner/Spawners");
         ResourceManager.Instance.Instantiate("DayAndNight");
-
-        //navMeshSurface.BuildNavMesh();
-        //SoundManager.Instance.SetBackGroundMusic("BGM");
+        SoundManager.Instance.SetBackGroundMusic("BGM");
     }
     private void UISetting()
     {

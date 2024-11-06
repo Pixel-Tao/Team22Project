@@ -19,6 +19,39 @@ public class BuildingProduction : MonoBehaviour
         delay = building.buildedSO.ProductiontDelay;
     }
 
+    private void Update()
+    {
+        localTimer += Time.deltaTime;
+        if (localTimer > delay)
+        {
+            if (building.buildedSO.buildType == Defines.BuildType.Building)
+            {
+                BuildingSO buildingSO = building.buildedSO as BuildingSO;
+                if (buildingSO == null)
+                    return;
+
+                switch (buildingSO.buildingType)
+                {
+                    case Defines.BuildingType.Windmill_Red:
+                        CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Food));
+                        break;
+                    case Defines.BuildingType.Lumbermill_Red:
+                        CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Wood));
+                        break;
+                    case Defines.BuildingType.Quarry_Red:
+                        CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Ore));
+                        break;
+                    //case Defines.BuildingType.Market_Red:
+                    //    MakeProduct();
+                    //break;
+                    default:
+                        break;
+                }
+            }
+            localTimer = 0;
+        }
+    }
+
     private ItemSO CreateTempItem(Defines.ResourceType type)
     {
         ItemSO temp = new ItemSO();
@@ -45,8 +78,12 @@ public class BuildingProduction : MonoBehaviour
     {
         if (other.CompareTag("PlayerProjectile"))
         {
-            SoundManager.Instance.PlayOneShotPoint("HitResource", transform.position);
-            MakeProduct();
+            if (building?.buildedSO?.buildType == Defines.BuildType.NaturalObject
+                || building?.BuildingSO?.buildingType == Defines.BuildingType.Market_Red)
+            {
+                SoundManager.Instance.PlayOneShotPoint("HitResource", transform.position);
+                MakeProduct();
+            }
         }
     }
 }

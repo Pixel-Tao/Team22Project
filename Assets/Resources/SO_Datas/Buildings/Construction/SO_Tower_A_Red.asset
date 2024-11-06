@@ -30,6 +30,6 @@ MonoBehaviour:
   health: 500
   providedPopulation: 0
   consumingPopulation: 0
-  attackPower: 0
+  attackPower: 10
   attackRange: 5
   attackDelay: 2
