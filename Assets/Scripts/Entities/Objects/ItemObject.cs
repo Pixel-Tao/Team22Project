@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ItemObject : InteractableObject, IInteractable
 {
-    [SerializeField] public float followSpeed = 10f;
-
+    [SerializeField] private float followSpeed;
+    public float FollowSpeed { set { followSpeed = value; } }
     private Transform target;
     private Rigidbody rigidbody;
     private Collider collider;

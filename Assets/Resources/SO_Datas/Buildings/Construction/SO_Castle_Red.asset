@@ -21,7 +21,7 @@ MonoBehaviour:
   buildingType: 1
   icon: {fileID: 0}
   NeedResources: []
-  health: 5000
+  health: 5
   providedPopulation: 10
   consumingPopulation: 0
   attackPower: 0
