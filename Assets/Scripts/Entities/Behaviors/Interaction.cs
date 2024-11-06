@@ -38,13 +38,8 @@ public class Interaction : MonoBehaviour
 
         if (Time.time - time >= checkInterval)
         {
-            if (GameManager.Instance.IsBuildMode)
-                CheckBuildable();
-            else
-            {
-                ClearTile();
-                CheckSurroundings();
-            }
+            CheckBuildable();
+            CheckSurroundings();
             time = Time.time;
         }
     }
@@ -73,7 +68,8 @@ public class Interaction : MonoBehaviour
                 if (tileSO?.tileType == Defines.TileType.Ground)
                 {
                     SetTile(tileObj);
-                    currentTile.Flash();
+                    if (GameManager.Instance.IsBuildMode)
+                        currentTile.Flash();
                     return;
                 }
             }
@@ -84,16 +80,15 @@ public class Interaction : MonoBehaviour
 
     private void CheckSurroundings()
     {
+        if (GameManager.Instance.IsBuildMode) return;
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, normalInteractionRadius, peakupLayer);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (!GameManager.Instance.IsBuildMode && colliders[i].TryGetComponent(out TileObject tileObj))
-            {
-                SetTile(tileObj);
-            }
-            else if (colliders[i].TryGetComponent(out ItemObject itemObj))
+            if (colliders[i].TryGetComponent(out ItemObject itemObj))
             {
                 itemObj.OnInteract(transform);
+                return;
             }
         }
     }

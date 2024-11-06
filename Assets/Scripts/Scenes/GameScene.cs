@@ -1,6 +1,8 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class GameScene : SceneBase
@@ -20,8 +22,10 @@ public class GameScene : SceneBase
     private void GameSetting()
     {
         CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
-        ResourceManager.Instance.Instantiate("WorldMap");
-        SoundManager.Instance.SetBackGroundMusic("BGM");
+        GameObject go = ResourceManager.Instance.Instantiate("WorldMap");
+        NavMeshSurface navMeshSurface = go.GetComponent<NavMeshSurface>();
+        //navMeshSurface.BuildNavMesh();
+        //SoundManager.Instance.SetBackGroundMusic("BGM");
     }
     private void UISetting()
     {
