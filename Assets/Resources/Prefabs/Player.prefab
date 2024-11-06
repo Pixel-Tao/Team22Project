@@ -136,7 +136,19 @@ MonoBehaviour:
     m_ActionId: 9bb78d3d-a9b6-4a64-8ea4-baea0f524555
     m_ActionName: Player/Look[/Mouse/position]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 816201128733226030}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9c3a12df-e9e1-417c-9c54-cd5458290591
     m_ActionName: Player/Rotate[/Mouse/delta]
   - m_PersistentCalls:
@@ -255,6 +267,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 00a153df-28d7-43eb-b068-e4762651dcba
     m_ActionName: Player/Debug[/Keyboard/backquote]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 816201128733226030}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnCameraZoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f3ad0ebf-fe86-4502-9bcc-01caf70e0634
+    m_ActionName: Player/CameraZoom[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -284,6 +312,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e7fddb44742440aebea71442ea046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &7256190227252390381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,10 +327,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39eea68b2154f75458e01c1daec650f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetPosition: {x: 0, y: 5, z: -2.5}
-  offsetAngle: 60
-  buildModePosition: {x: 0, y: 8, z: 0}
-  buildModeAngle: 90
+  defaultFollowOffset: {x: 0, y: 5, z: -4}
+  rotationSpeed: 10
+  zoomSpeed: 40
+  trackedObjectOffset: {x: 0, y: 0.6, z: 0}
+  zoomMin: 3
+  zoomMax: 8
+  buildModeZoom: 10
 --- !u!136 &7898275275015964915
 CapsuleCollider:
   m_ObjectHideFlags: 0

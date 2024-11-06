@@ -45,11 +45,17 @@ public class Player : MonoBehaviour
     {
         input.MoveEvent += movement.Move;
         input.LookEvent += look.Look;
-        input.MouseInteractionEvent += interaction.MouseInteraction;
+        input.LookEvent += interaction.MouseInteraction;
+        input.CameraRotateEvent += cameraController.RotateCamera;
+        input.CameraZoomEvent += cameraController.Zoom;
         input.InteractEvent += interaction.Interact;
         input.BuildingRotateEvent += interaction.BuildingRotate;
         input.AttackingEvent += combat.Attacking;
+        input.MouseRightPressedEvent += cameraController.MouseRightPressed;
+        input.BuildModeEvent += cameraController.BuildMode;
+
     }
+
     public void SetJob(JobSO jobSO)
     {
         if (JobData == jobSO) return;
@@ -112,21 +118,4 @@ public class Player : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.transform.parent != null &&
-    //        collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
-    //    {
-    //        tileObject.PlayerOnTile(true);
-    //    }
-    //}
-
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.transform.parent != null &&
-    //        collision.gameObject.transform.parent.TryGetComponent(out TileObject tileObject))
-    //    {
-    //        tileObject.PlayerOnTile(false);
-    //    }
-    //}
 }
