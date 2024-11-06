@@ -111,9 +111,6 @@ public class Condition : MonoBehaviour, IDamageable
     public void Thirsty(float amount)
     {
         currentStat.thirst = Mathf.Clamp(currentStat.thirst - amount, 0, currentStat.maxThirst);
-        if (currentStat.thirst <= 0)
-            SubtractHealth(amount);
-
         ThirstChangedEvent?.Invoke(currentStat.thirst, currentStat.maxThirst);
     }
 
@@ -129,7 +126,7 @@ public class Condition : MonoBehaviour, IDamageable
             Hungry(currentStat.passiveHunger * Time.deltaTime);
         if (currentStat.passiveThirst > 0)
             Thirsty(currentStat.passiveThirst * Time.deltaTime);
-        if (currentStat.passiveStamina > 0)
+        if (currentStat.passiveStamina > 0 && currentStat.thirst > 0)
             StaminaRecovery(currentStat.passiveStamina * Time.deltaTime);
     }
 
