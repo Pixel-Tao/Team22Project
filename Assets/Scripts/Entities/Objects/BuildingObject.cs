@@ -1,4 +1,5 @@
 using Defines;
+using System.Text;
 using UnityEngine;
 
 public class BuildingObject : MonoBehaviour
@@ -13,9 +14,10 @@ public class BuildingObject : MonoBehaviour
     public int ConsumingPopulation => GetCumsumingPopulation();
 
     private string str;
-    private string rightClickMessage => GameManager.Instance.IsBuildMode ? "[마우스 우클릭 시 건물 회전]" : string.Empty;
-    private string interactMessage => !GameManager.Instance.IsBuildMode ? "[E 키를 눌러 상호작용]" : string.Empty;
-    private string attackMessage => !GameManager.Instance.IsBuildMode ? "[공격하여 아이템 획득]" : string.Empty;
+    private string rightClickMessage => GameManager.Instance.IsBuildMode ? "\n[마우스 우클릭 시 건물 회전]" : string.Empty;
+    private string interactMessage => !GameManager.Instance.IsBuildMode ? "\n[E 키를 눌러 상호작용]" : string.Empty;
+    private string attackMessage => !GameManager.Instance.IsBuildMode ? "\n[공격하여 아이템 획득]" : string.Empty;
+    private string productionMessage => !GameManager.Instance.IsBuildMode ? "\n[자원을 일정 량 자동 획득]" : string.Empty;
 
     private int GetCumsumingPopulation()
     {
@@ -63,38 +65,37 @@ public class BuildingObject : MonoBehaviour
 
     public string GetInfo()//외부에서 호출할 함수
     {
-        str = $"{buildedSO.displayName}\n{buildedSO.description}\n";
+        StringBuilder sb = new StringBuilder();
+
+        sb.AppendLine(buildedSO.displayName);
+        sb.AppendLine(buildedSO.description);
         if (BuildingSO != null)
         {
             switch (BuildingSO.buildingType)
             {
-                case BuildingType.None:
-                    str = "Debug : 건물 타입 지정되지않음";
-                    break;
                 case BuildingType.Castle_Red://체력,제공인구
-                    str += BuildingInfo();
-                    str += HealthInfo();
-                    str += ProvidedPopInfo();
+                    sb.AppendLine(BuildingInfo());
+                    sb.AppendLine(HealthInfo());
+                    sb.AppendLine(ProvidedPopInfo());
                     break;
                 case BuildingType.House_A_Red://체력,제공인구
-                    str += BuildingInfo();
-                    str += HealthInfo();
-                    str += ProvidedPopInfo();
+                    sb.AppendLine(BuildingInfo());
+                    sb.AppendLine(HealthInfo());
+                    sb.AppendLine(ProvidedPopInfo());
                     break;
                 case BuildingType.Tower_A_Red://체력,공격력,소모인구
-                    str += BuildingInfo();
-                    str += HealthInfo();
-                    str += AttackInfo();
-                    str += ConsumingPopInfo();
+                    sb.AppendLine(BuildingInfo());
+                    sb.AppendLine(HealthInfo());
+                    sb.AppendLine(AttackInfo());
                     break;
                 case BuildingType.Windmill_Red://체력,생산품
                 case BuildingType.Lumbermill_Red:
                 case BuildingType.Quarry_Red:
                 case BuildingType.Watermill_Red:
-                    str += BuildingInfo();
-                    str += HealthInfo();
-                    str += ProductionInfo();
-                    str += attackMessage;
+                    sb.AppendLine(BuildingInfo());
+                    sb.AppendLine(HealthInfo());
+                    sb.AppendLine(ProductionInfo());
+                    sb.Append(productionMessage);
                     break;
                 case BuildingType.Wall_Corner_A_Gate:
                 case BuildingType.Wall_Corner_A_Inside:
@@ -103,16 +104,21 @@ public class BuildingObject : MonoBehaviour
                 case BuildingType.Wall_Corner_B_Outside:
                 case BuildingType.Wall_Straight:
                 case BuildingType.Wall_Straight_Gate:
-                    str += BuildingInfo();
-                    str += HealthInfo();
+                    sb.AppendLine(BuildingInfo());
+                    sb.AppendLine(HealthInfo());
                     break;
                 case BuildingType.Blacksmith_Red:
-                    str += BuildingInfo();
-                    str += HealthInfo();
-                    str += interactMessage;
+                    sb.AppendLine(BuildingInfo());
+                    sb.AppendLine(HealthInfo());
+                    sb.Append(interactMessage);
+                    break;
+                case BuildingType.Market_Red:
+                    sb.AppendLine(BuildingInfo());
+                    sb.AppendLine(HealthInfo());
+                    sb.Append(attackMessage);
                     break;
             }
-            str += rightClickMessage;
+            sb.Append(rightClickMessage);
         }
 
         Debug.Log("Debug : 타입별 정보\n" + str);
@@ -155,11 +161,6 @@ public class BuildingObject : MonoBehaviour
     private string ProvidedPopInfo()
     {
         return $"인구 증가 : {(BuildingSO?.providedPopulation.ToString() ?? "없음")}\n";
-    }
-
-    private string ConsumingPopInfo()
-    {
-        return $"소모 인구 : {(BuildingSO?.consumingPopulation.ToString() ?? "없음")}\n";
     }
 
     private string ProductionInfo()
