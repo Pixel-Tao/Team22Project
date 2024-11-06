@@ -192,4 +192,9 @@ public class UIManager : Singleton<UIManager>
         if (fade != null)
             fade.FadeOut();
     }
+
+    public void ModeChange(bool isBuildMode)
+    {
+        SceneUI?.ModeChange(isBuildMode);
+    }
 }

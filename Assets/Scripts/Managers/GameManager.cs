@@ -109,13 +109,14 @@ public class GameManager : Singleton<GameManager>
         {
             // 건설모드일때 카메라 시점 변경
             CharacterManager.Instance.Player.BuildMode();
-            UIManager.Instance.PeekPopupUI<BuildPopupUI>()?.OnCloseButton();
         }
         else
         {
             // 건설모드가 아닐때 카메라 시점 변경
             CharacterManager.Instance.Player.NormalMode();
         }
+        UIManager.Instance.CloseAllPopupUI();
+        UIManager.Instance.ModeChange(IsBuildMode);
     }
     public override void Init()
     {

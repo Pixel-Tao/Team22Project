@@ -9,6 +9,7 @@ public class UIScene : UIBase
     private Transform promptTransform;
     private TextMeshProUGUI systemMessageText;
     private Transform systemMessageTransform;
+    [SerializeField] private TextMeshProUGUI modeText;
 
     [SerializeField] private float systemMessageDuration = 5f;
     private float systemMessageTimer;
@@ -23,6 +24,7 @@ public class UIScene : UIBase
 
         Prompt(null);
         SystemMessage(null);
+        ModeChange(GameManager.Instance.IsBuildMode);
     }
 
     private void Update()
@@ -81,5 +83,13 @@ public class UIScene : UIBase
             systemMessageText.text = text;
             systemMessageTimer = 0;
         }
+    }
+
+    public void ModeChange(bool isBuildMode)
+    {
+        if (modeText == null) return;
+        string text = "(Q) ";
+        text += isBuildMode ? "건설 모드" : "일반 모드";
+        modeText.text = text;
     }
 }
