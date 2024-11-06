@@ -170,7 +170,11 @@ public class UIManager : Singleton<UIManager>
 
     public void Prompt(string text = null)
     {
-        SceneUI.Prompt(text);
+        SceneUI?.Prompt(text);
+    }
+    public void SystemMessage(string text)
+    {
+        SceneUI?.SystemMessage(text);
     }
 
     public void FadeIn(float delay = 1, bool isAutoClose = true, Action fadedCallback = null)

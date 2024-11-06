@@ -41,7 +41,7 @@ public class SmithingPopupUI : UIPopup
     {
         if (!GameManager.Instance.UseResources(GameManager.Instance.ItemList.NeedResources))
         {
-            UIManager.Instance.Prompt($"소지 자원이 부족합니다.");
+            UIManager.Instance.SystemMessage($"소지 자원이 부족합니다.");
             return;
         }
 
@@ -49,11 +49,11 @@ public class SmithingPopupUI : UIPopup
 
         if (CharacterManager.Instance.AddItemSlotData(item))
         {
-            UIManager.Instance.Prompt($"{item.displayName} 장비를 생성했습니다.");
+            UIManager.Instance.SystemMessage($"{item.displayName} 장비를 생성했습니다.");
         }
         else
         {
-            UIManager.Instance.Prompt($"인벤토리가 가득 찼습니다.");
+            UIManager.Instance.SystemMessage($"인벤토리가 가득 찼습니다.");
         }
     }
 

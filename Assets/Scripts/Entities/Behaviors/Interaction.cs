@@ -109,7 +109,10 @@ public class Interaction : MonoBehaviour
         ClearTile();
         if (tile == null) return;
         currentTile = tile;
-        UIManager.Instance.Prompt(currentTile?.GetInteractPrompt());
+
+        string prompt = $"{currentTile?.GetInteractPrompt()}";
+
+        UIManager.Instance.Prompt(prompt);
     }
 
     private void ClearTile()

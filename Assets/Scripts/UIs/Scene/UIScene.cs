@@ -7,45 +7,48 @@ public class UIScene : UIBase
 
     private TextMeshProUGUI promptText;
     private Transform promptTransform;
+    private TextMeshProUGUI systemMessageText;
+    private Transform systemMessageTransform;
 
-    [SerializeField] private float promptDuration = 3f;
-    private float promptTimer;
+    [SerializeField] private float systemMessageDuration = 5f;
+    private float systemMessageTimer;
 
     private void Awake()
     {
         RectTransform rect = GetComponent<RectTransform>();
         promptTransform = rect.Find("PromptText");
         promptText = promptTransform?.GetComponentInChildren<TextMeshProUGUI>();
-    }
+        systemMessageTransform = rect.Find("SystemMessageText");
+        systemMessageText = systemMessageTransform?.GetComponentInChildren<TextMeshProUGUI>();
 
-    private void Start()
-    {
-        Prompt();
+        Prompt(null);
+        SystemMessage(null);
     }
 
     private void Update()
     {
-        PromptUpdate();
+        SystemMessageUpdate();
     }
 
-    private void PromptUpdate()
+    private void SystemMessageUpdate()
     {
-        if (promptText == null) return;
-        if (promptTransform.gameObject.activeInHierarchy)
+        if (systemMessageText == null) return;
+        if (systemMessageTransform.gameObject.activeInHierarchy)
         {
-            promptTimer += Time.deltaTime;
-            if (promptTimer >= promptDuration)
+            systemMessageTimer += Time.deltaTime;
+            if (systemMessageTimer >= systemMessageDuration)
             {
-                promptTimer = 0;
-                Prompt();
+                systemMessageTimer = 0;
+                SystemMessage(null);
             }
         }
     }
 
-    public void Prompt(string text = null)
+    public void Prompt(string text)
     {
         if (promptText == null)
             return;
+
         if (string.IsNullOrWhiteSpace(text))
         {
             promptText.text = string.Empty;
@@ -57,7 +60,26 @@ public class UIScene : UIBase
                 promptTransform.gameObject.SetActive(true);
 
             promptText.text = text;
-            promptTimer = 0;
+        }
+    }
+
+    public void SystemMessage(string text)
+    {
+        if (systemMessageText == null)
+            return;
+
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            systemMessageText.text = string.Empty;
+            systemMessageTransform.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (!systemMessageTransform.gameObject.activeInHierarchy)
+                systemMessageTransform.gameObject.SetActive(true);
+
+            systemMessageText.text = text;
+            systemMessageTimer = 0;
         }
     }
 }

@@ -12,6 +12,10 @@ public class BuildingObject : MonoBehaviour
     public int ConsumingPopulation => GetCumsumingPopulation();
 
     private string str;
+    private string rightClickMessage => GameManager.Instance.IsBuildMode ? "[마우스 우클릭 시 건물 회전]" : string.Empty;
+    private string interactMessage => !GameManager.Instance.IsBuildMode ? "[E 키를 눌러 상호작용]" : string.Empty;
+    private string attackMessage => !GameManager.Instance.IsBuildMode ? "[공격하여 아이템 획득]" : string.Empty;
+
 
     private int GetCumsumingPopulation()
     {
@@ -36,7 +40,11 @@ public class BuildingObject : MonoBehaviour
     {
         TileObj = tile;
         if (TileObj != null)
+        {
             tile.building = this;
+            UpdatePeople();
+        }
+
     }
 
     public string GetInfo()//외부에서 호출할 함수
@@ -52,22 +60,47 @@ public class BuildingObject : MonoBehaviour
                     str = "Debug : 건물 타입 지정되지않음";
                     break;
                 case BuildingType.Castle_Red://체력,제공인구
+                    str += BuildingInfo();
                     str += HealthInfo();
-                    str += providedPopInfo();
+                    str += ProvidedPopInfo();
                     break;
                 case BuildingType.House_A_Red://체력,제공인구
-                    str += HealthInfo();
-                    str += providedPopInfo();
                     str += BuildingInfo();
+                    str += HealthInfo();
+                    str += ProvidedPopInfo();
                     break;
                 case BuildingType.Tower_A_Red://체력,공격력,소모인구
+                    str += BuildingInfo();
                     str += HealthInfo();
                     str += AttackInfo();
-                    str += consumingPopInfo();
-                    str += BuildingInfo();
+                    str += ConsumingPopInfo();
                     break;
-
+                case BuildingType.Windmill_Red://체력,생산품
+                case BuildingType.Lumbermill_Red:
+                case BuildingType.Quarry_Red:
+                case BuildingType.Watermill_Red:
+                    str += BuildingInfo();
+                    str += HealthInfo();
+                    str += ProductionInfo();
+                    str += attackMessage;
+                    break;
+                case BuildingType.Wall_Corner_A_Gate:
+                case BuildingType.Wall_Corner_A_Inside:
+                case BuildingType.Wall_Corner_A_Outside:
+                case BuildingType.Wall_Corner_B_Inside:
+                case BuildingType.Wall_Corner_B_Outside:
+                case BuildingType.Wall_Straight:
+                case BuildingType.Wall_Straight_Gate:
+                    str += BuildingInfo();
+                    str += HealthInfo();
+                    break;
+                case BuildingType.Blacksmith_Red:
+                    str += BuildingInfo();
+                    str += HealthInfo();
+                    str += interactMessage;
+                    break;
             }
+            str += rightClickMessage;
         }
 
         Debug.Log("Debug : 타입별 정보\n" + str);
@@ -94,7 +127,6 @@ public class BuildingObject : MonoBehaviour
         return str;
     }
 
-
     private string HealthInfo()
     {
         return $"현재 내구도 : {condition.CurHealth} / {condition.MaxHealth}\n";
@@ -108,22 +140,22 @@ public class BuildingObject : MonoBehaviour
         return $"현재 공격력 : {condition.CurAttackPower}\n현재 사거리 : {condition.CurAttackRange}\n현재 공격지연속도 : {condition.CurAttackDelay}\n";
     }
 
-    private string providedPopInfo()
+    private string ProvidedPopInfo()
     {
         return $"인구 증가 : {(BuildingSO?.providedPopulation.ToString() ?? "없음")}\n";
     }
 
-    private string consumingPopInfo()
+    private string ConsumingPopInfo()
     {
         return $"소모 인구 : {(BuildingSO?.consumingPopulation.ToString() ?? "없음")}\n";
     }
 
-    private void productionInfo()
+    private string ProductionInfo()
     {
         if (buildedSO.ProductPrefabs.Length <= 0)
         {
             Debug.Log("Debug : 생산품정보 없음");//해당 건물 SO의 생산건물스텟 확인
-            return;
+            return string.Empty;
         }
 
         InteractableSO productItemSO;
@@ -131,9 +163,21 @@ public class BuildingObject : MonoBehaviour
         for (int i = 0; i < buildedSO.ProductPrefabs.Length; i++)
         {
             productItemSO = buildedSO.ProductPrefabs[i].GetComponent<ItemObject>().data;
-            str += $"생산품 : {productItemSO.displayName} 생산주기 : {buildedSO.ProductiontDelay}\n";
+            str += $"생산품 : {productItemSO.displayName}";
         }
 
+        return str;
+    }
+
+    private void UpdatePeople()
+    {
+        if (
+            BuildingSO?.buildingType == BuildingType.Castle_Red
+            || BuildingSO?.buildingType == BuildingType.House_A_Red
+            )
+        {
+            GameManager.Instance.SubtractMaxPeople(BuildingSO.providedPopulation);
+        }
     }
 
     public void Destroy()
@@ -142,8 +186,8 @@ public class BuildingObject : MonoBehaviour
         {
             // 만약에 최대 인구수 증가시키는 기능이 있다면 최대 인구수와 가용 인구수 차감 필요함
             GameManager.Instance.SubtractMaxPeople(BuildingSO.providedPopulation);
-            TileObj.building = null;
         }
+        TileObj.building = null;
 
         PoolManager.Instance.Despawn(gameObject);
     }

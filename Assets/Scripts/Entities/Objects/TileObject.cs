@@ -60,7 +60,7 @@ public class TileObject : InteractableObject, IInteractable
     {
         if (building != null)
         {
-            return $"{building.buildedSO.displayName}\n{building.buildedSO.description}";
+            return $"{building.GetInfo()}";
         }
         else
         {
