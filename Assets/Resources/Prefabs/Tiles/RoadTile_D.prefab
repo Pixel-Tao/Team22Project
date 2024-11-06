@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8368020366083774939}
   - component: {fileID: 7075591836375066075}
+  - component: {fileID: 307277070263489480}
   m_Layer: 6
   m_Name: RoadTile_D
   m_TagString: Untagged
@@ -50,6 +51,26 @@ MonoBehaviour:
   building: {fileID: 0}
   flashInterval: 0.2
   flashColor: {r: 1, g: 0.4669811, b: 0.4669811, a: 1}
+  isPlayerOnTile: 0
+--- !u!114 &307277070263489480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6686148246349020055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &3634853407204596793
 PrefabInstance:
   m_ObjectHideFlags: 0
