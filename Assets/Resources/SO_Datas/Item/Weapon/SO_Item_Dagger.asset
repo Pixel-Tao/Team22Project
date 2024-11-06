@@ -27,6 +27,7 @@ MonoBehaviour:
   attack: 5
   attackSpeed: 0
   attackScale: 1
+  attackStamina: 0
   consumables: []
   dropItemPrefab: {fileID: 0}
   childPath: Dagger
