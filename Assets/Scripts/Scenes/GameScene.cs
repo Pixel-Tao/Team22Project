@@ -1,30 +1,49 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GameScene : SceneBase
 {
     public int poolDefaultCapacity = 20;
     public int poolMaxSize = 100;
 
-    protected override void OnSceneLoad()
+    private void Init()
     {
-        Debug.Log("GameScene OnSceneLoad");
+        UIManager.Instance.Init();
         CharacterManager.Instance.Init();
         GameManager.Instance.Init();
         PoolManager.Instance.Init(poolDefaultCapacity, poolMaxSize);
         SoundManager.Instance.Init();
 
+    }
+    private void GameSetting()
+    {
         CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
-        ResourceManager.Instance.Instantiate("WorldMap");
+        GameObject go = ResourceManager.Instance.Instantiate("WorldMap");
+        NavMeshSurface navMeshSurface = go.GetComponent<NavMeshSurface>();
+        //navMeshSurface.BuildNavMesh();
+        //SoundManager.Instance.SetBackGroundMusic("BGM");
+    }
+    private void UISetting()
+    {
         UIManager.Instance.ShowSceneUI<GameSceneUI>();
-        UIManager.Instance.ShowPopupUI<InventoryPopupUI>();
-        UIManager.Instance.CloseAllPopupUI();
-        SoundManager.Instance.SetBackGroundMusic("BGM");
+    }
+    protected override void OnSceneLoad()
+    {
+        Debug.Log("GameScene OnSceneLoad");
+        FadeInOutPopupUI fade = UIManager.Instance.ShowPopupUI<FadeInOutPopupUI>();
+        Init();
+        GameSetting();
+        UISetting();
+        fade?.FadeIn(2);
     }
 
     protected override void OnSceneUnloaded()
     {
         Debug.Log("GameScene OnSceneUnloaded");
+
     }
 }

@@ -28,6 +28,17 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    public override void Init()
+    {
+        base.Init();
+        if (FindObjectOfType<UnityEngine.EventSystems.EventSystem>() == null)
+        {
+            GameObject obj = new GameObject("EventSystem");
+            obj.AddComponent<UnityEngine.EventSystems.EventSystem>();
+            obj.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+        }
+    }
+
     public void SetCanvas(GameObject go, bool sort = true)
     {
         Canvas canvas = go.GetOrAddComponent<Canvas>();
@@ -155,5 +166,20 @@ public class UIManager : Singleton<UIManager>
         SceneUI = null;
     }
 
-
+    public void FadeIn(float delay = 1, bool isAutoClose = true, Action fadedCallback = null)
+    {
+        var fade = ShowPopupUI<FadeInOutPopupUI>();
+        fade.FadeIn(delay, isAutoClose, fadedCallback);
+    }
+    public void FadeOut(float delay = 1, bool isAutoClose = true, Action fadedCallback = null)
+    {
+        var fade = ShowPopupUI<FadeInOutPopupUI>();
+        fade.FadeOut(delay, isAutoClose, fadedCallback);
+    }
+    public void FadeClose()
+    {
+        var fade = FindPopup<FadeInOutPopupUI>();
+        if (fade != null)
+            fade.FadeOut();
+    }
 }

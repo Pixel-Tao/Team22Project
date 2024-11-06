@@ -38,7 +38,7 @@ public class PoolManager : Singleton<PoolManager>
         if (buildingRoot == null)
         {
             buildingRoot = new GameObject { name = name }.transform;
-            buildingRoot.SetParent(Root.transform);
+            buildingRoot.SetParent(Root.transform, false);
         }
 
         return buildingRoot;

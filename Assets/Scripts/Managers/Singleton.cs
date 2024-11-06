@@ -34,4 +34,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         Debug.Log($"Init {typeof(T).Name}");
     }
+
+    public void SingletonDestroy()
+    {
+        Destroy(instance.gameObject);
+        instance = null;
+    }
 }
