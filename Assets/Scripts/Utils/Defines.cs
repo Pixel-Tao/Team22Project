@@ -56,10 +56,6 @@ namespace Defines
         Quarry_Red,
         Market_Red,
 
-        //적대세력 건물
-        Enemy_Crypt
-
-
     }
     public enum EnvironmentType
     {
@@ -83,7 +79,9 @@ namespace Defines
         //적대세력 환경물 기능x
         Arch,
         Fence,
-        Fence_Broken
+        Fence_Broken,
+        //적대세력 스폰건물 타일로생성x
+        Enemy_Crypt
     }
 
     public enum NaturalObjectType
