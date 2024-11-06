@@ -1,3 +1,4 @@
+using Assets.Scripts.Utils;
 using Defines;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public bool IsBuilding { get; private set; } = false;
 
     public Goal Goal { get; private set; }
+    public DayCycle currentDayCycle = DayCycle.DAY;
 
     public int WoodCount { get; private set; }
     public int OreCount { get; private set; }
@@ -22,6 +24,39 @@ public class GameManager : Singleton<GameManager>
     public int MaxPeopleCount { get; private set; }
 
     public ItemListSO ItemList { get; private set; }
+    public List<SpawnMachine> machines = new List<SpawnMachine>();
+
+    //===========================스포너 제어========================================================
+    /// <summary>
+    /// 맵에 배치되어 있는 스포너는 자동으로 해당 함수를 호출 합니다, 외부에서 호출금지XXXXX
+    /// </summary>
+    /// <param name="m"></param>
+    public void AddMachine(SpawnMachine m)
+    {
+        machines.Add(m);
+    }
+    /// <summary>
+    /// 모든 스포너가 작동을 중지/실행 하도록 트리거 합니다. 초기값은 실행입니다.
+    /// </summary>
+    public void TriggerAllMachine()
+    {
+        foreach(SpawnMachine machine in machines)
+        {
+            machine.TriggerMachineState();
+        }
+    }
+    /// <summary>
+    /// 모든 몬스터 스포너에 난이도를 향상시키도록 명령합니다.
+    /// </summary>
+    public void ScalingAllMachune()
+    {
+        foreach (SpawnMachine machine in machines)
+        {
+            machine.DecreaseScale();
+        }
+    }
+    //==============================================================================================
+
 
     public void AddGoal(Goal goal)
     {

@@ -4,14 +4,22 @@ using Defines;
 
 namespace Assets.Scripts.Utils
 {
-    internal class SpawnMachine : MonoBehaviour
+    public class SpawnMachine : MonoBehaviour
     {
         private Defines.SPAWNSTATE state = Defines.SPAWNSTATE.WORKING;
-        public List<MOBTYPE> monsters;
-        public float maxSpawnArea;
-        public float minSpawnScale;
-        public float currentSpawnScale;
+        [SerializeField] private List<MOBTYPE> monsters;
+        [SerializeField] private float maxSpawnArea;
+        [SerializeField] private float minSpawnScale;
+        [SerializeField] private float currentSpawnScale;
         private float localTimer;
+
+        //PP
+        public float SpawnScale { get { return currentSpawnScale; } set { currentSpawnScale = value; } }
+
+        private void Start()
+        {
+            GameManager.Instance.AddMachine(this);
+        }
 
         private void Update()
         {
@@ -30,7 +38,7 @@ namespace Assets.Scripts.Utils
             }        
         }
 
-        void RandomSpawnMobs()
+        private void RandomSpawnMobs()
         {
             int index = Random.Range(0, monsters.Count);
             float spawnAreaX = Random.Range(-maxSpawnArea, maxSpawnArea);
@@ -39,5 +47,16 @@ namespace Assets.Scripts.Utils
             GameObject obj = PoolManager.Instance.SpawnMonster(monsters[index]);
             obj.transform.position = this.transform.position + new Vector3(spawnAreaX, Vector3.up.y * 1f, spawnAreaZ);
         }
+        public void TriggerMachineState()
+        {
+            state = (state == SPAWNSTATE.WAITING ? SPAWNSTATE.WORKING : SPAWNSTATE.WAITING);
+        }
+
+        public void IncreaseScale() { currentSpawnScale++; }
+        public void DecreaseScale() 
+        { 
+            currentSpawnScale = Mathf.Max(--currentSpawnScale, minSpawnScale); 
+        }
+
     }
 }
