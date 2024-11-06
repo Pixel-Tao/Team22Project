@@ -353,7 +353,7 @@ MonoBehaviour:
   normalInteractionRadius: 2
   peakupLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   isBuildMode: 1
   checkInterval: 0.2
   screenAxis: {x: 0, y: 0}

@@ -16,7 +16,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     private float xFixable = 0f;
 
     [SerializeField] MonsterSO data;
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     private Animator animator;
     private CircleCollider2D circleCollider;
     private Rigidbody rb;
@@ -85,23 +85,23 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         {
             attackTimer = data.attackDelay;
             SetState(Defines.MOBSTATE.ATTACK);
-        } 
+        }
     }
     private void UpdateAttack()
     {
-        if(targetObject == null)
+        if (targetObject == null)
         {
             SetState(Defines.MOBSTATE.MOVE);
             return;
-        }      
-        else if(targetObject != null)
+        }
+        else if (targetObject != null)
         {
             if (GetDestLength() > data.attackRange + xFixable) SetState(Defines.MOBSTATE.MOVE);
             rb.transform.LookAt(targetObject.transform);
         }
 
         attackTimer += Time.deltaTime;
-        if(attackTimer > data.attackDelay)
+        if (attackTimer > data.attackDelay)
         {
             animator.SetTrigger(attackAnimId);
             AttackToTarget();
@@ -109,7 +109,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         }
     }
     #endregion
-    
+
     private Vector3 GetDestPos()
     {
         return targetObject.transform.position;
@@ -120,7 +120,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     }
     private float GetDestLength()
     {
-        if(targetObject != null)
+        if (targetObject != null)
             return (targetObject.transform.position - transform.position).magnitude;
 
         return float.MaxValue;
@@ -128,7 +128,8 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
 
     private void SetTarget(Transform target)
     {
-        targetObject = target.transform.gameObject; 
+        targetObject = target.transform.gameObject;
+        if (!agent.enabled) agent.enabled = true;
         agent.SetDestination(target.position);
         agent.isStopped = false;
     }
@@ -139,19 +140,20 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     }
     private void AttackToTarget()
     {
-        if (targetObject == null) return;      
+        if (targetObject == null) return;
         SoundManager.Instance.PlayOneShotPoint(data.projectileSound, transform.position);
         GameObject temp = PoolManager.Instance.SpawnProjectile(data.projectileName);
         temp.transform.position = this.gameObject.transform.position + (Vector3.up * 0.4f);
         string[] tags = GetComponentInChildren<Detector>().TagNames;
         temp.GetComponent<ProjectileController>().Init
-        (targetObject, 
-        GetComponentInChildren<Detector>().TagNames, 
-        data.attackDamage, 
+        (targetObject,
+        GetComponentInChildren<Detector>().TagNames,
+        data.attackDamage,
         !data.isRangedWeapon);
     }
     private IEnumerator DespawnObject()
     {
+        agent.enabled = false;
         SetState(Defines.MOBSTATE.DEAD);
         animator.SetTrigger(deadAnimId);
         yield return new WaitForSeconds(2f);
@@ -163,7 +165,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
 
     public void TakeDamage(float damage)
     {
-        if(health > 0)
+        if (health > 0)
         {
             health = Math.Max(0, health - damage);
             animator.SetTrigger(damagedAnimId);
@@ -173,7 +175,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
             {
                 StartCoroutine(DespawnObject());
             }
-        }     
+        }
     }
     public void Heal(int heal)
     {
@@ -185,7 +187,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
 
     public void InitDetactObject(GameObject obj)
     {
-        if(detectObject == null && !obj.TryGetComponent<Player>(out Player temp)) 
+        if (detectObject == null && !obj.TryGetComponent<Player>(out Player temp))
             detectObject = obj;
     }
     public float GetDetactLength()
