@@ -9,6 +9,7 @@ public class TitleScene : SceneBase
     protected override void OnSceneLoad()
     {
         Debug.Log("TitleScene OnSceneLoad");
+        UIManager.Instance.Init();
 
         UIManager.Instance.ShowSceneUI<TitleSceneUI>();
         worldMap = ResourceManager.Instance.Instantiate("WorldMap");

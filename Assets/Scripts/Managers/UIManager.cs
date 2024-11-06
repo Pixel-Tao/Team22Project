@@ -28,6 +28,17 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    public override void Init()
+    {
+        base.Init();
+        if (FindObjectOfType<UnityEngine.EventSystems.EventSystem>() == null)
+        {
+            GameObject obj = new GameObject("EventSystem");
+            obj.AddComponent<UnityEngine.EventSystems.EventSystem>();
+            obj.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+        }
+    }
+
     public void SetCanvas(GameObject go, bool sort = true)
     {
         Canvas canvas = go.GetOrAddComponent<Canvas>();

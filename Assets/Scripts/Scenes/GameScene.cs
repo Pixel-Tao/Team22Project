@@ -8,17 +8,9 @@ public class GameScene : SceneBase
     public int poolDefaultCapacity = 20;
     public int poolMaxSize = 100;
 
-    private void CheckEventSystem()
-    {
-        if (FindObjectOfType<UnityEngine.EventSystems.EventSystem>() == null)
-        {
-            GameObject obj = new GameObject("EventSystem");
-            obj.AddComponent<UnityEngine.EventSystems.EventSystem>();
-            obj.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
-        }
-    }
     private void Init()
     {
+        UIManager.Instance.Init();
         CharacterManager.Instance.Init();
         GameManager.Instance.Init();
         PoolManager.Instance.Init(poolDefaultCapacity, poolMaxSize);
@@ -38,7 +30,6 @@ public class GameScene : SceneBase
     protected override void OnSceneLoad()
     {
         Debug.Log("GameScene OnSceneLoad");
-        CheckEventSystem();
         FadeInOutPopupUI fade = UIManager.Instance.ShowPopupUI<FadeInOutPopupUI>();
         Init();
         GameSetting();
