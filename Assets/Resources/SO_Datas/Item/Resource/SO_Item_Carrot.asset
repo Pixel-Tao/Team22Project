@@ -29,6 +29,7 @@ MonoBehaviour:
   attackScale: 0
   attackStamina: 0
   consumables: []
-  dropItemPrefab: {fileID: 4333536560383591219, guid: ac3960763d9ed134b93e9bf2315734f3, type: 3}
+  dropItemPrefab: {fileID: 8036013169813756631, guid: 6c6c44a3d74cb374a8ec20e761154223, type: 3}
   childPath: Carrot
   resourceType: 3
+  needResources: []

@@ -34,4 +34,8 @@ public class ItemSO : InteractableSO
 
     [Header("리소스")]
     public ResourceType resourceType;
+
+    [Header("생성에 필요한 자원량(int)")]
+    public ResourceData[] needResources;
+
 }

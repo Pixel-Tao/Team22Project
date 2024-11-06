@@ -34,6 +34,7 @@ public class Interaction : MonoBehaviour
         if (isBuildMode != GameManager.Instance.IsBuildMode)
         {
             isBuildMode = GameManager.Instance.IsBuildMode;
+            ClearTile();
         }
 
         if (Time.time - time >= checkInterval)
@@ -70,6 +71,8 @@ public class Interaction : MonoBehaviour
                     SetTile(tileObj);
                     if (GameManager.Instance.IsBuildMode)
                         currentTile.Flash();
+                    else
+                        currentTile.UnFlash();
                     return;
                 }
             }

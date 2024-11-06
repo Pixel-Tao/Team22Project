@@ -63,7 +63,22 @@ public class BuildingProduction : MonoBehaviour
     {
         for (int i = 0; i < building.buildedSO.ProductPrefabs.Length; i++)
         {
-            GameObject obj = Instantiate(building.buildedSO.ProductPrefabs[i], transform);
+            GameObject itemPrefab = building.buildedSO.ProductPrefabs[i];
+            ItemObject itemObj = itemPrefab.GetComponent<ItemObject>();
+            if (itemObj == null)
+                return;
+
+            ItemSO itemSO = itemObj.data as ItemSO;
+            if (itemSO == null) return;
+
+            if (itemSO.needResources.Length > 0
+                && GameManager.Instance.UseResources(itemSO.needResources) == false)
+            {
+                UIManager.Instance.SystemMessage("자원이 부족합니다.");
+                return;
+            }
+
+            GameObject obj = Instantiate(itemSO.dropItemPrefab, transform);
             float axisX = Random.Range(-1f, 1f);
             float axisZ = Random.Range(-1f, 1f);
             obj.transform.position = this.gameObject.transform.position;
@@ -83,6 +98,7 @@ public class BuildingProduction : MonoBehaviour
             {
                 SoundManager.Instance.PlayOneShotPoint("HitResource", transform.position);
                 MakeProduct();
+
             }
         }
     }
