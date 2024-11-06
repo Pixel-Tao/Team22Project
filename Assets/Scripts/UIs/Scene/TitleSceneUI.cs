@@ -12,6 +12,7 @@ public class TitleSceneUI : UIScene
         {
             SceneManager.LoadScene("GameScene");
             UIManager.Instance.SingletonDestroy();
+            GameManager.Instance.SingletonDestroy();
             UIManager.Instance.FadeClose();
         });
     }
