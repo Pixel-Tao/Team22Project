@@ -56,6 +56,9 @@ namespace Defines
         Quarry_Red,
         Market_Red,
 
+        //적대세력 건물
+        Enemy_Crypt
+
 
     }
     public enum EnvironmentType
@@ -77,6 +80,10 @@ namespace Defines
         Scaffolding,
         Stage_B,
         Stage_C,
+        //적대세력 환경물 기능x
+        Arch,
+        Fence,
+        Fence_Broken
     }
 
     public enum NaturalObjectType
