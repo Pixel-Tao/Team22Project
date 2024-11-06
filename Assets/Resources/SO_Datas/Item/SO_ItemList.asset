@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f4f11ee0be22041a116493030f7c2a, type: 3}
   m_Name: SO_ItemList
   m_EditorClassIdentifier: 
+  NeedResources:
+  - needResourceType: 0
+    amount: 200
+  - needResourceType: 1
+    amount: 200
+  - needResourceType: 3
+    amount: 100
   Consumables:
   - {fileID: 11400000, guid: 382ddc96d3352554cab4df847053dbb4, type: 2}
   - {fileID: 11400000, guid: db1426bbbf5ba004787a6f3dbca8f087, type: 2}

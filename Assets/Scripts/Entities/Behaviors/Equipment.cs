@@ -17,8 +17,8 @@ public class Equipment : MonoBehaviour
     public string startWeapon;
     public string startHelmet;
 
-    private ItemSO EquipWeaponDate;
-    private ItemSO EquipHelmetDate;
+    public ItemSO EquipWeaponDate { get; private set; }
+    public ItemSO EquipHelmetDate { get; private set; }
 
     void Start()
     {

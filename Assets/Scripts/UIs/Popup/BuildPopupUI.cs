@@ -179,7 +179,6 @@ public class BuildPopupUI : UIPopup
     public override void OnCloseButton()
     {
         base.OnCloseButton();
-        GameManager.Instance.ToggleBuilding();
     }
 
 }

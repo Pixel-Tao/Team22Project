@@ -12,10 +12,12 @@ public class GameManager : Singleton<GameManager>
     public event Action<int> OnFoodCountChanged;
 
     public bool IsBuildMode { get; private set; } = false;
-    public bool IsBuilding { get; private set; } = false;
+    public bool IsInteracting => UIManager.Instance.IsPopupOpeing;
 
     public Goal Goal { get; private set; }
     public DayCycle currentDayCycle = DayCycle.DAY;
+    private float localTimer = 0f;
+    //
 
     public int WoodCount { get; private set; }
     public int OreCount { get; private set; }
@@ -46,17 +48,55 @@ public class GameManager : Singleton<GameManager>
         }
     }
     /// <summary>
+    /// 모든 스포너 실행/중지 지정명령.
+    /// </summary>
+    /// <param name="val"></param>
+    public void SetAllMachine(SPAWNSTATE val)
+    {
+        foreach (SpawnMachine machine in machines)
+        {
+            machine.TriggerMachineState(val);
+        }
+    }
+    /// <summary>
     /// 모든 몬스터 스포너에 난이도를 향상시키도록 명령합니다.
     /// </summary>
-    public void ScalingAllMachune()
+    public void ScalingAllMachine()
     {
         foreach (SpawnMachine machine in machines)
         {
             machine.DecreaseScale();
         }
     }
-    //==============================================================================================
+    /// <summary>
+    /// 매니저에서 동작하는 스포너 명령 업데이트
+    /// </summary>
+    public void ControllMachine(DayCycle cycle, bool isGameEnd = false)
+    {
+        if(isGameEnd)
+        {
+            //성이 파괴됨.
+            SetAllMachine(SPAWNSTATE.WAITING);
+            return;
+        }
 
+        switch(cycle)
+        {
+            case DayCycle.NONE:
+                //TODO : 적들의 수 증가.
+                ScalingAllMachine();
+                break;
+            case DayCycle.DAY:
+                //TODO : 아침이됨.
+                SetAllMachine(SPAWNSTATE.WAITING);
+                break;
+            case DayCycle.NIGHT:
+                //TODO : 저녁이됨.
+                SetAllMachine(SPAWNSTATE.WORKING);
+                break;
+        }
+    }
+    //==============================================================================================
 
     public void AddGoal(Goal goal)
     {
@@ -76,10 +116,6 @@ public class GameManager : Singleton<GameManager>
             // 건설모드가 아닐때 카메라 시점 변경
             CharacterManager.Instance.Player.NormalMode();
         }
-    }
-    public void ToggleBuilding()
-    {
-        IsBuilding = !IsBuilding;
     }
     public override void Init()
     {
@@ -264,15 +300,5 @@ public class GameManager : Singleton<GameManager>
                     break;
             }
         }
-    }
-
-    public ItemSO GetRandomEquip(Defines.EquipType type)
-    {
-        if (type == EquipType.None) return null;
-        
-        List<ItemSO> temp = type == EquipType.Weapon ?
-            ItemList.Weapons : ItemList.Helmets;
-        
-        return temp[UnityEngine.Random.Range(0, temp.Count)];    
     }
 }

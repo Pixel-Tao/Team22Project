@@ -51,6 +51,10 @@ namespace Assets.Scripts.Utils
         {
             state = (state == SPAWNSTATE.WAITING ? SPAWNSTATE.WORKING : SPAWNSTATE.WAITING);
         }
+        public void TriggerMachineState(SPAWNSTATE val)
+        {
+            state = val;
+        }
 
         public void IncreaseScale() { currentSpawnScale++; }
         public void DecreaseScale() 

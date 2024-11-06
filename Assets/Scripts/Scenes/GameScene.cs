@@ -38,7 +38,7 @@ public class GameScene : SceneBase
         Init();
         GameSetting();
         UISetting();
-        fade?.FadeIn(2);
+        fade?.FadeIn();
     }
 
     protected override void OnSceneUnloaded()

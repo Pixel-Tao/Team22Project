@@ -21,6 +21,11 @@ public class ItemSO : InteractableSO
     public JobSO helmetJob;
     public bool LeftHand;
 
+    [Header("무기정보(speed는 -면 속도 빨라짐)")]
+    public float attack;
+    public float attackSpeed;
+    public float attackScale;
+
     [Header("소비")]
     public List<ConsumableData> consumables;
     public GameObject dropItemPrefab;

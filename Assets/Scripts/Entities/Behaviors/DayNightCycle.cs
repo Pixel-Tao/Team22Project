@@ -14,6 +14,9 @@ public class DayNightCycle : MonoBehaviour
     private float dayTime;
     private float nightTime;
 
+    bool isStateDay = false;
+    bool isDayGone = false;
+
     [Header("Sun")]
     public Light sun;
     public Gradient sunColor;
@@ -40,6 +43,7 @@ public class DayNightCycle : MonoBehaviour
     {
         if (time >= 0.25f && time <= 0.75f)
         {
+            GameManager.Instance.ControllMachine(Defines.DayCycle.DAY);
             if (dayLength > 0)
             {
                 time = (time + dayTime * Time.deltaTime) % 1.0f;
@@ -51,6 +55,7 @@ public class DayNightCycle : MonoBehaviour
         }
         else
         {
+            GameManager.Instance.ControllMachine(Defines.DayCycle.NIGHT);
             if (nightLength > 0)
             {
                 time = (time + nightTime * Time.deltaTime) % 1.0f;
@@ -61,12 +66,28 @@ public class DayNightCycle : MonoBehaviour
             }
         }
         //time = (time + timeRate * Time.deltaTime) % 1.0f;
-
         UpdateLighting(sun, sunColor, sunIntensity);
         UpdateLighting(moon, moonColor, moonIntensity);
 
         RenderSettings.ambientIntensity = lightingIntensityMultiplier.Evaluate(time);
         RenderSettings.reflectionIntensity = reflectionIntensityMultiplier.Evaluate(time);
+
+        if(time > 0.25f && time < 0.75f && !isStateDay)
+        {
+            isStateDay = true;
+            isDayGone = false;
+            GameManager.Instance.ControllMachine(Defines.DayCycle.DAY);
+        }
+        else if(time > 0.75f && time < 0.95f && isStateDay)
+        {
+            isStateDay = false;
+            GameManager.Instance.ControllMachine(Defines.DayCycle.NIGHT);
+        }
+        else if(time > 0.99f && !isDayGone)
+        {
+            GameManager.Instance.ControllMachine(Defines.DayCycle.NONE);
+            isDayGone = true;
+        }
     }
 
     void UpdateLighting(Light lightSource, Gradient colorGradiant, AnimationCurve intensityCurve)
