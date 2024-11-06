@@ -3,23 +3,29 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UIElements;
 
 public class InputController : MonoBehaviour
 {
     public event Action<Vector3> MoveEvent;
-    public event Action<Vector3> LookEvent;
-    public event Action<Vector2> RotateEvent;
+    public event Action<Vector2> LookEvent;
+    public event Action<bool> MouseRightPressedEvent;
+    public event Action<Vector2> CameraRotateEvent;
+    public event Action<float> CameraZoomEvent;
+    public event Action<bool> BuildModeEvent;
     public event Action<Vector2> MouseInteractionEvent;
     public event Action InteractEvent;
     public event Action BuildingRotateEvent;
     public event Action<bool> AttackingEvent;
+
+    public event Action<Vector2> MouseMoveEvent;
 
     private Vector2 screenCenter;
     private Vector3 direction;
 
     private void Awake()
     {
-        screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
+       
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -28,7 +34,6 @@ public class InputController : MonoBehaviour
         {
             Vector2 move = context.ReadValue<Vector2>();
             MoveEvent?.Invoke(new Vector3(move.x, 0, move.y));
-            Debug.Log(move);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
@@ -43,10 +48,7 @@ public class InputController : MonoBehaviour
             if (GameManager.Instance.IsInteracting) return;
 
             Vector2 position = context.ReadValue<Vector2>();
-            Vector2 directionFromCenter = position - screenCenter;
-            direction = new Vector3(directionFromCenter.x, 0f, directionFromCenter.y).normalized;
-            LookEvent?.Invoke(direction);
-            MouseInteractionEvent?.Invoke(position);
+            LookEvent?.Invoke(position);
         }
     }
 
@@ -54,8 +56,18 @@ public class InputController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            Vector2 delta = context.ReadValue<Vector2>();
-            RotateEvent?.Invoke(delta);
+            Vector2 position = context.ReadValue<Vector2>();
+            CameraRotateEvent?.Invoke(position);
+        }
+    }
+
+    public void OnCameraZoom(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            float position = context.ReadValue<float>();
+            // 휠 위로 올리면 1, 아래로 내리면 -1
+            CameraZoomEvent?.Invoke(position);
         }
     }
 
@@ -88,6 +100,14 @@ public class InputController : MonoBehaviour
             {
                 BuildingRotateEvent?.Invoke();
             }
+            else
+            {
+                MouseRightPressedEvent?.Invoke(true);
+            }
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            MouseRightPressedEvent?.Invoke(false);
         }
     }
 
@@ -118,6 +138,11 @@ public class InputController : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             GameManager.Instance.ToggleBuildMode();
+            BuildModeEvent?.Invoke(GameManager.Instance.IsBuildMode);
+            if (GameManager.Instance.IsBuildMode)
+            {
+                MouseRightPressedEvent?.Invoke(false);
+            }
         }
     }
 
