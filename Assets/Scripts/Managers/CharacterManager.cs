@@ -60,7 +60,6 @@ public class CharacterManager : Singleton<CharacterManager>
         playerObj.name = "Player";
         Player player = Utils.GetOrAddComponent<Player>(playerObj);
         JobChange(JobType.None);
-        InitItemSlotDatas();
     }
 
     public void JobChange(JobType jobType)
