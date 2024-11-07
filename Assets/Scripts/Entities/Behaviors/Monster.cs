@@ -1,8 +1,6 @@
 using Assets.Scripts.Entities.Objects;
-using Assets.Scripts.Utils;
 using System;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 

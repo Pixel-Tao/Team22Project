@@ -1,25 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UIs.Popup
+public class ConsolePopupUI : UIPopup
 {
-    internal class ConsolePopupUI : UIPopup
+    InputField input;
+    private void Start()
     {
-        InputField input;
-        private void Start()
-        {
-            input = GetComponentInChildren<InputField>();
-        }
+        input = GetComponentInChildren<InputField>();
+        input.Select();
+    }
 
-        private void Update()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            if(Input.GetKeyDown(KeyCode.Return))
+            if (input.text.Length > 0)
             {
-                if(input.text.Length > 0)
-                {
-                    GameManager.Instance.AcceptConsole(input.text);
-                    OnCloseButton();
-                }
+                GameManager.Instance.AcceptConsole(input.text);
+                OnCloseButton();
             }
         }
     }

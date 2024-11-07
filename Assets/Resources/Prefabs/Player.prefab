@@ -331,7 +331,7 @@ MonoBehaviour:
   rotationSpeed: 10
   zoomSpeed: 40
   trackedObjectOffset: {x: 0, y: 0.6, z: 0}
-  zoomMin: 3
+  zoomMin: 1
   zoomMax: 8
   buildModeZoom: 10
 --- !u!136 &7898275275015964915

@@ -1,6 +1,3 @@
-using Defines;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingCondition : MonoBehaviour, IDamageable
@@ -53,8 +50,8 @@ public class BuildingCondition : MonoBehaviour, IDamageable
         {
             CurHealth = 0;
             buildingObject.Destroy();
+            GameManager.Instance.ReturnPeople(buildingObject.BuildingSO?.NeedResources);
             buildingObject.TileObj?.ReturnNaturalObject();
         }
-    } 
-
+    }
 }

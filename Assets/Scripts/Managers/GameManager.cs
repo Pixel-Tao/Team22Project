@@ -1,8 +1,6 @@
-using Assets.Scripts.Utils;
 using Defines;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -43,7 +41,7 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void TriggerAllMachine()
     {
-        foreach(MobSpawnMachine machine in machines)
+        foreach (MobSpawnMachine machine in machines)
         {
             machine.TriggerMachineState();
         }
@@ -74,14 +72,14 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void ControllMachine(DayCycle cycle, bool isGameEnd = false)
     {
-        if(isGameEnd)
+        if (isGameEnd)
         {
             //성이 파괴됨.
             SetAllMachine(SPAWNSTATE.WAITING);
             return;
         }
 
-        switch(cycle)
+        switch (cycle)
         {
             case DayCycle.NONE:
                 //TODO : 적들의 수 증가.
@@ -247,10 +245,31 @@ public class GameManager : Singleton<GameManager>
                     GameManager.Instance.AddFood(amount);
                     break;
                 case ResourceType.People:
-                    GameManager.Instance.AddPeople((int)resourceData.amount);
+                    ReturnPeople(resourceData);
                     break;
             }
         }
+    }
+    public void ReturnPeople(ResourceData[] resources)
+    {
+        if (resources == null || resources.Length == 0)
+            return;
+
+        foreach (ResourceData resource in resources)
+        {
+            if (resource.needResourceType == ResourceType.People)
+            {
+                ReturnPeople(resource);
+                return;
+            }
+        }
+    }
+    public void ReturnPeople(ResourceData resource)
+    {
+        if (resource.needResourceType != ResourceType.People)
+            return;
+
+        AddPeople((int)resource.amount);
     }
 
     private bool IsResourcesUseable(ResourceData[] resources)

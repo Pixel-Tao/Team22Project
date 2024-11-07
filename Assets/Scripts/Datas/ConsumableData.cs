@@ -1,5 +1,4 @@
 using Defines;
-using UnityEngine;
 
 [System.Serializable]
 public class ConsumableData

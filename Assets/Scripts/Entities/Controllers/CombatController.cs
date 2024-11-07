@@ -1,7 +1,5 @@
 using Assets.Scripts.Entities.Objects;
 using Defines;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatController : MonoBehaviour

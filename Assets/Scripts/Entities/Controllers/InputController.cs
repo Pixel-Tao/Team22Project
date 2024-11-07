@@ -1,9 +1,6 @@
-using Assets.Scripts.UIs.Popup;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UIElements;
 
 public class InputController : MonoBehaviour
 {
