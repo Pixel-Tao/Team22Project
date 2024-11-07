@@ -141,6 +141,7 @@ public class GameManager : Singleton<GameManager>
     {
         UIManager.Instance.SingletonDestroy();
         SoundManager.Instance.SingletonDestroy();
+        CharacterManager.Instance.SingletonDestroy();
         SceneManager.LoadScene("TitleScene");
     }
 
