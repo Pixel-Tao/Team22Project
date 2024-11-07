@@ -19,6 +19,9 @@ public class TileObject : InteractableObject, IInteractable
     public bool IsPlayerOnTile => isPlayerOnTile;
     public TileSO TileSO => data as TileSO;
 
+    private Texture2D interactionCursor;
+    private Texture2D defaultCursor;
+
     private void Start()
     {
         waitFlashInterval = new WaitForSeconds(flashInterval);
@@ -33,6 +36,8 @@ public class TileObject : InteractableObject, IInteractable
         {
             naturalBuilding = building;
         }
+        interactionCursor = ResourceManager.Instance.Load<Texture2D>("Textures/Cursors/CRS_HAND");
+        defaultCursor = ResourceManager.Instance.Load<Texture2D>("Textures/Cursors/CRS_ARROW");
     }
 
     public void Flash()
@@ -59,10 +64,12 @@ public class TileObject : InteractableObject, IInteractable
     {
         if (building != null)
         {
+            Cursor.SetCursor(interactionCursor, Vector2.zero, CursorMode.Auto);
             return $"{building.GetInfo()}";
         }
         else
         {
+            Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
             return $"{data.displayName}\n{data.description}";
         }
     }

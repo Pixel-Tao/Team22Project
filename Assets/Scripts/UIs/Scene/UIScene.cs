@@ -1,3 +1,4 @@
+using Defines;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class UIScene : UIBase
     private Transform promptTransform;
     private TextMeshProUGUI systemMessageText;
     private Transform systemMessageTransform;
+    private DayAndNightUI dayAndNightUI;
     [SerializeField] private TextMeshProUGUI modeText;
 
     [SerializeField] private float systemMessageDuration = 5f;
@@ -21,7 +23,7 @@ public class UIScene : UIBase
         promptText = promptTransform?.GetComponentInChildren<TextMeshProUGUI>();
         systemMessageTransform = rect.Find("SystemMessageText");
         systemMessageText = systemMessageTransform?.GetComponentInChildren<TextMeshProUGUI>();
-
+        dayAndNightUI = GetComponentInChildren<DayAndNightUI>();
         Prompt(null);
         SystemMessage(null);
         ModeChange(GameManager.Instance.IsBuildMode);
@@ -91,5 +93,20 @@ public class UIScene : UIBase
         string text = "(Q) ";
         text += isBuildMode ? "건설 모드" : "일반 모드";
         modeText.text = text;
+    }
+
+    public void DayNightChange(DayCycle dayCycle)
+    {
+        switch (dayCycle)
+        {
+            case DayCycle.NIGHT:
+                dayAndNightUI?.SetNight();
+                return;
+            case DayCycle.DAY:
+                dayAndNightUI?.SetDay();
+                return;
+        }
+
+        dayAndNightUI?.SetDay();
     }
 }

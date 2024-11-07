@@ -99,6 +99,8 @@ public class GameManager : Singleton<GameManager>
                 SetAllMachine(SPAWNSTATE.WORKING);
                 break;
         }
+
+        UIManager.Instance.DayNightChange(cycle);
     }
     //==============================================================================================
 

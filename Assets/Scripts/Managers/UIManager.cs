@@ -1,3 +1,4 @@
+using Defines;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -196,5 +197,9 @@ public class UIManager : Singleton<UIManager>
     public void ModeChange(bool isBuildMode)
     {
         SceneUI?.ModeChange(isBuildMode);
+    }
+    public void DayNightChange(DayCycle dayCycle)
+    {
+        SceneUI?.DayNightChange(dayCycle);
     }
 }
