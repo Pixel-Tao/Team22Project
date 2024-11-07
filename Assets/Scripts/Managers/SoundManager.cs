@@ -32,7 +32,7 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="pos"></param>
     public void PlayOneShotPoint(string clipName, Vector3 pos)
     {
-        AudioSource.PlayClipAtPoint(clips[clipName], pos);
+        AudioSource.PlayClipAtPoint(clips[clipName], pos, 0.2f);
     }
 
     /// <summary>
@@ -44,6 +44,7 @@ public class SoundManager : Singleton<SoundManager>
         localAudio.Stop();
         localAudio.clip = clips[clipName];
         localAudio.loop = isLoop;
+        localAudio.volume = 0.2f;
         localAudio.Play();
     }
 }

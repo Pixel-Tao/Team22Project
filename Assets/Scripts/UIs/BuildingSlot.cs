@@ -50,6 +50,7 @@ public class BuildingSlot : MonoBehaviour
         if (buildSO.NeedResources == null)
             return;
 
+        ResourceSlotClear();
         foreach (ResourceData resource in buildSO.NeedResources)
         {
             switch (resource.needResourceType)
