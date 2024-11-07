@@ -1,7 +1,4 @@
 using Defines;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "S0_BuildData", menuName = "Datas/S0_BuildData")]

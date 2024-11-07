@@ -1,10 +1,5 @@
 using Defines;
-using System;
-using System.Collections.Generic;
-using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
 {
