@@ -23,8 +23,7 @@ public class GameScene : SceneBase
     {
         CharacterManager.Instance.LoadPlayer(Defines.JobType.Knight);
         GameObject mapGameObject = ResourceManager.Instance.Instantiate("WorldMap");
-        NavMeshSurface navMeshSurface = mapGameObject.GetComponent<NavMeshSurface>();
-        navMeshSurface.BuildNavMesh();
+        NavMeshBaking(mapGameObject);
         ResourceManager.Instance.Instantiate("Spawner/Spawners");
         ResourceManager.Instance.Instantiate("DayAndNight");
         SoundManager.Instance.SetBackGroundMusic("BGM");
@@ -33,6 +32,17 @@ public class GameScene : SceneBase
     {
         UIManager.Instance.ShowSceneUI<GameSceneUI>();
     }
+
+    private void NavMeshBaking(GameObject map)
+    {
+        NavMeshSurface navMeshSurface = map.GetComponent<NavMeshSurface>();
+        navMeshSurface.BuildNavMesh();
+        NavMeshData navMeshData = navMeshSurface.navMeshData;
+        navMeshData.position -= new Vector3(0, 0.07f, 0);
+        NavMesh.RemoveAllNavMeshData();
+        NavMesh.AddNavMeshData(navMeshData);
+    }
+
     protected override void OnSceneLoad()
     {
         Debug.Log("GameScene OnSceneLoad");
@@ -48,4 +58,6 @@ public class GameScene : SceneBase
         Debug.Log("GameScene OnSceneUnloaded");
 
     }
+
+    
 }
