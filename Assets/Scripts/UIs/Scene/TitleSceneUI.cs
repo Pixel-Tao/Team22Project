@@ -10,9 +10,10 @@ public class TitleSceneUI : UIScene
     {
         UIManager.Instance.FadeOut(2, false,() =>
         {
-            SceneManager.LoadScene("GameScene");
             UIManager.Instance.SingletonDestroy();
             GameManager.Instance.SingletonDestroy();
+
+            SceneManager.LoadScene("GameScene");
             UIManager.Instance.FadeClose();
         });
     }

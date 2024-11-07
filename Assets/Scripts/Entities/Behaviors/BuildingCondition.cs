@@ -13,9 +13,12 @@ public class BuildingCondition : MonoBehaviour, IDamageable
 
     public float CurProductiontDelay { get; private set; }
 
+    private Goal goal;
+
     private void Awake()
     {
         buildingObject = GetComponent<BuildingObject>();
+        goal = GetComponent<Goal>();
     }
 
     private void Start()
@@ -49,9 +52,17 @@ public class BuildingCondition : MonoBehaviour, IDamageable
         if (CurHealth < 0)
         {
             CurHealth = 0;
-            buildingObject.Destroy();
-            GameManager.Instance.ReturnPeople(buildingObject.BuildingSO?.NeedResources);
-            buildingObject.TileObj?.ReturnNaturalObject();
+
+            if (goal != null)
+            {
+                GameManager.Instance.GameOver();
+            }
+            else
+            {
+                buildingObject.Destroy();
+                GameManager.Instance.ReturnPeople(buildingObject.BuildingSO?.NeedResources);
+                buildingObject.TileObj?.ReturnNaturalObject();
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 using Defines;
 using System;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -132,6 +133,12 @@ public class GameManager : Singleton<GameManager>
         IsBuildMode = false;
 
         ItemList = ResourceManager.Instance.GetSOData<ItemListSO>("Item/SO_ItemList");
+    }
+    public void GameOver()
+    {
+        UIManager.Instance.SingletonDestroy();
+        SoundManager.Instance.SingletonDestroy();
+        SceneManager.LoadScene("TitleScene");
     }
 
     public void AddWood(int amount)
