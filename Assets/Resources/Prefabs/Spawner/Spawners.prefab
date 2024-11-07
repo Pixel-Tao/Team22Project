@@ -115,13 +115,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 151840050054972118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f750bf6e28da1ed469115b30b631d283, type: 3}
+  m_Script: {fileID: 11500000, guid: fced2516b6e9c774e9e142af99393822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsters: 020000000000000001000000
+  monsters: 000000000100000002000000
   maxSpawnArea: 1
-  minSpawnScale: 20
-  currentSpawnScale: 120
+  minSpawnScale: 30
+  currentSpawnScale: 100
 --- !u!1 &1261458487267024473
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,12 +237,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1261458487267024473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f750bf6e28da1ed469115b30b631d283, type: 3}
+  m_Script: {fileID: 11500000, guid: fced2516b6e9c774e9e142af99393822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsters: 020000000000000000000000
+  monsters: 000000000100000001000000
   maxSpawnArea: 1
-  minSpawnScale: 20
+  minSpawnScale: 60
   currentSpawnScale: 200
 --- !u!1 &3806325408710880886
 GameObject:
@@ -337,13 +337,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3806325408710880886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f750bf6e28da1ed469115b30b631d283, type: 3}
+  m_Script: {fileID: 11500000, guid: fced2516b6e9c774e9e142af99393822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsters: 000000000100000001000000
+  monsters: 000000000100000002000000
   maxSpawnArea: 1
   minSpawnScale: 30
-  currentSpawnScale: 120
+  currentSpawnScale: 100
 --- !u!1 &4435018326464091126
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,12 +459,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4435018326464091126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f750bf6e28da1ed469115b30b631d283, type: 3}
+  m_Script: {fileID: 11500000, guid: fced2516b6e9c774e9e142af99393822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsters: 02000000000000000100000000000000
+  monsters: 00000000000000000100000001000000
   maxSpawnArea: 2
-  minSpawnScale: 10
+  minSpawnScale: 20
   currentSpawnScale: 50
 --- !u!1 &4819915765649154816
 GameObject:
@@ -581,13 +581,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4819915765649154816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f750bf6e28da1ed469115b30b631d283, type: 3}
+  m_Script: {fileID: 11500000, guid: fced2516b6e9c774e9e142af99393822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsters: 000000000000000000000000
+  monsters: 020000000100000001000000
   maxSpawnArea: 1
-  minSpawnScale: 10
-  currentSpawnScale: 120
+  minSpawnScale: 30
+  currentSpawnScale: 100
 --- !u!1 &4828691967472890795
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,12 +703,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4828691967472890795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f750bf6e28da1ed469115b30b631d283, type: 3}
+  m_Script: {fileID: 11500000, guid: fced2516b6e9c774e9e142af99393822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsters: 000000000100000001000000
+  monsters: 000000000100000002000000
   maxSpawnArea: 2
-  minSpawnScale: 10
+  minSpawnScale: 20
   currentSpawnScale: 50
 --- !u!1 &6591362841162494583
 GameObject:
@@ -825,13 +825,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6591362841162494583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f750bf6e28da1ed469115b30b631d283, type: 3}
+  m_Script: {fileID: 11500000, guid: fced2516b6e9c774e9e142af99393822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsters: 010000000000000001000000
+  monsters: 000000000000000001000000
   maxSpawnArea: 1
-  minSpawnScale: 10
-  currentSpawnScale: 120
+  minSpawnScale: 30
+  currentSpawnScale: 100
 --- !u!1 &7265705287801863704
 GameObject:
   m_ObjectHideFlags: 0
