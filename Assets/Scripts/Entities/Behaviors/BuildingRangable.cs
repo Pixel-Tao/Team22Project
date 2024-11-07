@@ -6,11 +6,10 @@ namespace Assets.Scripts.Entities.Behaviors
 {
     internal class BuildingRangable : MonoBehaviour, IRangable
     {
+        private GameObject currentTarget;
         public float height;
         public string projectileName;
-        //public GameObject projectile;
         
-        private GameObject currentTarget;  
         private float localTimer = 0f;
         private float attackDelay;
         private float attackRange;

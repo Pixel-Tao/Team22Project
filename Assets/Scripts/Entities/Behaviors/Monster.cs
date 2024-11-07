@@ -8,24 +8,28 @@ using UnityEngine.AI;
 
 public class Monster : MonoBehaviour, IDamageable, IRangable
 {
-    private int attackAnimId;
-    private int damagedAnimId;
-    private int deadAnimId;
-    private float health;
-    private float attackTimer = 0;
-    private float xFixable = 0f;
+    //VAL
+    private int     attackAnimId;
+    private int     damagedAnimId;
+    private int     deadAnimId;
+    
+    private float   health;
+    private float   attackTimer = 0f;
+    private float   xFixable    = 0f;
 
+    //Components
     [SerializeField] MonsterSO data;
+    private Rigidbody rb;
     public NavMeshAgent agent;
     private Animator animator;
     private CircleCollider2D circleCollider;
-    private Rigidbody rb;
     private Defines.MOBSTATE state = Defines.MOBSTATE.MOVE;
 
-    private GameObject targetObject;//현재 주시되는
-    private GameObject detectObject;//현재 감지된
+    //OBJECTS
+    private GameObject targetObject;
+    private GameObject detectObject;
     private GameObject playerObject;
-    private GameObject destObject;//최종 목적지 //반드시 NULL이 아니어야함!
+    private GameObject destObject;
 
     //PP
     public MonsterSO Data
@@ -59,20 +63,23 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     }
     #endregion
     #region MOB BEHAVIOR SEQUENCE
+    /// <summary>
+    /// 몬스터의 데이터를 초기화 합니다.
+    /// </summary>
     private void MobInit()
     {
         GameObject[] objects = FindObjectsOfType<GameObject>();
         SetTarget(GameManager.Instance.Goal.transform);
-        attackTimer = data.attackDelay;
-        agent.speed = data.speed;
+        attackTimer     = data.attackDelay;
+        agent.speed     = data.speed;
 
-        attackAnimId = Animator.StringToHash("isAttack");
-        damagedAnimId = Animator.StringToHash("isDamaged");
-        deadAnimId = Animator.StringToHash("isDead");
+        attackAnimId    = Animator.StringToHash("isAttack");
+        damagedAnimId   = Animator.StringToHash("isDamaged");
+        deadAnimId      = Animator.StringToHash("isDead");
 
-        playerObject = CharacterManager.Instance.Player.gameObject;
-        destObject = GameManager.Instance.Goal.gameObject;
-        health = data.health;
+        playerObject    = CharacterManager.Instance.Player.gameObject;
+        destObject      = GameManager.Instance.Goal.gameObject;
+        health          = data.health;
     }
     private void UpdateMove()
     {
@@ -133,6 +140,10 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         return float.MaxValue;
     }
 
+    /// <summary>
+    /// 목표 지점을 설정하고 이동 명령을 수행합니다.
+    /// </summary>
+    /// <param name="target"></param>
     private void SetTarget(Transform target)
     {
         targetObject = target.transform.gameObject;
@@ -140,11 +151,18 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         agent.SetDestination(target.position);
         agent.isStopped = false;
     }
+    /// <summary>
+    /// 현재 객체의 상태를 변화 시킵니다 (이동, 공격)
+    /// </summary>
+    /// <param name="type"></param>
     private void SetState(Defines.MOBSTATE type)
     {
         agent.isStopped = true;
         state = type;
     }
+    /// <summary>
+    /// 현재 타켓 오브젝트를 공격합니다, 타겟이 없으면 작동하지 않습니다.
+    /// </summary>
     private void AttackToTarget()
     {
         if (targetObject == null) return;
@@ -160,6 +178,10 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         data.attackDamage,
         !data.isRangedWeapon);
     }
+    /// <summary>
+    /// 몬스터 객체를 풀로 반환합니다.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DespawnObject()
     {
         SetState(Defines.MOBSTATE.DEAD);
@@ -173,6 +195,7 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         PoolManager.Instance.Despawn(this.gameObject);
     }
 
+    #region INTERFACES
     public void TakeDamage(float damage)
     {
         if (health > 0)
@@ -191,10 +214,6 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     {
         throw new System.NotImplementedException();
     }
-    public void KnockBack(Transform dest)
-    {
-    }
-
     public void InitDetactObject(GameObject obj)
     {
         if (detectObject == null && !obj.TryGetComponent<Player>(out Player temp))
@@ -204,4 +223,5 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     {
         return data.detectiveLength;
     }
+    #endregion
 }

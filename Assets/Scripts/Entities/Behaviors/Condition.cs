@@ -138,9 +138,4 @@ public class Condition : MonoBehaviour, IDamageable
         FullRecovery();
         TakeDamage(CurrentStat.maxHealth / 2);
     }
-
-    public void KnockBack(Transform dest)
-    {
-        // 미구현
-    }
 }

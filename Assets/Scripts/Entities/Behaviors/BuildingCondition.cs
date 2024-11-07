@@ -55,11 +55,6 @@ public class BuildingCondition : MonoBehaviour, IDamageable
             buildingObject.Destroy();
             buildingObject.TileObj?.ReturnNaturalObject();
         }
-    }
-
-    public void KnockBack(Transform dest)
-    {
-
-    }
+    } 
 
 }

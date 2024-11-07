@@ -17,12 +17,9 @@ namespace Assets.Scripts.Utils
         {
             foreach(string tag in tagNames)
             {
-                if (other.CompareTag(tag))
+                if (other.CompareTag(tag) && other.gameObject.activeSelf)
                 {
-                    if (other.gameObject.activeSelf)
-                    {
-                        transform.parent.GetComponent<IRangable>().InitDetactObject(other.gameObject);
-                    }
+                    transform.parent.GetComponent<IRangable>().InitDetactObject(other.gameObject);
                 }
             }
            

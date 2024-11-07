@@ -51,7 +51,6 @@ namespace Assets.Scripts.Entities.Objects
             localTimer = 0;
             currentTarget = null;
             PoolManager.Instance.Despawn(gameObject);
-            //Destroy(this.gameObject);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -61,7 +60,6 @@ namespace Assets.Scripts.Entities.Objects
                 if (other.CompareTag(str))
                 {
                     other.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
-                    other.gameObject.GetComponent<IDamageable>().KnockBack(this.transform);
                     if(!meleeAttack)
                     {
                         DestroySelf();

@@ -4,7 +4,7 @@ using Defines;
 
 namespace Assets.Scripts.Utils
 {
-    public class SpawnMachine : MonoBehaviour
+    public class MobSpawnMachine : MonoBehaviour
     {
         private Defines.SPAWNSTATE state = Defines.SPAWNSTATE.WORKING;
         [SerializeField] private List<MOBTYPE> monsters;

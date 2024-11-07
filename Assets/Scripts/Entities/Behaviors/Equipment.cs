@@ -20,25 +20,11 @@ public class Equipment : MonoBehaviour
     public ItemSO EquipWeaponDate { get; private set; }
     public ItemSO EquipHelmetDate { get; private set; }
 
-    void Start()
-    {
-        //rightHandSlot = transform.Find("Rig/root/hips/spine/chest/upperarm.r/lowerarm.r/wrist.r/hand.r/handslot.r");
-        //head = transform.Find("Rig/root/hips/spine/chest/head");
-
-        ////Test
-        //startWeapon = "Prefabs/Item/Weapon/Equip_Axe";
-        //startHelmet = "Prefabs/Item/Helmet/Equip_Barbarian_Hat";
-        //EquipWeapon(SetitemSO(startWeapon));
-        //EquipHelmet(SetitemSO(startHelmet));
-    }
-
     public void EquipWeaponOld(ItemSO itemSO)
     {
         Transform weapon = itemSO.equipPrefab.transform.Find(itemSO.childPath);
         GameObject weaponInstance = Instantiate(weapon.gameObject, rightHandSlot.position, rightHandSlot.rotation);
         weaponInstance.transform.SetParent(rightHandSlot);
-        //weaponInstance.transform.localPosition = Vector3.zero;
-        //weaponInstance.transform.localRotation = Quaternion.identity;
     }
 
     public void EquipWeapon(ItemSO itemSO)
@@ -87,14 +73,13 @@ public class Equipment : MonoBehaviour
         Transform Helmet = itemSO.equipPrefab.transform.Find(itemSO.childPath);
         GameObject helmetInstance = Instantiate(Helmet.gameObject, head.position, head.rotation);
         helmetInstance.transform.SetParent(head);
-        //helmetInstance.transform.localPosition = Vector3.zero;
-        //helmetInstance.transform.localRotation = Quaternion.identity;
     }
 
     public void EquipHelmet(ItemSO itemSO)
     {
         UnEquipHelmet();
         this.itemSO = itemSO;
+        
         if (characterModel == null)
             characterModel = characterModelGameObject.GetComponent<CharacterModel>();
 
