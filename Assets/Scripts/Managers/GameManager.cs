@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
     public Goal Goal { get; private set; }
     public DayCycle currentDayCycle = DayCycle.DAY;
     private float localTimer = 0f;
+    private int dayCount = 1;
     //
 
     public int WoodCount { get; private set; }
@@ -26,14 +27,14 @@ public class GameManager : Singleton<GameManager>
     public int MaxPeopleCount { get; private set; }
 
     public ItemListSO ItemList { get; private set; }
-    public List<SpawnMachine> machines = new List<SpawnMachine>();
+    public List<MobSpawnMachine> machines = new List<MobSpawnMachine>();
 
     //===========================스포너 제어========================================================
     /// <summary>
     /// 맵에 배치되어 있는 스포너는 자동으로 해당 함수를 호출 합니다, 외부에서 호출금지XXXXX
     /// </summary>
     /// <param name="m"></param>
-    public void AddMachine(SpawnMachine m)
+    public void AddMachine(MobSpawnMachine m)
     {
         machines.Add(m);
     }
@@ -42,7 +43,7 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void TriggerAllMachine()
     {
-        foreach(SpawnMachine machine in machines)
+        foreach(MobSpawnMachine machine in machines)
         {
             machine.TriggerMachineState();
         }
@@ -53,7 +54,7 @@ public class GameManager : Singleton<GameManager>
     /// <param name="val"></param>
     public void SetAllMachine(SPAWNSTATE val)
     {
-        foreach (SpawnMachine machine in machines)
+        foreach (MobSpawnMachine machine in machines)
         {
             machine.TriggerMachineState(val);
         }
@@ -63,7 +64,7 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void ScalingAllMachine()
     {
-        foreach (SpawnMachine machine in machines)
+        foreach (MobSpawnMachine machine in machines)
         {
             machine.DecreaseScale();
         }
@@ -84,14 +85,18 @@ public class GameManager : Singleton<GameManager>
         {
             case DayCycle.NONE:
                 //TODO : 적들의 수 증가.
+                UIManager.Instance.SystemMessage($"[{dayCount}일째 생존..]\n앞으로 밤에 더 많은 몬스터가 생성됩니다.");
+                dayCount++;
                 ScalingAllMachine();
                 break;
             case DayCycle.DAY:
                 //TODO : 아침이됨.
+                UIManager.Instance.SystemMessage("[아침이 되었습니다]\n더이상 몬스터가 스폰되지 않습니다.");
                 SetAllMachine(SPAWNSTATE.WAITING);
                 break;
             case DayCycle.NIGHT:
                 //TODO : 저녁이됨.
+                UIManager.Instance.SystemMessage("[저녁이 되었습니다]\n무덤에서 몬스터가 기어나옵니다!!");
                 SetAllMachine(SPAWNSTATE.WORKING);
                 break;
         }

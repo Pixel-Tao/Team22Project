@@ -5,9 +5,10 @@ public class BuildingProduction : MonoBehaviour
 {
     BuildingObject building;
     GameObject productObject;
+    Rigidbody rigid;
+    
     private float delay;
     private float localTimer;
-    Rigidbody rigid;
 
     private void Start()
     {
@@ -41,9 +42,6 @@ public class BuildingProduction : MonoBehaviour
                     case Defines.BuildingType.Quarry_Red:
                         CharacterManager.Instance.AddItem(CreateTempItem(Defines.ResourceType.Ore));
                         break;
-                    //case Defines.BuildingType.Market_Red:
-                    //    MakeProduct();
-                    //break;
                     default:
                         break;
                 }

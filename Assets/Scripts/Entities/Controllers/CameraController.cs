@@ -59,7 +59,6 @@ public class CameraController : MonoBehaviour
 
         float zoom = transposer.m_FollowOffset.y - (delta * zoomSpeed * Time.deltaTime);
         transposer.m_FollowOffset.y = Mathf.Clamp(zoom, zoomMin, zoomMax);
-        saveZoom = transposer.m_FollowOffset.y;
     }
 
     public void RotateCamera(Vector2 mouseDelta)
@@ -76,6 +75,7 @@ public class CameraController : MonoBehaviour
     {
         if (isBuildMode) 
         {
+            saveZoom = transposer.m_FollowOffset.y;
             transposer.m_FollowOffset.y = buildModeZoom;
             composer.m_TrackedObjectOffset = Vector3.zero;
         }

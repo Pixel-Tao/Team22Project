@@ -16,5 +16,4 @@ public interface IDamageable
     /// </summary>
     /// <param name="heal"></param>
     public void Heal(int heal);
-    public void KnockBack(Transform dest);
 }
