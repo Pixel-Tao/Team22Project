@@ -143,7 +143,7 @@ public class BuildingObject : MonoBehaviour
 
     private string HealthInfo()
     {
-        return $"현재 내구도 : {condition.CurHealth} / {condition.MaxHealth}\n";
+        return $"현재 내구도 : {condition.CurHealth:F0} / {condition.MaxHealth}\n";
     }
 
     private string AttackInfo()

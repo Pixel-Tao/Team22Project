@@ -12,6 +12,8 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
     private int     deadAnimId;
     
     private float   health;
+    private float   maxHealth;
+    private float   attackDamage;
     private float   attackTimer = 0f;
     private float   xFixable    = 0f;
 
@@ -35,6 +37,8 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         get { return data; }
     }
     public float Health { get { return health; } }
+    public float healthScaleOffset = 10;
+    public float attackDamageScaleOffset = 2;
 
     #region UNITY EVENTS
     void Start()
@@ -77,8 +81,19 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
 
         playerObject    = CharacterManager.Instance.Player.gameObject;
         destObject      = GameManager.Instance.Goal.gameObject;
-        health          = data.health;
+        ConditionScaling();
     }
+
+    private void ConditionScaling()
+    {
+        int scaleOffset = GameManager.Instance.DayCount - 1;
+
+        float additionalHealth = scaleOffset * healthScaleOffset;
+        float additionalDamage = scaleOffset * attackDamageScaleOffset;
+        health = data.health + additionalHealth;
+        attackDamage = data.attackDamage + additionalDamage;
+    }
+
     private void UpdateMove()
     {
         float playerLength = (playerObject.transform.position - transform.position).magnitude;
@@ -169,11 +184,11 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         
         temp.transform.position = this.gameObject.transform.position + (Vector3.up * 0.4f);
         string[] tags = GetComponentInChildren<Detector>().TagNames;
-        
+
         temp.GetComponent<ProjectileController>().Init
         (targetObject,
         GetComponentInChildren<Detector>().TagNames,
-        data.attackDamage,
+        attackDamage,
         !data.isRangedWeapon);
     }
     /// <summary>
@@ -187,7 +202,8 @@ public class Monster : MonoBehaviour, IDamageable, IRangable
         yield return new WaitForSeconds(2f);
         
         SetState(Defines.MOBSTATE.MOVE);
-        health = data.health;
+        ConditionScaling();
+
         detectObject = null;
         agent.enabled = false;
         PoolManager.Instance.Despawn(this.gameObject);

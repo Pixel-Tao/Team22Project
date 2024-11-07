@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
     public int FoodCount { get; private set; }
     public int PeopleCount { get; private set; }
     public int MaxPeopleCount { get; private set; }
+    public int DayCount => dayCount;
 
     public ItemListSO ItemList { get; private set; }
     public List<MobSpawnMachine> machines = new List<MobSpawnMachine>();
