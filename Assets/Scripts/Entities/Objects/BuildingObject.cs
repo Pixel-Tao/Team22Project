@@ -13,7 +13,6 @@ public class BuildingObject : MonoBehaviour
     public int ProvidedPopulation => BuildingSO?.providedPopulation ?? 0;
     public int ConsumingPopulation => GetCumsumingPopulation();
 
-    private string str;
     private string rightClickMessage => GameManager.Instance.IsBuildMode ? "\n[마우스 우클릭 시 건물 회전]" : string.Empty;
     private string interactMessage => !GameManager.Instance.IsBuildMode ? "\n[E 키를 눌러 상호작용]" : string.Empty;
     private string attackMessage => !GameManager.Instance.IsBuildMode ? "\n[공격하여 아이템 획득]" : string.Empty;
@@ -120,15 +119,12 @@ public class BuildingObject : MonoBehaviour
             }
             sb.Append(rightClickMessage);
         }
-
-        Debug.Log("Debug : 타입별 정보\n" + str);
-
-        return str;
+        return sb.ToString();
     }
 
     public string BuildingInfo()//(건설메뉴에서)보여줄 요구사항 정보
     {
-        str = string.Empty;
+        string str = string.Empty;
         if (BuildingSO != null)
         {
             for (int i = 0; i < BuildingSO.NeedResources.Length; i++)
@@ -141,7 +137,7 @@ public class BuildingObject : MonoBehaviour
         {
             str = "없음";
         }
-        Debug.Log("Debug : 건설 요구사항\n" + str);
+
         return str;
     }
 
@@ -172,7 +168,7 @@ public class BuildingObject : MonoBehaviour
         }
 
         InteractableSO productItemSO;
-
+        string str = string.Empty;
         for (int i = 0; i < buildedSO.ProductPrefabs.Length; i++)
         {
             productItemSO = buildedSO.ProductPrefabs[i].GetComponent<ItemObject>().data;

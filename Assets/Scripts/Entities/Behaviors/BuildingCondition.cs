@@ -53,8 +53,8 @@ public class BuildingCondition : MonoBehaviour, IDamageable
         {
             CurHealth = 0;
             buildingObject.Destroy();
+            GameManager.Instance.ReturnPeople(buildingObject.BuildingSO?.NeedResources);
             buildingObject.TileObj?.ReturnNaturalObject();
         }
-    } 
-
+    }
 }

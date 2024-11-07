@@ -1,4 +1,3 @@
-using Assets.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities.Objects

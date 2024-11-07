@@ -133,6 +133,8 @@ public class CharacterManager : Singleton<CharacterManager>
         itemSlotDatas[index].itemCount -= 1;
         if (itemSlotDatas[index].itemCount <= 0)
         {
+            if (itemSlotDatas[index].isEquipped)
+                UnEquipItem(index);
             itemQuickSlots[itemSlotDatas[index].quickSlotKey] = null;
             itemSlotDatas[index].itemSO = null;
             itemSlotDatas[index].itemCount = 0;
