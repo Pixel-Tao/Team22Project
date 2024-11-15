@@ -12,7 +12,7 @@ public class TitleScene : SceneBase
         UIManager.Instance.Init();
 
         UIManager.Instance.ShowSceneUI<TitleSceneUI>();
-        worldMap = ResourceManager.Instance.Instantiate("WorldMap");
+        //worldMap = ResourceManager.Instance.Instantiate("WorldMap");
         ResourceManager.Instance.Instantiate("DayAndNight");
         titleCameraTrack = ResourceManager.Instance.Instantiate("TitleCameraTrack");
     }
