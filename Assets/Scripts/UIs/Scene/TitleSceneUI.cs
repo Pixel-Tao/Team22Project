@@ -21,6 +21,7 @@ public class TitleSceneUI : UIScene
     public void OptionButton()
     {
         // TODO : 설정
+        UIManager.Instance.ShowPopupUI<SettingPopupUI>();
     }
 
     public void ExitButton()

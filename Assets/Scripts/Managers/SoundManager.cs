@@ -10,7 +10,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         base.Init();
         localAudio = this.gameObject.AddComponent<AudioSource>();
-        foreach(AudioClip clip in Resources.LoadAll<AudioClip>("Sounds"))
+        foreach (AudioClip clip in Resources.LoadAll<AudioClip>("Sounds"))
         {
             clips.Add(clip.name, clip);
         }
@@ -32,6 +32,9 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="pos"></param>
     public void PlayOneShotPoint(string clipName, Vector3 pos)
     {
+        if (IsEffectOn() == false)
+            return;
+
         AudioSource.PlayClipAtPoint(clips[clipName], pos, 0.2f);
     }
 
@@ -41,10 +44,49 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clipName"></param>
     public void SetBackGroundMusic(string clipName, bool isLoop = true)
     {
+        if (IsBGMOn() == false)
+            return;
+
         localAudio.Stop();
         localAudio.clip = clips[clipName];
         localAudio.loop = isLoop;
         localAudio.volume = 0.2f;
         localAudio.Play();
+    }
+
+    public void ToggleBGM(bool isOn)
+    {
+        if (isOn)
+        {
+            PlayerPrefs.SetInt("PlayBGM", 1);
+            localAudio.Play();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("PlayBGM", 0);
+            localAudio.Stop();
+        }
+    }
+
+    public void ToggleEffect(bool isOn)
+    {
+        if (isOn)
+        {
+            PlayerPrefs.SetInt("PlayEffect", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("PlayEffect", 0);
+        }
+    }
+    
+    public bool IsBGMOn()
+    {
+        return PlayerPrefs.GetInt("PlayBGM", 1) == 1;
+    }
+    
+    public bool IsEffectOn()
+    {
+        return PlayerPrefs.GetInt("PlayEffect", 1) == 1;
     }
 }
