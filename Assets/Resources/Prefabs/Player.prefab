@@ -216,7 +216,19 @@ MonoBehaviour:
     m_ActionId: 2925206b-dddb-4e90-862f-7623990f0387
     m_ActionName: Player/Inventory[/Keyboard/tab]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 816201128733226030}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnEscape
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9e0b08f2-f93b-47b8-a1ed-98a776d86109
     m_ActionName: Player/Escape[/Keyboard/escape]
   - m_PersistentCalls:
@@ -283,6 +295,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f3ad0ebf-fe86-4502-9bcc-01caf70e0634
     m_ActionName: Player/CameraZoom[/Mouse/scroll/y]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 816201128733226030}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnHelp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e4ff4093-42e0-4c26-856c-10cfd9946c1b
+    m_ActionName: Player/Help[/Keyboard/h]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

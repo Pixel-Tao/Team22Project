@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
@@ -163,6 +164,34 @@ public class InputController : MonoBehaviour
                 UIManager.Instance.ShowPopupUI<ConsolePopupUI>();
             else
                 UIManager.Instance.ClosePopupUI(popup);
+        }
+    }
+
+    public void OnEscape(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            SettingPopupUI popup = UIManager.Instance.FindPopup<SettingPopupUI>();
+            if (popup == null)
+                UIManager.Instance.ShowPopupUI<SettingPopupUI>();
+            else
+                UIManager.Instance.ClosePopupUI(popup);
+        }
+    }
+    
+    public void OnHelp(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            ConsolePopupUI popup = UIManager.Instance.FindPopup<ConsolePopupUI>();
+            if (popup != null)
+                return;
+            
+            UIScene scene = UIManager.Instance.SceneUI;
+            if (scene is GameSceneUI gameSceneUI)
+            {
+                gameSceneUI.ToggleHelp();
+            }
         }
     }
 }

@@ -22,4 +22,9 @@ public class SettingPopupUI : UIPopup
     {
         SoundManager.Instance.ToggleEffect(effectToggle.isOn);
     }
+
+    public void OnExitButton()
+    {
+        Application.Quit();
+    }
 }

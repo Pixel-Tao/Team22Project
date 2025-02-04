@@ -50,7 +50,14 @@ public class GameScene : SceneBase
         Init();
         GameSetting();
         UISetting();
-        fade?.FadeIn();
+        fade?.FadeIn(
+            fadedCallback: () =>
+            {
+                UIScene scene = UIManager.Instance.SceneUI;
+                if (scene is GameSceneUI gameSceneUI)
+                    gameSceneUI.ToggleHelp();
+            }
+        );
     }
 
     protected override void OnSceneUnloaded()
@@ -59,5 +66,5 @@ public class GameScene : SceneBase
 
     }
 
-    
+
 }

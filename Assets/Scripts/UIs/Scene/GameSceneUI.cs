@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ public class GameSceneUI : UIScene
     // 게임씬에서 사용할 고정 UI
 
     [SerializeField] private Transform quickSlots;
+    [SerializeField] private GameObject helpPanel;
 
     private List<QuickSlot> slots = new List<QuickSlot>();
 
@@ -91,5 +91,11 @@ public class GameSceneUI : UIScene
         }
 
         return null;
+    }
+
+    public void ToggleHelp()
+    {
+        helpPanel.SetActive(!helpPanel.activeSelf);
+        Time.timeScale = helpPanel.activeSelf ? 0 : 1;
     }
 }
