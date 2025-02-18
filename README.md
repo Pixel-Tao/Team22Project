@@ -1,5 +1,9 @@
 # Team22Project
 - 플레이어가 중앙의 성을 방어하며 생존, 건설, 자원 관리를 수행하는 전략적 액션 게임입니다.
+  - DEFENSE : 플레이어는 중앙의 성이 파괴되지 않도록 수비해야 합니다.
+  - SURVIVAL : 식량 및 식수를 지속적으로 섭취하여 생존 해야 합니다.
+  - CONSTRUCTION : 건물을 건설하여 적의 공격을 버티며, 자원을 유지 해야 합니다.
+  - GOAL : 최대한 많은 날을 생존하며, 설을 지켜내야 합니다.
 - [다운로드](https://drive.google.com/file/d/12i9w3JOgHRdiL5fDf0CUb5uy7TF7ZvVC/view)
 
 
