@@ -1,5 +1,7 @@
 # Team22Project
-탑다운액션크래프팅생존RTS홍진호홍진호조게임
+플레이어가 중앙의 성을 방어하며 생존, 건설, 자원 관리를 수행하는 전략적 액션 게임입니다.
+[다운로드](https://drive.google.com/file/d/12i9w3JOgHRdiL5fDf0CUb5uy7TF7ZvVC/view)
+
 
 # 필수 구현 기능
 1. **자원 수집 및 가공**
